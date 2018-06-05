@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   create_table "prescriptions", force: :cascade do |t|
     t.string "drug_name"
     t.integer "amount_per_dose"
+    t.string "dosage"
     t.string "formulation"
     t.string "route"
     t.integer "daily_freq"
