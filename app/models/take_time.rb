@@ -1,0 +1,2 @@
+class TakeTime < ApplicationRecord
+end

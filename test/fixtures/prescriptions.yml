@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  drug_name: MyString
+  amount_per_dose: 1
+  formulation: MyString
+  route: MyString
+  daily_freq: 1
+  weekly_freq: MyString
+  start_date: 2018-06-05 14:31:54
+  end_date: 2018-06-05 14:31:54
+  doctor: one
+  pharmacy: one
+  patient: one
+
+two:
+  drug_name: MyString
+  amount_per_dose: 1
+  formulation: MyString
+  route: MyString
+  daily_freq: 1
+  weekly_freq: MyString
+  start_date: 2018-06-05 14:31:54
+  end_date: 2018-06-05 14:31:54
+  doctor: two
+  pharmacy: two
+  patient: two
