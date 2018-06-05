@@ -7,6 +7,9 @@ Rails.application.routes.draw do
       resources :take_times
       resources :prescription_take_times
       resources :pharmacies
+      resources :labs
+      resources :insurances
+      resources :emergency_contacts
     end
   end
 end
