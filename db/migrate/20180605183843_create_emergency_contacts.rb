@@ -10,7 +10,7 @@ class CreateEmergencyContacts < ActiveRecord::Migration[5.2]
       t.string :zipcode
       t.string :phone
       t.string :email
-      t.references :patient, foreign_key: true
+      t.references :patient
 
       t.timestamps
     end

@@ -8,7 +8,7 @@ class CreateInsurances < ActiveRecord::Migration[5.2]
       t.string :pcn
       t.string :phone
       t.string :insurance_name
-      t.references :patient, foreign_key: true
+      t.references :patient
 
       t.timestamps
     end

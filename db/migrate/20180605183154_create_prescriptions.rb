@@ -9,9 +9,9 @@ class CreatePrescriptions < ActiveRecord::Migration[5.2]
       t.string :weekly_freq
       t.datetime :start_date
       t.datetime :end_date
-      t.references :doctor, foreign_key: true
-      t.references :pharmacy, foreign_key: true
-      t.references :patient, foreign_key: true
+      t.references :doctor
+      t.references :pharmacy
+      t.references :patient
 
       t.timestamps
     end

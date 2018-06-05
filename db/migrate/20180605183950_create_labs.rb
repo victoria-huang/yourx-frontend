@@ -9,7 +9,7 @@ class CreateLabs < ActiveRecord::Migration[5.2]
       t.decimal :weight_lbs
       t.decimal :temperature_f
       t.integer :resp_rate
-      t.references :patient, foreign_key: true
+      t.references :patient
 
       t.timestamps
     end
