@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   enable_extension "plpgsql"
 
   create_table "doctors", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.string "specialty"
@@ -76,6 +78,8 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   end
 
   create_table "patients", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
     t.string "first_name"
     t.string "last_name"
     t.date "dob"

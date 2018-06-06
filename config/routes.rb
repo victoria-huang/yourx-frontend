@@ -10,6 +10,8 @@ Rails.application.routes.draw do
       resources :labs
       resources :insurances
       resources :emergency_contacts
+      post '/patient_sessions', to: 'sessions#create_patient'
+      post '/doctor_sessions', to: 'sessions#create_doctor'
     end
   end
 end
