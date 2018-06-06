@@ -28,7 +28,16 @@ class Api::V1::InsurancesController < ApplicationController
 
   private
   def insurance_params
-    params.permit(:insurance_type, :insurance_id, :group, :bin, :pcn, :phone, :insurance_name, :patient_id)
+    params.permit(
+      :insurance_type,
+      :insurance_id,
+      :group,
+      :bin,
+      :pcn,
+      :phone,
+      :insurance_name,
+      :patient_id
+    )
   end
 
   def set_insurance

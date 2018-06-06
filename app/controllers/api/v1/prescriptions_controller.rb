@@ -28,7 +28,20 @@ class Api::V1::PrescriptionsController < ApplicationController
 
   private
   def prescription_params
-    params.permit(:drug_name, :amount_per_dose, :dosage, :formulation, :route, :daily_freq, :weekly_freq, :start_date, :end_date, :doctor_id, :pharmacy_id, :patient_id)
+    params.permit(
+      :drug_name,
+      :amount_per_dose,
+      :dosage,
+      :formulation,
+      :route,
+      :daily_freq,
+      :weekly_freq,
+      :start_date,
+      :end_date,
+      :doctor_id,
+      :pharmacy_id,
+      :patient_id
+    )
   end
 
   def set_prescription

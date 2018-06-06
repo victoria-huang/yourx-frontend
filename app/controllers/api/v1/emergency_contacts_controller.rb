@@ -28,7 +28,18 @@ class Api::V1::EmergencyContactsController < ApplicationController
 
   private
   def emergency_contact_params
-    params.permit(:name, :relationship, :street_one, :street_two, :city, :state, :zipcode, :phone, :email, :patient_id)
+    params.permit(
+      :name,
+      :relationship,
+      :street_one,
+      :street_two,
+      :city,
+      :state,
+      :zipcode,
+      :phone,
+      :email,
+      :patient_id
+    )
   end
 
   def set_emergency_contact

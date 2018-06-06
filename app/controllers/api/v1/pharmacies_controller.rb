@@ -28,7 +28,15 @@ class Api::V1::PharmacysController < ApplicationController
 
   private
   def pharmacy_params
-    params.permit(:name, :street_one, :street_two, :city, :state, :zipcode, :phone)
+    params.permit(
+      :name,
+      :street_one,
+      :street_two,
+      :city,
+      :state,
+      :zipcode,
+      :phone
+    )
   end
 
   def set_pharmacy

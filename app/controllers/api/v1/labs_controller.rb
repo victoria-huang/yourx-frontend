@@ -28,7 +28,17 @@ class Api::V1::LabsController < ApplicationController
 
   private
   def lab_params
-    params.permit(:glucose, :heart_rate, :systolic_bp, :diastolic_bp, :height_inches, :weight_lbs, :temperature_f, :resp_rate, :patient_id)
+    params.permit(
+      :glucose,
+      :heart_rate,
+      :systolic_bp,
+      :diastolic_bp,
+      :height_inches,
+      :weight_lbs,
+      :temperature_f,
+      :resp_rate,
+      :patient_id
+    )
   end
 
   def set_lab

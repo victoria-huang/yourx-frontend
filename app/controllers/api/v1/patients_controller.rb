@@ -7,8 +7,15 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def create
-    patient = Patient.create(patient_params)
-    render json: patient, status: 201
+    @patient = Patient.create(patient_params)
+
+    if @patient
+      render json: token_json(@patient)
+    else
+      render json: {
+        errors: @patient.errors.full_messages
+      }, status: :unprocessable_entity
+    end
   end
 
   def update
@@ -23,12 +30,30 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def show
-    render json: @patient, status: 200
+    if (authorized?(@patient))
+      render json: @patient, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   private
   def patient_params
-    params.permit(:username, :password, :first_name, :last_name, :dob, :gender, :street_one, :street_two, :city, :state, :zipcode, :email, :phone)
+    params.permit(
+      :username,
+      :password,
+      :first_name,
+      :last_name,
+      :dob,
+      :gender,
+      :street_one,
+      :street_two,
+      :city,
+      :state,
+      :zipcode,
+      :email,
+      :phone
+    )
   end
 
   def set_patient

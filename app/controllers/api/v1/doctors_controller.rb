@@ -2,8 +2,12 @@ class Api::V1::DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :update, :destroy]
 
   def index
-    doctors = Doctor.all
-    render json: doctors, status: 200
+    if valid_token?
+      doctors = Doctor.all
+      render json: doctors, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def create
@@ -28,7 +32,20 @@ class Api::V1::DoctorsController < ApplicationController
 
   private
   def doctor_params
-    params.permit(:username, :password, :first_name, :last_name, :specialty, :street_one, :street_two, :city, :state, :zipcode, :email, :phone)
+    params.permit(
+      :username,
+      :password,
+      :first_name,
+      :last_name,
+      :specialty,
+      :street_one,
+      :street_two,
+      :city,
+      :state,
+      :zipcode,
+      :email,
+      :phone
+    )
   end
 
   def set_doctor

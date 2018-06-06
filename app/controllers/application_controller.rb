@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
     {
       username: user.username,
       user_id: user.id,
-      user_class: user.class.name
+      user_class: user.class.name,
       token: generate_token(user)
     }
   end
@@ -54,7 +54,7 @@ class ApplicationController < ActionController::API
   end
 
   def authorized?(user)
-    current_user_id == user.id && curent_user_class == user.class.name
+    current_user_id == user.id && current_user_class == user.class.name
   end
 
 end
