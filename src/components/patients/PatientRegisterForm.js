@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  DateInput,
+  TimeInput,
+  DateTimeInput,
+  DatesRangeInput
+} from 'semantic-ui-calendar-react';
 
 const DEFAULT_STATE = {
   username: '',
@@ -26,6 +32,12 @@ export default class PatientRegisterForm extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
+  }
+
+  handleDateChange = (event, {name, value}) => {
+    if (this.state.hasOwnProperty(name)) {
+      this.setState({ [name]: value });
+    }
   }
 
   handleSubmit = (event) => {
@@ -73,7 +85,7 @@ export default class PatientRegisterForm extends Component {
 
 
   render() {
-    const errors = this.state.errors.map(error => { return <li>{error}</li> })
+    const errors = this.state.errors.map(error => { return <li>{error}</li> });
 
     return (
       <div>
@@ -83,48 +95,132 @@ export default class PatientRegisterForm extends Component {
           { errors }
         </ul>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="username">Username</label><br />
-          <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="password">Password</label><br />
-          <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="first_name">First Name</label><br />
-          <input name="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="last_name">Last Name</label><br />
-          <input name="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="dob">Date of Birth</label><br />
-          <input name="dob" type="text" value={this.state.dob} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="gender">Gender</label><br />
-          <input name="gender" type="text" value={this.state.gender} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="street_one">Street 1</label><br />
-          <input name="street_one" type="text" value={this.state.street_one} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="street_two">Street 2</label><br />
-          <input name="street_two" type="text" value={this.state.street_two} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="city">City</label><br />
-          <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="user_state">State</label><br />
-          <input name="user_state" type="text" value={this.state.user_state} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="zipcode">Zipcode</label><br />
-          <input name="zipcode" type="text" value={this.state.zipcode} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="email">Email</label><br />
-          <input name="email" type="text" value={this.state.email} onChange={this.handleChange} />
-          <br />
-          <label htmlFor="phone">Phone</label><br />
-          <input name="phone" type="text" value={this.state.phone} onChange={this.handleChange} />
-          <br />
+        <form className="ui form" onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label htmlFor="username">Username</label>
+            <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+          </div>
 
-          <input type="submit" value="Create Account" />
+          <div className="field">
+            <label htmlFor="password">Password</label>
+            <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="first_name">First Name</label>
+            <input name="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="last_name">Last Name</label>
+            <input name="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="dob">Date of Birth</label>
+            <DateInput name="dob" placeholder="Date of Birth" dateFormat="MM-DD-YYYY"	value={this.state.dob} iconPosition="left" onChange={this.handleDateChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="gender">Gender</label>
+            <select name="gender" value={this.state.gender} onChange={this.handleChange}>
+              <option value="">Select</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to specify">Prefer not to specify</option>
+            </select>
+          </div>
+
+          <div className="field">
+            <label htmlFor="street_one">Street 1</label><br />
+            <input name="street_one" type="text" value={this.state.street_one} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="street_two">Street 2</label><br />
+            <input name="street_two" type="text" value={this.state.street_two} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="city">City</label><br />
+            <input name="city" type="text" value={this.state.city} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="user_state">State</label>
+            <select name="user_state" value={this.state.user_state} onChange={this.handleChange}>
+              <option value="">Select</option>
+              <option value="AL">Alabama</option>
+            	<option value="AK">Alaska</option>
+            	<option value="AZ">Arizona</option>
+            	<option value="AR">Arkansas</option>
+            	<option value="CA">California</option>
+            	<option value="CO">Colorado</option>
+            	<option value="CT">Connecticut</option>
+            	<option value="DE">Delaware</option>
+            	<option value="DC">District Of Columbia</option>
+            	<option value="FL">Florida</option>
+            	<option value="GA">Georgia</option>
+            	<option value="HI">Hawaii</option>
+            	<option value="ID">Idaho</option>
+            	<option value="IL">Illinois</option>
+            	<option value="IN">Indiana</option>
+            	<option value="IA">Iowa</option>
+            	<option value="KS">Kansas</option>
+            	<option value="KY">Kentucky</option>
+            	<option value="LA">Louisiana</option>
+            	<option value="ME">Maine</option>
+            	<option value="MD">Maryland</option>
+            	<option value="MA">Massachusetts</option>
+            	<option value="MI">Michigan</option>
+            	<option value="MN">Minnesota</option>
+            	<option value="MS">Mississippi</option>
+            	<option value="MO">Missouri</option>
+            	<option value="MT">Montana</option>
+            	<option value="NE">Nebraska</option>
+            	<option value="NV">Nevada</option>
+            	<option value="NH">New Hampshire</option>
+            	<option value="NJ">New Jersey</option>
+            	<option value="NM">New Mexico</option>
+            	<option value="NY">New York</option>
+            	<option value="NC">North Carolina</option>
+            	<option value="ND">North Dakota</option>
+            	<option value="OH">Ohio</option>
+            	<option value="OK">Oklahoma</option>
+            	<option value="OR">Oregon</option>
+            	<option value="PA">Pennsylvania</option>
+            	<option value="RI">Rhode Island</option>
+            	<option value="SC">South Carolina</option>
+            	<option value="SD">South Dakota</option>
+            	<option value="TN">Tennessee</option>
+            	<option value="TX">Texas</option>
+            	<option value="UT">Utah</option>
+            	<option value="VT">Vermont</option>
+            	<option value="VA">Virginia</option>
+            	<option value="WA">Washington</option>
+            	<option value="WV">West Virginia</option>
+            	<option value="WI">Wisconsin</option>
+            	<option value="WY">Wyoming</option>
+            </select>
+          </div>
+
+          <div className="field">
+            <label htmlFor="zipcode">Zipcode</label>
+            <input name="zipcode" type="number" value={this.state.zipcode} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="email">Email</label>
+            <input name="email" type="email" value={this.state.email} onChange={this.handleChange} />
+          </div>
+
+          <div className="field">
+            <label htmlFor="phone">Phone</label>
+            <input name="phone" type="tel" value={this.state.phone} onChange={this.handleChange} />
+          </div>
+
+          <button type="submit" className="ur button" role="button">Create Account</button>
         </form>
       </div>
     )
