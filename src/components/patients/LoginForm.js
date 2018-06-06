@@ -6,7 +6,7 @@ const DEFAULT_STATE = {
   errors: []
 }
 
-export default class PatientLoginForm extends Component {
+export default class LoginForm extends Component {
   state = {
     ...DEFAULT_STATE
   }
@@ -54,7 +54,7 @@ export default class PatientLoginForm extends Component {
 
     return (
       <div>
-        <h1>Patient Login</h1>
+        <h1>{this.props.type} Login</h1>
 
         <ul>
           { errors }
@@ -71,7 +71,7 @@ export default class PatientLoginForm extends Component {
             <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
           </div>
 
-          <button type="submit" className="ur button" role="button">Login</button>
+          <button type="submit" className="ui button" role="button">Login</button>
         </form>
       </div>
     )

@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  DateInput,
-  TimeInput,
-  DateTimeInput,
-  DatesRangeInput
-} from 'semantic-ui-calendar-react';
+import { DateInput } from 'semantic-ui-calendar-react';
 
 const DEFAULT_STATE = {
   username: '',
@@ -220,7 +215,7 @@ export default class PatientRegisterForm extends Component {
             <input name="phone" type="tel" value={this.state.phone} onChange={this.handleChange} />
           </div>
 
-          <button type="submit" className="ur button" role="button">Create Account</button>
+          <button type="submit" className="ui button" role="button">Create Account</button>
         </form>
       </div>
     )

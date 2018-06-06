@@ -1,21 +1,31 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
 
 export default class Welcome extends Component {
-  // state = {
-  //
-  // }
+  handleClick = (event) => {
+    const path = `/${event.target.name}-login`;
+    this.props.history.push(path)
+  }
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">YouRx</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="welcome">
+        <div className="video-container">
+          <video autoPlay loop>
+            <source src="https://dl.dropboxusercontent.com/s/fcwea9gqasw6gb1/medicine_packages.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        <div className="content">
+          <img src={require("../assets/pill_logo.png")} height='80px' width='80px' />
+          <h1>Y o u R x</h1>
+          <h2>Embrace your health.</h2>
+          <br />
+          <button name="patient" className="ui button" role="button" onClick={this.handleClick}>Patient Login</button>
+          <button name="provider" className="ui button" role="button" onClick={this.handleClick}>Provider Login</button>
+          <br />
+          <div className="ui horizontal divider"> OR </div>
+          <p>Don't have an account? <a href="">Sign up</a> today!</p>
+        </div>
       </div>
     )
   }
