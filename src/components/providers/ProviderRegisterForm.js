@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { DateInput } from 'semantic-ui-calendar-react';
 
 const DEFAULT_STATE = {
   username: '',
   password: '',
   first_name: '',
   last_name: '',
-  dob: '',
-  gender: '',
+  specialty: '',
   street_one: '',
   street_two: '',
   city: '',
@@ -18,7 +16,7 @@ const DEFAULT_STATE = {
   errors: []
 }
 
-export default class PatientRegisterForm extends Component {
+export default class ProviderRegisterForm extends Component {
   state = {
     ...DEFAULT_STATE
   }
@@ -43,8 +41,7 @@ export default class PatientRegisterForm extends Component {
       password: this.state.password,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
-      dob: this.state.dob,
-      gender: this.state.gender,
+      specialty: this.state.specialty,
       street_one: this.state.street_one,
       street_two: this.state.street_two,
       city: this.state.city,
@@ -84,7 +81,7 @@ export default class PatientRegisterForm extends Component {
 
     return (
       <div>
-        <h1>Patient Register</h1>
+        <h1>Provider Register</h1>
 
         <ul>
           { errors }
@@ -112,19 +109,8 @@ export default class PatientRegisterForm extends Component {
           </div>
 
           <div className="field">
-            <label htmlFor="dob">Date of Birth</label>
-            <DateInput name="dob" placeholder="Date of Birth" dateFormat="MM-DD-YYYY"	value={this.state.dob} iconPosition="left" onChange={this.handleDateChange} />
-          </div>
-
-          <div className="field">
-            <label htmlFor="gender">Gender</label>
-            <select name="gender" value={this.state.gender} onChange={this.handleChange}>
-              <option value="">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-              <option value="Prefer not to specify">Prefer not to specify</option>
-            </select>
+            <label htmlFor="specialty">Specialty</label>
+            <input name="specialty" type="text" value={this.state.specialty} onChange={this.handleChange} />
           </div>
 
           <div className="field">

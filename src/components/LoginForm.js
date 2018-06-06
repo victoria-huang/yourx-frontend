@@ -50,12 +50,12 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const errors = this.state.errors.map(error => { return <li>{error}</li> })
+    const errors = this.state.errors.map((error, idx) => { return <p key={idx}>{error}</p> })
 
     return (
       <div>
         <div className="content-container">
-          <img src={require('../../assets/blur_bg.jpg')} />
+          <img src={require('../assets/blur_bg.jpg')} alt='background' />
         </div>
         <div className="content auth">
           { this.props.type === "Patient" ?
@@ -65,25 +65,25 @@ export default class LoginForm extends Component {
           }
           <h1 className="content-header">{this.props.type} Login</h1>
 
-          <ul>
+          <div className="errors">
             { errors }
-          </ul>
+          </div>
 
           <form className="ui form" onSubmit={this.handleSubmit}>
             <div className="field">
               <label htmlFor="username">Username</label>
-              <input name="username" type="text" value={this.state.username} onChange={this.handleChange} />
+              <input name="username" type="text" placeholder='username' value={this.state.username} onChange={this.handleChange} />
             </div>
 
             <div className="field">
               <label htmlFor="password">Password</label>
-              <input name="password" type="password" value={this.state.password} onChange={this.handleChange} />
+              <input name="password" type="password" placeholder='password' value={this.state.password} onChange={this.handleChange} />
             </div>
 
-            <button type="submit" className="ui button" role="button">Login</button>
+            <button type="submit" className="ui button">Login</button>
           </form>
           <div className="ui horizontal divider"> OR </div>
-          <button className="ui button" role="button" onClick={() => this.props.history.push("/")}>Return to Welcome Page</button>
+          <button className="ui button" onClick={() => this.props.history.push("/")}>Return to Welcome Page</button>
 
         </div>
       </div>
