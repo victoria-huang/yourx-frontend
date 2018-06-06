@@ -1,7 +1,10 @@
 class CreatePrescriptions < ActiveRecord::Migration[5.2]
   def change
     create_table :prescriptions do |t|
-      t.string :drug_name
+      t.string :brand_name
+      t.string :generic_name
+      t.string :rxcui
+      t.string :image_url
       t.integer :amount_per_dose
       t.string :dosage
       t.string :formulation

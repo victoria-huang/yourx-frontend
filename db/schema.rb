@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   create_table "doctors", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "image_url"
     t.string "first_name"
     t.string "last_name"
     t.string "specialty"
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   create_table "patients", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
+    t.string "image_url"
     t.string "first_name"
     t.string "last_name"
     t.date "dob"
@@ -117,7 +119,10 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   end
 
   create_table "prescriptions", force: :cascade do |t|
-    t.string "drug_name"
+    t.string "brand_name"
+    t.string "generic_name"
+    t.string "rxcui"
+    t.string "image_url"
     t.integer "amount_per_dose"
     t.string "dosage"
     t.string "formulation"
