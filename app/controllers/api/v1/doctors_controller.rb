@@ -2,7 +2,7 @@ class Api::V1::DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :update, :destroy]
 
   def index
-    if valid_token?
+    if (valid_token?)
       doctors = Doctor.all
       render json: doctors, status: 200
     else
@@ -11,23 +11,42 @@ class Api::V1::DoctorsController < ApplicationController
   end
 
   def create
-    doctor = Doctor.create(doctor_params)
-    render json: doctor, status: 201
+    @doctor = Doctor.create(doctor_params)
+
+    if @doctor
+      render json: token_json(@doctor)
+    else
+      render json: {
+        errors: @doctor.errors.full_messages
+      }, status: :unprocessable_entity
+    end
   end
 
   def update
-    @doctor.update(doctor_params)
-    render json: @doctor, status: 200
+    if (authorized(@doctor))
+      @doctor.update(doctor_params)
+      render json: @doctor, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def destroy
-    doctor_id = @doctor.id
-    @doctor.destroy
-    render json: {message: "Doctor deleted", doctorId: doctor_id}
+    if (authorized(@doctor))
+      doctor_id = @doctor.id
+      @doctor.destroy
+      render json: {message: "Doctor deleted", doctorId: doctor_id}
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def show
-    render json: @doctor, status: 200
+    if (authorized?(@doctor))
+      render json: @doctor, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   private
