@@ -2,7 +2,7 @@ class Api::V1::DoctorsController < ApplicationController
   before_action :set_doctor, only: [:show, :update, :destroy]
 
   def index
-    if (valid_token?)
+    if valid_token?
       doctors = Doctor.all
       render json: doctors, status: 200
     else

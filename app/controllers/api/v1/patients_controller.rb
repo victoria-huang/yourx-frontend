@@ -2,8 +2,12 @@ class Api::V1::PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :update, :destroy]
 
   def index
-    patients = Patient.all
-    render json: patients, status: 200
+    if valid_token
+      patients = Patient.all
+      render json: patients, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def create
@@ -19,18 +23,26 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def update
-    @patient.update(patient_params)
-    render json: @patient, status: 200
+    if authorized?(@patient)
+      @patient.update(patient_params)
+      render json: @patient, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def destroy
-    patient_id = @patient.id
-    @patient.destroy
-    render json: {message: "Patient deleted", patientId: patient_id}
+    if authorized?(@patient)
+      patient_id = @patient.id
+      @patient.destroy
+      render json: {message: "Patient deleted", patientId: patient_id}
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def show
-    if (authorized?(@patient))
+    if authorized?(@patient)
       render json: @patient, status: 200
     else
       render json: { unauthorized: true }, status: :unauthorized
