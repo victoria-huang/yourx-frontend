@@ -2,7 +2,7 @@ class Api::V1::PatientsController < ApplicationController
   before_action :set_patient, only: [:show, :update, :destroy]
 
   def index
-    if valid_token
+    if valid_token?
       patients = Patient.all
       render json: patients, status: 200
     else
@@ -47,6 +47,16 @@ class Api::V1::PatientsController < ApplicationController
     else
       render json: { unauthorized: true }, status: :unauthorized
     end
+  end
+
+  def get_daily_meds
+    @patient = Patient.find(params[:patient_id])
+    render json: @patient.get_daily_meds_and_times
+  end
+
+  def get_daily_adherence
+    @patient = Patient.find(params[:patient_id])
+    render json: @patient.daily_adherence
   end
 
   private

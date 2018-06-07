@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :patients do
-        get '/patient_daily_meds', to: 'patients#get_daily_meds'
-        get '/patient_daily_adherence', to: 'patients#get_daily_adherence'
+        get '/daily_meds', to: 'patients#get_daily_meds'
+        get '/daily_adherence', to: 'patients#get_daily_adherence'
 
         resources :prescriptions
         resources :take_times
