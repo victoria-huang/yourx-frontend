@@ -16,12 +16,12 @@ export default class Welcome extends Component {
         </div>
 
         <div className="content home">
-          <img src={require("../assets/pill_logo.png")} height='80px' width='80px' alt='pill logo' />
+          <img src={require("../assets/pill_logo.png")} height='90px' width='90px' alt='pill logo' />
           <h1 className="logo">Y o u R x</h1>
           <h2>Embrace your health.</h2>
           <br />
-          <button name="patient" className="ui button" onClick={this.handleClick}>Patient Login</button>
-          <button name="provider" className="ui button" onClick={this.handleClick}>Provider Login</button>
+          <button name="patient" className="ui large button" onClick={this.handleClick}>Patient Login</button>
+          <button name="provider" className="ui large button" onClick={this.handleClick}>Provider Login</button>
           <br />
           <div className="ui horizontal divider"> OR </div>
           <p>Don't have an account? <a onClick={() => this.props.history.push("/register-choice")}>Sign up</a> today!</p>

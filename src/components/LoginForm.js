@@ -50,7 +50,7 @@ export default class LoginForm extends Component {
   }
 
   render() {
-    const errors = this.state.errors.map((error, idx) => { return <p key={idx}>{error}</p> })
+    const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> })
 
     return (
       <div>
@@ -59,31 +59,40 @@ export default class LoginForm extends Component {
         </div>
         <div className="content auth">
           { this.props.type === "Patient" ?
-            <i aria-hidden="true" className="pills huge icon"></i>
+            <i aria-hidden="true" className="circular pills huge icon"></i>
           :
-            <i aria-hidden="true" className="user doctor huge icon"></i>
+            <i aria-hidden="true" className="circular user doctor huge icon"></i>
           }
-          <h1 className="content-header">{this.props.type} Login</h1>
+          {/*<h1 className="content-header">{this.props.type} Login</h1>*/}
+          <br /><br /><br />
 
-          <div className="errors">
-            { errors }
-          </div>
+          { this.state.errors.length > 0 ?
+            <div class="ui error message">
+              <ul class="list">
+                { errors }
+              </ul>
+            </div>
+          :
+            null
+          }
+
 
           <form className="ui form" onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label htmlFor="username">Username</label>
+            <div className="field ui big fluid left icon input">
               <input name="username" type="text" placeholder='username' value={this.state.username} onChange={this.handleChange} />
+              <i class="user icon"></i>
             </div>
-
-            <div className="field">
-              <label htmlFor="password">Password</label>
+            <div className="field ui big fluid left icon input">
               <input name="password" type="password" placeholder='password' value={this.state.password} onChange={this.handleChange} />
+              <i class="key icon"></i>
             </div>
-
-            <button type="submit" className="ui button">Login</button>
+            <button type="submit" className="fluid ui large button">Login as {this.props.type}</button>
           </form>
-          <div className="ui horizontal divider"> OR </div>
-          <button className="ui button" onClick={() => this.props.history.push("/")}>Return to Welcome Page</button>
+          <br />
+          <div class="ui inverted divider"></div>
+          <a className="back-link" onClick={() => this.props.history.push("/")}>
+             &#8592; Back to Welcome
+          </a>
 
         </div>
       </div>

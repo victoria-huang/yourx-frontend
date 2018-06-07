@@ -9,15 +9,14 @@ const RegisterForm = (props) => {
 
       <div className="content auth">
         <h1 className="content-register">Register as:</h1>
-
-        <button className="ui button massive" onClick={() => props.history.push("/patient-register")}>Patient</button>
+        <button className="ui button huge" onClick={() => props.history.push("/patient-register")}>Patient</button>
+        &nbsp; &nbsp;
+        <button className="ui button huge" onClick={() => props.history.push("/provider-register")}>Provider</button>
         <br /><br />
-        <button className="ui button massive" onClick={() => props.history.push("/provider-register")}>Provider</button>
-        <br />
-        <div className="ui horizontal divider"> OR </div>
-        <br />
-        <button className="ui button" onClick={() => props.history.push("/")}>Return to Welcome Page</button>
-
+        <div class="ui inverted divider"></div>
+        <a className="back-link" onClick={() => props.history.push("/")}>
+           &#8592; Back to Welcome
+        </a>
       </div>
     </div>
   )
