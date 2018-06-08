@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
   end
 
   def generate_token(user)
-    JWT.encode({ "user_id": user.id, "user_class": user.class.name }, jwt_password, 'HS256')
+    JWT.encode({ "user_id": user.id, "user_class": user.class.name, "username": user.username }, jwt_password, 'HS256')
   end
 
   def jwt_password
@@ -57,4 +57,7 @@ class ApplicationController < ActionController::API
     current_user_id == user.id && current_user_class == user.class.name
   end
 
+  def get_user
+    render json: try_decode_token
+  end
 end

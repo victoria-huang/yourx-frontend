@@ -22,9 +22,10 @@ Rails.application.routes.draw do
       # resources :pharmacies do
       #   resources :prescriptions
       # end
-
       post '/patient_sessions', to: 'sessions#create_patient'
       post '/doctor_sessions', to: 'sessions#create_doctor'
     end
   end
+
+  get '/get_user', to: 'application#get_user'
 end
