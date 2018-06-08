@@ -11,8 +11,8 @@ class Patient < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :password, presence: true
 
-  def get_daily_take_times
-    self.prescriptions.map { |pres| pres.daily_take_times }.flatten
+  def get_daily_rx_take_times
+    self.prescriptions.map { |pres| pres.daily_rx_take_times }.flatten
   end
 
   def get_daily_meds_and_times
@@ -23,20 +23,20 @@ class Patient < ApplicationRecord
     daily_meds.each do |med|
       med_obj = {}
       med_obj["med"] = med
-      med_obj["times"] = med.daily_take_times
+      med_obj["times"] = med.daily_rx_take_times
       daily_meds_with_times.push(med_obj)
     end
 
     daily_meds_with_times
   end
 
-  def get_daily_meds_taken
-    self.get_daily_take_times.select { |time| time.taken == true }
+  def get_daily_times_taken
+    self.get_daily_rx_take_times.select { |time| time["rx_take_time"].taken == true }
   end
 
   def daily_adherence
-    total_times = self.get_daily_take_times.length.to_f
-    total_taken = self.get_daily_meds_taken.length.to_f
+    total_times = self.get_daily_rx_take_times.length.to_f
+    total_taken = self.get_daily_times_taken.length.to_f
 
     (total_taken / total_times) * 100
   end

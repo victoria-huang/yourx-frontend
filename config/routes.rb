@@ -5,8 +5,8 @@ Rails.application.routes.draw do
         get '/daily_meds', to: 'patients#get_daily_meds'
         get '/daily_adherence', to: 'patients#get_daily_adherence'
 
-        resources :prescriptions
-        resources :take_times
+        # resources :prescriptions
+        # resources :take_times
 
         # resources :insurances
         # resources :labs

@@ -51,12 +51,20 @@ class Api::V1::PatientsController < ApplicationController
 
   def get_daily_meds
     @patient = Patient.find(params[:patient_id])
-    render json: @patient.get_daily_meds_and_times
+    if authorized?(@patient)
+      render json: @patient.get_daily_meds_and_times
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def get_daily_adherence
     @patient = Patient.find(params[:patient_id])
-    render json: @patient.daily_adherence
+    if authorized?(@patient)
+      render json: @patient.daily_adherence
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   private

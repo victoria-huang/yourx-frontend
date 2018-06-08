@@ -3,8 +3,7 @@ class CreateTakeTimes < ActiveRecord::Migration[5.2]
     create_table :take_times do |t|
       t.string :day
       t.time :rx_time
-      t.boolean :taken, default: false
-
+      
       t.timestamps
     end
   end

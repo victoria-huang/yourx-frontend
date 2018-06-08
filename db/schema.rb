@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   create_table "prescription_take_times", force: :cascade do |t|
     t.bigint "prescription_id"
     t.bigint "take_time_id"
+    t.boolean "taken", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["prescription_id"], name: "index_prescription_take_times_on_prescription_id"
@@ -144,7 +145,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_183950) do
   create_table "take_times", force: :cascade do |t|
     t.string "day"
     t.time "rx_time"
-    t.boolean "taken", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
