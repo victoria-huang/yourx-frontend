@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "react": "^16.4.0",
+    "react-circular-progressbar": "^0.8.0",
     "react-dom": "^16.4.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",

@@ -44,6 +44,12 @@ export default class LoginForm extends Component {
           ...DEFAULT_STATE
         })
 
+        this.props.login({
+          username: json.username,
+          userId: json.user_id,
+          userClass: json.user_class,
+        })
+
         this.props.onSuccess(json, this.props.history);
       }
     });
@@ -67,8 +73,8 @@ export default class LoginForm extends Component {
           <br /><br /><br />
 
           { this.state.errors.length > 0 ?
-            <div class="ui error message">
-              <ul class="list">
+            <div className="ui error message">
+              <ul className="list">
                 { errors }
               </ul>
             </div>
@@ -76,20 +82,19 @@ export default class LoginForm extends Component {
             null
           }
 
-
           <form className="ui form" onSubmit={this.handleSubmit}>
             <div className="field ui big fluid left icon input">
               <input name="username" type="text" placeholder='username' value={this.state.username} onChange={this.handleChange} />
-              <i class="user icon"></i>
+              <i className="user icon"></i>
             </div>
             <div className="field ui big fluid left icon input">
               <input name="password" type="password" placeholder='password' value={this.state.password} onChange={this.handleChange} />
-              <i class="key icon"></i>
+              <i className="key icon"></i>
             </div>
             <button type="submit" className="fluid ui large button">Login as {this.props.type}</button>
           </form>
           <br />
-          <div class="ui inverted divider"></div>
+          <div className="ui inverted divider"></div>
           <a className="back-link" onClick={() => this.props.history.push("/")}>
              &#8592; Back to Welcome
           </a>
