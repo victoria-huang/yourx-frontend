@@ -44,7 +44,7 @@ export default class LoginForm extends Component {
           ...DEFAULT_STATE
         })
 
-        this.props.login({
+        this.props.setUser({
           username: json.username,
           userId: json.user_id,
           userClass: json.user_class,
