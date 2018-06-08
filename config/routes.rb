@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       end
 
       resources :doctors do
-        resources :prescriptions
+        # resources :prescriptions
       end
 
       resources :prescription_take_times
