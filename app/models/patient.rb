@@ -38,6 +38,10 @@ class Patient < ApplicationRecord
     total_times = self.get_daily_rx_take_times.length.to_f
     total_taken = self.get_daily_times_taken.length.to_f
 
-    (total_taken / total_times) * 100
+    if total_times === 0
+      100
+    else
+      (total_taken / total_times) * 100
+    end
   end
 end
