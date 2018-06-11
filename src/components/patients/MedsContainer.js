@@ -5,6 +5,17 @@ import AfternoonMed from './AfternoonMed';
 import EveningMed from './EveningMed';
 import NightMed from './NightMed';
 
+const formatted = {
+  'mon': 'Monday',
+  'tues': 'Tuesday',
+  'wed': 'Wednesday',
+  'thurs': 'Thursday',
+  'fri': 'Friday',
+  'sat': 'Saturday',
+  'sun': 'Sunday',
+  'today': "Today's"
+}
+
 class MedsContainer extends Component {
   render() {
     const morningMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
@@ -33,7 +44,7 @@ class MedsContainer extends Component {
 
     return (
       <div>
-        <h1>Todays Meds Container</h1>
+        <h1>{formatted[this.props.day]} Medications</h1>
         <h3>Morning (6 AM - 12 PM)</h3>
         { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }
         <h3>Afternoon (12 PM - 6 PM)</h3>
