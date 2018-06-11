@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPrescription, setPrescriptions } from '../../actions/prescriptions'
+import { setPrescriptions } from '../../actions/prescriptions'
 import { setUser, setAdherence, logout } from '../../actions/user'
 import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fetches'
 import Adherence from './Adherence'
@@ -55,7 +55,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addPrescription: addPrescription,
     setPrescriptions: setPrescriptions,
     setUser: setUser,
     setAdherence: setAdherence,

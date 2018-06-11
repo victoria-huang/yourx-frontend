@@ -27,8 +27,8 @@ class App extends Component {
       <Router>
         <div>
           <Route exact path='/' component={Welcome} />
-          <Route path='/patient-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/patient_sessions" setUser={this.props.setUser} onSuccess={this.authSuccess} {...props} type='Patient' /> } />
-          <Route path='/provider-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/doctor_sessions" setUser={this.props.setUser} onSuccess={this.authSuccess} {...props} type='Provider' /> } />
+          <Route path='/patient-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/patient_sessions" onSuccess={this.authSuccess} {...props} type='Patient' /> } />
+          <Route path='/provider-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/doctor_sessions" onSuccess={this.authSuccess} {...props} type='Provider' /> } />
           <Route path='/patient-register' render={ (props) => <PatientRegisterForm url="http://localhost:3000/api/v1/patients" onSuccess={this.authSuccess} {...props} /> } />
           <Route path='/provider-register' render={ (props) => <ProviderRegisterForm url="http://localhost:3000/api/v1/doctors" onSuccess={this.authSuccess} {...props} /> } />
           <Route path='/register-choice' render={ (props) => <RegisterForm {...props} /> } />
@@ -43,10 +43,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    setUser: setUser,
-  }, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
