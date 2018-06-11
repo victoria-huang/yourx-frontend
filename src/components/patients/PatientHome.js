@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setPrescriptions } from '../../actions/prescriptions'
+import { setDailyPrescriptions } from '../../actions/prescriptions'
 import { setUser, setAdherence, logout } from '../../actions/user'
 import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fetches'
 import Adherence from './Adherence'
@@ -22,7 +22,7 @@ class PatientHome extends Component {
       .then(json => this.props.setAdherence(json))
 
       fetchPatientDailyMeds(patient_id)
-      .then(json => this.props.setPrescriptions(json))
+      .then(json => this.props.setDailyPrescriptions(json))
     })
   }
 
@@ -48,14 +48,13 @@ class PatientHome extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    prescriptions: state.prescriptions
+    user: state.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setPrescriptions: setPrescriptions,
+    setDailyPrescriptions: setDailyPrescriptions,
     setUser: setUser,
     setAdherence: setAdherence,
     logout: logout

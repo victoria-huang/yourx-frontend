@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setUser } from './actions/user'
 import { BrowserRouter as Router, Route, NavLink, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
 import Welcome from './components/Welcome';

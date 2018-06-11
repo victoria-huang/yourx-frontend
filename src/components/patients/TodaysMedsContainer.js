@@ -49,7 +49,7 @@ class TodaysMedsContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    prescriptions: state.prescriptions
+    prescriptions: state.prescriptions.today
   }
 }
 

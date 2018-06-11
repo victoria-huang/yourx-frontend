@@ -1,6 +1,6 @@
-export const setPrescriptions = (prescriptions) => {
+export const setDailyPrescriptions = (prescriptions) => {
   return {
-    type: 'SET_PRESCRIPTIONS',
+    type: 'SET_DAILY_PRESCRIPTIONS',
     prescriptions
   }
 }
