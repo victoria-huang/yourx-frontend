@@ -7,8 +7,14 @@ class Api::V1::TakeTimesController < ApplicationController
   end
 
   def create
-    take_time = TakeTime.create(take_time_params)
-    render json: take_time, status: 201
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      take_time = TakeTime.find_or_create_by(take_time_params)
+      render json: take_time, status: 201
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def update

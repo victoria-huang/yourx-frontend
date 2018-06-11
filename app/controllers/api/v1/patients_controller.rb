@@ -50,7 +50,7 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def get_daily_meds
-    @patient = Patient.find(params[:patient_id])
+    @patient = Patient.find(current_user_id)
     if authorized?(@patient)
       render json: @patient.get_daily_meds_and_times
     else
@@ -59,7 +59,7 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def get_daily_adherence
-    @patient = Patient.find(params[:patient_id])
+    @patient = Patient.find(current_user_id)
     if authorized?(@patient)
       render json: @patient.daily_adherence
     else
@@ -87,6 +87,6 @@ class Api::V1::PatientsController < ApplicationController
   end
 
   def set_patient
-    @patient = Patient.find(params[:id])
+    @patient = Patient.find(current_user_id)
   end
 end
