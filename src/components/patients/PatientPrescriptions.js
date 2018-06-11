@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
-import { addPrescription } from  '../../actions/prescriptions'
+import { addPrescription, setAllPrescriptions } from  '../../actions/prescriptions'
 
 class PatientPrescriptions extends Component {
   componentDidMount() {
@@ -17,7 +17,11 @@ class PatientPrescriptions extends Component {
       const patient_id = this.props.user.userId
 
       fetchPatient(patient_id)
-      .then(console.log)
+      .then(json => {
+        const prescriptions = json.prescriptions;
+
+        this.props.setAllPrescriptions(prescriptions);
+      })
     })
   }
 
@@ -34,6 +38,7 @@ class PatientPrescriptions extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.prescriptions)
   return {
     user: state.user,
     prescriptions: state.prescriptions
@@ -43,7 +48,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setUser: setUser,
-    addPrescription: addPrescription
+    addPrescription: addPrescription,
+    setAllPrescriptions: setAllPrescriptions
   }, dispatch)
 }
 

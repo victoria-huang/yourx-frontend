@@ -11,3 +11,10 @@ export const addPrescription = (prescription) => {
     prescription
   }
 }
+
+export const setAllPrescriptions = (prescriptions) => {
+  return {
+    type: 'SET_ALL_PRESCRIPTIONS',
+    prescriptions
+  }
+}
