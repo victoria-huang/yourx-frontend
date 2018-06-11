@@ -7,6 +7,25 @@ import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fet
 import Adherence from './Adherence'
 import MedsContainer from './MedsContainer'
 
+function getDate() {
+  const days = {
+    1: "Monday",
+    2: "Tuesday",
+    3: "Wednesday",
+    4: "Thursday",
+    5: "Friday",
+    6: "Saturday",
+    0: "Sunday"
+  }
+
+  const date = new Date();
+  const day = days[date.getDay()]
+  const dd = date.getDate();
+  const mm = date.getMonth() + 1;
+  const yyyy = date.getFullYear();
+  return `${day}, ${mm}/${dd}/${yyyy}`
+}
+
 class PatientHome extends Component {
   componentDidMount() {
     getUser()
@@ -36,6 +55,7 @@ class PatientHome extends Component {
     return (
       <div>
         Patient Home
+        <h1>Welcome {this.props.user.username}! Today is {getDate()}</h1>
         <br />
         <Adherence />
         <MedsContainer day="today" />
