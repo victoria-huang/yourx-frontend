@@ -22,7 +22,7 @@ class Patient < ApplicationRecord
 
     daily_meds.each do |med|
       med_obj = {}
-      med_obj["med"] = med
+      med_obj["med"] = ActiveModelSerializers::SerializableResource.new(med, serializer: PrescriptionSerializer)
       med_obj["times"] = med.daily_rx_take_times
       daily_meds_with_times.push(med_obj)
     end

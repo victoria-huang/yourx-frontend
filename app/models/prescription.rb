@@ -14,7 +14,7 @@ class Prescription < ApplicationRecord
 
     self.daily_take_times.each do |t|
       time_obj = {}
-      time_obj["take_time"] = t
+      time_obj["take_time"] = ActiveModelSerializers::SerializableResource.new(t, serializer: TakeTimeSerializer)
       rx_take_time = PrescriptionTakeTime.find_by(prescription_id: self.id, take_time_id: t.id)
       time_obj["rx_take_time"] = rx_take_time
       times << time_obj
