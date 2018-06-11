@@ -1,17 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PatientMed from './PatientMed';
+import MorningMed from './MorningMed';
+import AfternoonMed from './AfternoonMed';
+import EveningMed from './EveningMed';
+import NightMed from './NightMed';
 
 class TodaysMedsContainer extends Component {
   render() {
-    const dailyMeds = this.props.prescriptions.map((p, idx) => {
-      return <PatientMed key={idx} {...p} />
+    const morningMeds = this.props.prescriptions.map((p, idx) => {
+      if (p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
+        return <MorningMed key={idx} {...p} />
+      }
+    })
+
+    const afternoonMeds = this.props.prescriptions.map((p, idx) => {
+      if (p.times.filter(t => t.take_time.time_of_day === "afternoon").length > 0) {
+        return <AfternoonMed key={idx} {...p} />
+      }
+    })
+
+    const eveningMeds = this.props.prescriptions.map((p, idx) => {
+      if (p.times.filter(t => t.take_time.time_of_day === "evening").length > 0) {
+        return <EveningMed key={idx} {...p} />
+      }
+    })
+
+    const nightMeds = this.props.prescriptions.map((p, idx) => {
+      if (p.times.filter(t => t.take_time.time_of_day === "night").length > 0) {
+        return <NightMed key={idx} {...p} />
+      }
     })
 
     return (
       <div>
         <h1>Todays Meds Container</h1>
-        { dailyMeds }
+        <h3>Morning (6 AM - 12 PM)</h3>
+        { morningMeds }
+        <h3>Afternoon (12 PM - 6 PM)</h3>
+        { afternoonMeds }
+        <h3>Evening (6 PM - 12 AM)</h3>
+        { eveningMeds }
+        <h3>Night (12 AM - 6 AM)</h3>
+        { nightMeds }
       </div>
     )
   }
