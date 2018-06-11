@@ -9,7 +9,7 @@ class Adherence extends Component {
         <h1>Your Daily Adherence</h1>
         <div style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 10, width: "40%", stroke: "#3e98c7", strokeLinecap: "round", }}>
           { this.props.adherence || this.props.adherence === 0 ?
-            <CircularProgressbar percentage={this.props.adherence} strokeWidth="5" />
+            <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
             :
             "Loading adherence tracker..."
           }
