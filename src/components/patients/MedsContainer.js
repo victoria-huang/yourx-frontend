@@ -7,8 +7,6 @@ import NightMed from './NightMed';
 
 class MedsContainer extends Component {
   render() {
-    // console.log(this.props.prescriptions[`${this.props.day}`])
-
     const morningMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
         return <MorningMed key={idx} {...p} />
@@ -37,13 +35,13 @@ class MedsContainer extends Component {
       <div>
         <h1>Todays Meds Container</h1>
         <h3>Morning (6 AM - 12 PM)</h3>
-        { morningMeds }
+        { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }
         <h3>Afternoon (12 PM - 6 PM)</h3>
-        { afternoonMeds }
+        { afternoonMeds.findIndex(e => e !== undefined) > -1 ? afternoonMeds : "None" }
         <h3>Evening (6 PM - 12 AM)</h3>
-        { eveningMeds }
+        { eveningMeds.findIndex(e => e !== undefined) > -1 ? eveningMeds : "None" }
         <h3>Night (12 AM - 6 AM)</h3>
-        { nightMeds }
+        { nightMeds.findIndex(e => e !== undefined) > -1 ? nightMeds : "None" }
       </div>
     )
   }

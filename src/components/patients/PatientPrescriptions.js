@@ -38,7 +38,6 @@ class PatientPrescriptions extends Component {
       clicked: true,
       whichClicked: event.target.name
     })
-
   }
 
   render() {
@@ -53,7 +52,7 @@ class PatientPrescriptions extends Component {
       <button onClick={this.handleClick} name="fri">Friday</button>
       <button onClick={this.handleClick} name="sat">Saturday</button>
       <button onClick={this.handleClick} name="sun">Sunday</button>
-      <button onClick={this.props.addPrescription}>Add Prescription</button>
+      <button onClick={this.handleAddPrescription}>Add Prescription</button>
       <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
 
       { this.state.clicked && <MedsContainer day={this.state.whichClicked} /> }
