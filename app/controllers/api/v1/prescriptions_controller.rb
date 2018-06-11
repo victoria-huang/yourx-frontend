@@ -7,8 +7,14 @@ class Api::V1::PrescriptionsController < ApplicationController
   end
 
   def create
-    prescription = Prescription.create(prescription_params)
-    render json: prescription, status: 201
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      prescription = Prescription.create(prescription_params)
+      render json: prescription, status: 201
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def update
@@ -29,7 +35,10 @@ class Api::V1::PrescriptionsController < ApplicationController
   private
   def prescription_params
     params.permit(
-      :drug_name,
+      :brand_name,
+      :generic_name,
+      :rxcui,
+      :image_url,
       :amount_per_dose,
       :dosage,
       :formulation,
