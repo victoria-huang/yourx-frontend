@@ -1,5 +1,23 @@
 class PrescriptionSerializer < ActiveModel::Serializer
-  attributes :id, :brand_name, :generic_name, :rxcui, :image_url, :amount_per_dose, :dosage, :formulation, :route, :daily_freq, :weekly_freq, :start_date, :end_date, :prescription_take_times, :take_times
+  attributes :med, :times
   has_many :prescription_take_times
   has_many :take_times, through: :prescription_take_times
+
+  def med
+    ActiveModelSerializers::SerializableResource.new(object, serializer: MedSerializer)
+  end
+
+  def times
+    times = []
+
+    object.take_times.each do |t|
+      time_obj = {}
+      time_obj["take_time"] = ActiveModelSerializers::SerializableResource.new(t, serializer: TakeTimeSerializer)
+      rx_take_time = PrescriptionTakeTime.find_by(prescription_id: object.id, take_time_id: t.id)
+      time_obj["rx_take_time"] = rx_take_time
+      times << time_obj
+    end
+
+    times
+  end
 end
