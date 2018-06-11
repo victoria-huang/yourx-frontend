@@ -8,10 +8,12 @@ import ProviderRegisterForm from './components/providers/ProviderRegisterForm';
 import RegisterForm from './components/RegisterForm'
 import PatientHome from './components/patients/PatientHome';
 import PatientPrescriptions from './components/patients/PatientPrescriptions';
+import ProviderHome from './components/providers/ProviderHome';
 import withAuth from './components/withAuth';
 
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
 const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
+const ProviderHomeWithRouterAndAuth = withRouter(withAuth(ProviderHome));
 
 class App extends Component {
   authSuccess = (json, history) => {
@@ -31,9 +33,7 @@ class App extends Component {
           <Route path='/register-choice' render={ (props) => <RegisterForm {...props} /> } />
           <Route path='/patient-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
           <Route path='/patient-prescriptions' render={ (props) => <PatientPrescriptionsWithRouterAndAuth {...props} /> } />
-
-          {/*FIXME: Need provider home component*/}
-          <Route path='/provider-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
+          <Route path='/provider-home' render={ (props) => <ProviderHomeWithRouterAndAuth {...props} /> } />
         </div>
       </Router>
     );

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { setUser } from '../actions/user'
 
 const DEFAULT_STATE = {
   username: '',
@@ -6,7 +9,7 @@ const DEFAULT_STATE = {
   errors: []
 }
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     ...DEFAULT_STATE
   }
@@ -104,3 +107,11 @@ export default class LoginForm extends Component {
     )
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setUser: setUser
+  }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(LoginForm);
