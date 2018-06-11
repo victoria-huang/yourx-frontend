@@ -1,4 +1,4 @@
-import uuid from 'uuid';
+// import uuid from 'uuid';
 
 export default (state = {
   all: [],
@@ -113,8 +113,7 @@ export default (state = {
         sun: sunRx
       };
     case 'ADD_PRESCRIPTION':
-      const rx = {...action.prescription, id: uuid()};
-      return state.all.concat(rx);
+      return {...state, all: [...state.all, action.prescription]}
     default:
       return state;
   }

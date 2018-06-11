@@ -37,6 +37,7 @@ class PatientPrescriptions extends Component {
 
   handleClick = (event) => {
     this.setState({
+      addRxClicked: false,
       clicked: true,
       whichClicked: event.target.name
     })
@@ -44,7 +45,8 @@ class PatientPrescriptions extends Component {
 
   handleAddRx = () => {
     this.setState({
-      addRxClicked: !this.state.addRxClicked
+      addRxClicked: !this.state.addRxClicked,
+      clicked: false
     })
   }
 

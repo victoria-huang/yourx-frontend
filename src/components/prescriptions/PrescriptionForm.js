@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import TakeTimesForm from './TakeTimesForm'
+import { createPrescription, createPrescriptionTakeTime } from '../../fetches'
 
 const DEFAULT_STATE = {
-  brand_name: '',
+  brandName: '',
   addTimeFormClicked: true,
   times: [],
 }
@@ -14,6 +15,31 @@ class PrescriptionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    const rxBody = {
+      brand_name: this.state.brandName,
+      patient_id: this.props.patientId
+    }
+
+    createPrescription(rxBody)
+    .then(json => {
+      this.props.addPrescription(json)
+
+      const prescriptionId = json.med.id
+
+      this.state.times.forEach(time => {
+        const timeBody = {
+          prescription_id: prescriptionId,
+          take_time_id: time.id
+        }
+
+        createPrescriptionTakeTime(timeBody)
+      })
+    })
+    .then(() => this.setState({
+        ...DEFAULT_STATE
+      })
+    )
   }
 
   handleChange = (event) => {
@@ -32,12 +58,26 @@ class PrescriptionForm extends Component {
     this.setState({
       addTimeFormClicked: false,
       times: [...this.state.times, time]
+    })
+  }
+
+  removeTime = (id) => {
+    this.setState({
+      times: this.state.times.filter(t => t.id !== id)
     }, () => {console.log(this.state)})
   }
 
   render() {
     const takeTimes = this.state.times.map((t, idx) => {
-      return <p key={idx}>{t.day} at {t.formatted_time}</p>
+      return (
+        <div key={idx}>
+          <p>
+            {t.day} at {t.formatted_time}
+            &nbsp;
+            <button onClick={() => this.removeTime(t.id)}>X</button>
+          </p>
+        </div>
+      )
     })
 
     return (
@@ -45,23 +85,24 @@ class PrescriptionForm extends Component {
         <h1>Add Prescription</h1>
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
-            <label htmlFor="brand_name">Medication Name</label>
-            <input name="brand_name" type="text" placeholder='name' value={this.state.brand_name} onChange={this.handleChange} />
+            <label htmlFor="brandName">Medication Name</label>
+            <input name="brandName" type="text" placeholder='name' value={this.state.brandName} onChange={this.handleChange} />
           </div>
 
-          <div className="field">
-            <label htmlFor="times">Times to Take</label>
-            { takeTimes }
+          <h3>Add Times</h3>
+          { takeTimes }
 
-            { this.state.addTimeFormClicked ?
-              <TakeTimesForm handleAddTime={this.handleAddTime} />
-              :
-              <button onClick={this.handleAddTimeFormClick}>Add Another Time</button>
-            }
-          </div>
-
+          { this.state.addTimeFormClicked ?
+            <TakeTimesForm handleAddTime={this.handleAddTime} />
+            :
+            <button onClick={this.handleAddTimeFormClick}>Add Another Time</button>
+          }
+          <br /><br />
           <button type="submit" className="fluid ui large button">Submit</button>
         </form>
+
+
+
       </div>
     )
   }

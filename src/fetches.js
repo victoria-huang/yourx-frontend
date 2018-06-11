@@ -41,3 +41,27 @@ export const createTakeTime = (body) => {
     }
   }).then(r => r.json())
 }
+
+export const createPrescription = (body) => {
+  return fetch(`http://localhost:3000/api/v1/prescriptions`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(r => r.json())
+}
+
+export const createPrescriptionTakeTime = (body) => {
+  return fetch(`http://localhost:3000/api/v1/prescription_take_times`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(r => r.json())
+}

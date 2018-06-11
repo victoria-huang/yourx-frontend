@@ -11,7 +11,7 @@ class TakeTimesForm extends Component {
     ...DEFAULT_STATE
   }
 
-  handleSubmit = (event) => {
+  handleSubmitClick = (event) => {
     event.preventDefault()
     createTakeTime(this.state)
     .then(json => {
@@ -28,18 +28,27 @@ class TakeTimesForm extends Component {
   render() {
     return (
       <div>
-        <form className="ui form" onSubmit={this.handleSubmit}>
+        <form className="ui form">
           <div className="field">
             <label htmlFor="day">Day</label>
-            <input name="day" type="text" placeholder='name' value={this.state.day} onChange={this.handleChange} />
+            <select name="day" value={this.state.day} onChange={this.handleChange}>
+              <option value="">Select</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
           </div>
 
           <div className="field">
             <label htmlFor="rx_time">Time to Take</label>
-            <input name="rx_time" type="text" placeholder='name' value={this.state.rx_time} onChange={this.handleChange} />
+            <input name="rx_time" type="time" placeholder='name' value={this.state.rx_time} onChange={this.handleChange} />
           </div>
 
-          <button type="submit" className="fluid ui large button">Add Time</button>
+          <button className="fluid ui large button" onClick={this.handleSubmitClick}>Add Time</button>
         </form>
       </div>
     )
