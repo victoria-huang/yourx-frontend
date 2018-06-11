@@ -5,7 +5,7 @@ import { setDailyPrescriptions } from '../../actions/prescriptions'
 import { setUser, setAdherence, logout } from '../../actions/user'
 import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fetches'
 import Adherence from './Adherence'
-import TodaysMedsContainer from './TodaysMedsContainer'
+import MedsContainer from './MedsContainer'
 
 class PatientHome extends Component {
   componentDidMount() {
@@ -38,7 +38,7 @@ class PatientHome extends Component {
         Patient Home
         <br />
         <Adherence />
-        <TodaysMedsContainer />
+        <MedsContainer day="today" />
         <button onClick={() => this.props.history.push("/patient-prescriptions")}>All Prescriptions</button>
         <button onClick={this.handleLogout}>Logout</button>
       </div>

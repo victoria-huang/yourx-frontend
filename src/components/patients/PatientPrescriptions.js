@@ -5,7 +5,21 @@ import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
 import { addPrescription, setAllPrescriptions } from  '../../actions/prescriptions'
 
+const DEFAULT_STATE = {
+  monClicked: false,
+  tuesClicked: false,
+  wedClicked: false,
+  thursClicked: false,
+  friClicked: false,
+  satClicked: false,
+  sunClicked: false
+}
+
 class PatientPrescriptions extends Component {
+  state = {
+    ...DEFAULT_STATE
+  }
+
   componentDidMount() {
     getUser()
     .then(json => this.props.setUser({
@@ -19,7 +33,6 @@ class PatientPrescriptions extends Component {
       fetchPatient(patient_id)
       .then(json => {
         const prescriptions = json.prescriptions;
-
         this.props.setAllPrescriptions(prescriptions);
       })
     })
@@ -29,6 +42,14 @@ class PatientPrescriptions extends Component {
     return (
       <div>
       Patient Prescriptions
+
+      <button onClick={this.handleClick} name="Mon">Monday</button>
+      <button onClick={this.handleClick} name="Mon">Tuesday</button>
+      <button onClick={this.handleClick} name="Mon">Wednesday</button>
+      <button onClick={this.handleClick} name="Mon">Thursday</button>
+      <button onClick={this.handleClick} name="Mon">Friday</button>
+      <button onClick={this.handleClick} name="Mon">Saturday</button>
+      <button onClick={this.handleClick} name="Mon">Sunday</button>
 
       <button onClick={this.props.addPrescription}>Add Prescription</button>
       <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
