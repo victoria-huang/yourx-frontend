@@ -7,13 +7,8 @@ import { addPrescription, setAllPrescriptions } from  '../../actions/prescriptio
 import MedsContainer from './MedsContainer'
 
 const DEFAULT_STATE = {
-  monClicked: false,
-  tuesClicked: false,
-  wedClicked: false,
-  thursClicked: false,
-  friClicked: false,
-  satClicked: false,
-  sunClicked: false
+  clicked: false,
+  whichClicked: ''
 }
 
 class PatientPrescriptions extends Component {
@@ -33,16 +28,15 @@ class PatientPrescriptions extends Component {
 
       fetchPatient(patient_id)
       .then(json => {
-        const prescriptions = json.prescriptions;
-        this.props.setAllPrescriptions(prescriptions);
+        this.props.setAllPrescriptions(json.prescriptions);
       })
     })
   }
 
   handleClick = (event) => {
     this.setState({
-      ...DEFAULT_STATE,
-      [`${event.target.name}Clicked`]: true
+      clicked: true,
+      whichClicked: event.target.name
     })
 
   }
@@ -53,35 +47,23 @@ class PatientPrescriptions extends Component {
       Patient Prescriptions
 
       <button onClick={this.handleClick} name="mon">Monday</button>
-      { this.state.monClicked && <MedsContainer day="mon" /> }
-
       <button onClick={this.handleClick} name="tues">Tuesday</button>
-      { this.state.tuesClicked && <MedsContainer day="tues" /> }
-
       <button onClick={this.handleClick} name="wed">Wednesday</button>
-      { this.state.wedClicked && <MedsContainer day="wed" /> }
-
       <button onClick={this.handleClick} name="thurs">Thursday</button>
-      { this.state.thursClicked && <MedsContainer day="thurs" /> }
-
       <button onClick={this.handleClick} name="fri">Friday</button>
-      { this.state.friClicked && <MedsContainer day="fri" /> }
-
       <button onClick={this.handleClick} name="sat">Saturday</button>
-      { this.state.satClicked && <MedsContainer day="sat" /> }
-
       <button onClick={this.handleClick} name="sun">Sunday</button>
-      { this.state.sunClicked && <MedsContainer day="sun" /> }
-
       <button onClick={this.props.addPrescription}>Add Prescription</button>
       <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
+
+      { this.state.clicked && <MedsContainer day={this.state.whichClicked} /> }
+
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.prescriptions)
   return {
     user: state.user,
     prescriptions: state.prescriptions
