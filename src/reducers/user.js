@@ -5,12 +5,9 @@ export default (state = {}, action) => {
       // localStorage.setItem('user_id', action.user.userId);
       // localStorage.setItem('user_class', action.user.userClass);
       // localStorage.setItem('token', action.user.token);
-      return {...action.user, adherence: 0};
+      return action.user;
     case 'LOGOUT':
-      localStorage.removeItem('username');
-      localStorage.removeItem('user_id');
-      localStorage.removeItem('user_class');
-      localStorage.removeItem('token');
+      localStorage.clear();
       return {};
     case 'SET_ADHERENCE':
       return {...state, adherence: action.percentage}

@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import { fetchPatientDailyMeds } from '../../fetches'
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { setPrescriptions } from '../../actions/prescriptions'
+import PatientMed from './PatientMed';
 
 class TodaysMedsContainer extends Component {
-  componentDidMount() {
-    const patient_id = localStorage.getItem("user_id")
-
-    fetchPatientDailyMeds(patient_id)
-    .then(console.log)
-  }
-
   render() {
+    const dailyMeds = this.props.prescriptions.map((p, idx) => {
+      return <PatientMed key={idx} {...p} />
+    })
+
     return (
       <div>
-        Todays Meds Container
+        <h1>Todays Meds Container</h1>
+        { dailyMeds }
       </div>
     )
   }
@@ -27,10 +23,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    setPrescriptions: setPrescriptions
-  })
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TodaysMedsContainer);
+export default connect(mapStateToProps)(TodaysMedsContainer);

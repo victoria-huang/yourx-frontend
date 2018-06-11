@@ -1,10 +1,9 @@
 import React from 'react'
 
-const PatientMed = (props) => {
+const AfternoonMed = (props) => {
   const times = props.times.map((t, idx) => {
     return <p key={idx}>Take at {t.take_time.formatted_time}</p>
   })
-  
   return (
     <div>
       <h4>{props.med.brand_name}</h4>
@@ -13,4 +12,4 @@ const PatientMed = (props) => {
   )
 }
 
-export default PatientMed;
+export default AfternoonMed;

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPrescription } from '../../actions/prescriptions'
-import { setUser, logout } from '../../actions/user'
-import { getUser } from '../../fetches'
+import { addPrescription, setPrescriptions } from '../../actions/prescriptions'
+import { setUser, setAdherence, logout } from '../../actions/user'
+import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fetches'
 import Adherence from './Adherence'
 import TodaysMedsContainer from './TodaysMedsContainer'
 
@@ -15,8 +15,14 @@ class PatientHome extends Component {
       userId: json[0].user_id,
       userClass: json[0].user_class
     }))
-    .then(user => {
-      //fetch adherence here? maybe prescriptions here?
+    .then(() => {
+      const patient_id = this.props.user.userId
+
+      fetchPatientAdherence(patient_id)
+      .then(json => this.props.setAdherence(json))
+
+      fetchPatientDailyMeds(patient_id)
+      .then(json => this.props.setPrescriptions(json))
     })
   }
 
@@ -30,6 +36,7 @@ class PatientHome extends Component {
     return (
       <div>
         Patient Home
+        <br />
         <Adherence />
         <TodaysMedsContainer />
         <button onClick={this.props.addPrescription}>Add Prescription</button>
@@ -41,14 +48,17 @@ class PatientHome extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    prescriptions: state.prescriptions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addPrescription: addPrescription,
+    setPrescriptions: setPrescriptions,
     setUser: setUser,
+    setAdherence: setAdherence,
     logout: logout
   }, dispatch)
 }

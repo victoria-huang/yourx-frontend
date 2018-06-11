@@ -1,6 +1,6 @@
 export const setPrescriptions = (prescriptions) => {
   return {
-    type: 'SET_PRESCRIPTION',
+    type: 'SET_PRESCRIPTIONS',
     prescriptions
   }
 }
