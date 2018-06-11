@@ -7,6 +7,8 @@ import NightMed from './NightMed';
 
 class MedsContainer extends Component {
   render() {
+    // console.log(this.props.prescriptions[`${this.props.day}`])
+
     const morningMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
         return <MorningMed key={idx} {...p} />

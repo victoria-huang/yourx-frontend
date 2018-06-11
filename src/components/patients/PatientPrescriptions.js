@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
 import { addPrescription, setAllPrescriptions } from  '../../actions/prescriptions'
+import MedsContainer from './MedsContainer'
 
 const DEFAULT_STATE = {
   monClicked: false,
@@ -38,18 +39,39 @@ class PatientPrescriptions extends Component {
     })
   }
 
+  handleClick = (event) => {
+    this.setState({
+      ...DEFAULT_STATE,
+      [`${event.target.name}Clicked`]: true
+    })
+
+  }
+
   render() {
     return (
       <div>
       Patient Prescriptions
 
-      <button onClick={this.handleClick} name="Mon">Monday</button>
-      <button onClick={this.handleClick} name="Mon">Tuesday</button>
-      <button onClick={this.handleClick} name="Mon">Wednesday</button>
-      <button onClick={this.handleClick} name="Mon">Thursday</button>
-      <button onClick={this.handleClick} name="Mon">Friday</button>
-      <button onClick={this.handleClick} name="Mon">Saturday</button>
-      <button onClick={this.handleClick} name="Mon">Sunday</button>
+      <button onClick={this.handleClick} name="mon">Monday</button>
+      { this.state.monClicked && <MedsContainer day="mon" /> }
+
+      <button onClick={this.handleClick} name="tues">Tuesday</button>
+      { this.state.tuesClicked && <MedsContainer day="tues" /> }
+
+      <button onClick={this.handleClick} name="wed">Wednesday</button>
+      { this.state.wedClicked && <MedsContainer day="wed" /> }
+
+      <button onClick={this.handleClick} name="thurs">Thursday</button>
+      { this.state.thursClicked && <MedsContainer day="thurs" /> }
+
+      <button onClick={this.handleClick} name="fri">Friday</button>
+      { this.state.friClicked && <MedsContainer day="fri" /> }
+
+      <button onClick={this.handleClick} name="sat">Saturday</button>
+      { this.state.satClicked && <MedsContainer day="sat" /> }
+
+      <button onClick={this.handleClick} name="sun">Sunday</button>
+      { this.state.sunClicked && <MedsContainer day="sun" /> }
 
       <button onClick={this.props.addPrescription}>Add Prescription</button>
       <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
