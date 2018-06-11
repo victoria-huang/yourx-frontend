@@ -39,7 +39,7 @@ class PatientHome extends Component {
         <br />
         <Adherence />
         <TodaysMedsContainer />
-        <button onClick={this.props.addPrescription}>Add Prescription</button>
+        <button onClick={() => this.props.history.push("/patient-prescriptions")}>All Prescriptions</button>
         <button onClick={this.handleLogout}>Logout</button>
       </div>
     )

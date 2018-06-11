@@ -8,25 +8,25 @@ import NightMed from './NightMed';
 class TodaysMedsContainer extends Component {
   render() {
     const morningMeds = this.props.prescriptions.map((p, idx) => {
-      if (p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
+      if (p.times && p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
         return <MorningMed key={idx} {...p} />
       }
     })
 
     const afternoonMeds = this.props.prescriptions.map((p, idx) => {
-      if (p.times.filter(t => t.take_time.time_of_day === "afternoon").length > 0) {
+      if (p.times && p.times.filter(t => t.take_time.time_of_day === "afternoon").length > 0) {
         return <AfternoonMed key={idx} {...p} />
       }
     })
 
     const eveningMeds = this.props.prescriptions.map((p, idx) => {
-      if (p.times.filter(t => t.take_time.time_of_day === "evening").length > 0) {
+      if (p.times && p.times.filter(t => t.take_time.time_of_day === "evening").length > 0) {
         return <EveningMed key={idx} {...p} />
       }
     })
 
     const nightMeds = this.props.prescriptions.map((p, idx) => {
-      if (p.times.filter(t => t.take_time.time_of_day === "night").length > 0) {
+      if (p.times && p.times.filter(t => t.take_time.time_of_day === "night").length > 0) {
         return <NightMed key={idx} {...p} />
       }
     })

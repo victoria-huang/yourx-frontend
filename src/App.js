@@ -10,19 +10,17 @@ import PatientRegisterForm from './components/patients/PatientRegisterForm';
 import ProviderRegisterForm from './components/providers/ProviderRegisterForm';
 import RegisterForm from './components/RegisterForm'
 import PatientHome from './components/patients/PatientHome';
+import PatientPrescriptions from './components/patients/PatientPrescriptions';
 import withAuth from './components/withAuth';
 
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
+const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
 
 class App extends Component {
   authSuccess = (json, history) => {
-    localStorage.setItem('username', json.username);
-    localStorage.setItem('user_id', json.user_id);
-    localStorage.setItem('user_class', json.user_class);
     localStorage.setItem('token', json.token);
     json.user_class === 'Patient' ? history.push("/patient-home") : history.push("/provider-home")
   }
-  /*FIXME: What is the purpose of authSuccess? Should this all be done with redux? */å
 
   render() {
     return (
@@ -35,6 +33,8 @@ class App extends Component {
           <Route path='/provider-register' render={ (props) => <ProviderRegisterForm url="http://localhost:3000/api/v1/doctors" onSuccess={this.authSuccess} {...props} /> } />
           <Route path='/register-choice' render={ (props) => <RegisterForm {...props} /> } />
           <Route path='/patient-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
+          <Route path='/patient-prescriptions' render={ (props) => <PatientPrescriptionsWithRouterAndAuth {...props} /> } />
+
           {/*FIXME: Need provider home component*/}
           <Route path='/provider-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
         </div>

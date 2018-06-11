@@ -85,6 +85,20 @@
   color: #34495E;
 }
 
+.CircularProgressbar-trail {
+  stroke: rgba(220, 220, 220, 0.5);
+}
+
+.CircularProgressbar-path {
+  stroke: rgba(62, 152, 199, 1);
+}
+
+/* .CircularProgressbar-text {
+  x: 40;
+  y: 52;
+} */
+
+
 /* .App {
   text-align: center;
 }
