@@ -23,9 +23,15 @@ class Api::V1::PrescriptionsController < ApplicationController
   end
 
   def destroy
-    prescription_id = @prescription.id
-    @prescription.destroy
-    render json: {message: "Prescription deleted", prescriptionId: prescription_id}
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      prescription_id = @prescription.id
+      @prescription.destroy
+      render json: {message: "Prescription deleted", prescriptionId: prescription_id}
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def show
