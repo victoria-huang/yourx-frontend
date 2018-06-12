@@ -65,3 +65,31 @@ export const createPrescriptionTakeTime = (body) => {
     }
   }).then(r => r.json())
 }
+
+export const takeMed = (rxTakeTimeId) => {
+  return fetch(`http://localhost:3000/api/v1/prescription_take_times/${rxTakeTimeId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      taken: true
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  })
+}
+
+export const untakeMed = (rxTakeTimeId) => {
+  return fetch(`http://localhost:3000/api/v1/prescription_take_times/${rxTakeTimeId}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      taken: false
+    }),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': localStorage.getItem('token')
+    }
+  })
+}
