@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setDailyPrescriptions } from '../../actions/prescriptions'
+import { setDailyPrescriptions, setAllPrescriptions } from '../../actions/prescriptions'
 import { setUser, setAdherence, logout } from '../../actions/user'
-import { getUser, fetchPatientAdherence, fetchPatientDailyMeds } from '../../fetches'
+import { getUser, fetchPatientAdherence, fetchPatientDailyMeds, fetchPatient } from '../../fetches'
 import Adherence from './Adherence'
 import MedsContainer from './MedsContainer'
 
@@ -42,6 +42,11 @@ class PatientHome extends Component {
 
       fetchPatientDailyMeds(patient_id)
       .then(json => this.props.setDailyPrescriptions(json))
+
+      fetchPatient(patient_id)
+      .then(json => {
+        this.props.setAllPrescriptions(json.prescriptions);
+      })
     })
   }
 

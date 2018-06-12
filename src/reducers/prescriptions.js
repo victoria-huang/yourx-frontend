@@ -1,4 +1,13 @@
 // import uuid from 'uuid';
+const daysKey = {
+  'mon': "Monday",
+  'tues': "Tuesday",
+  'wed': "Wednesday",
+  'thurs': "Thursday",
+  'fri': "Friday",
+  'sat': "Saturday",
+  'sun': "Sunday"
+}
 
 export default (state = {
   all: [],
@@ -145,18 +154,28 @@ export default (state = {
       let stateEditCopy = state[action.day].slice()
       stateEditCopy[prescriptionEditIdx] = action.prescription
 
+      const prescriptionEditAllIdx = state.all.findIndex(p => p.med.id === action.prescription.med.id)
+      let stateEditAllCopy = state.all.slice()
+      stateEditAllCopy[prescriptionEditAllIdx] = action.prescription
+
       return {
         ...state,
-        [action.day]: stateEditCopy
+        [action.day]: stateEditCopy,
+        all: stateEditAllCopy
       }
     case 'DELETE_PRESCRIPTION':
       const prescriptionDeleteIdx = state[action.day].findIndex(p => p.med.id === action.prescriptionId)
       let stateDayCopy = state[action.day].slice()
       stateDayCopy.splice(prescriptionDeleteIdx, 1)
 
+      const prescriptionDeleteAllIdx = state.all.findIndex(p => p.med.id === action.prescriptionId)
+      let stateDayAllCopy = state.all.slice()
+      stateDayAllCopy.splice(prescriptionDeleteAllIdx, 1)
+
       return {
         ...state,
-        [action.day]: stateDayCopy
+        [action.day]: stateDayCopy,
+        all: stateDayAllCopy
       }
     // case 'DELETE_DOSE':
     //   const doseDeleteIdx = state[action.day].findIndex(p => {
@@ -175,11 +194,17 @@ export default (state = {
     case 'ADD_DOSE':
       const rxTimeIdx = state[action.day].findIndex(p => p.med.id === action.prescriptionId)
       const timeCopy = state[action.day].slice()
-      timeCopy[rxTimeIdx] = {...timeCopy[rxTimeIdx], times: action.times}
+      const dayTimes = action.times.filter(t => t.take_time.day === daysKey[action.day])
+      timeCopy[rxTimeIdx] = {...timeCopy[rxTimeIdx], times: dayTimes}
+
+      const rxTimeAllIdx = state.all.findIndex(p => p.med.id === action.prescriptionId)
+      const timeAllCopy = state.all.slice()
+      timeAllCopy[rxTimeAllIdx] = {...timeAllCopy[rxTimeAllIdx], times: action.times}
 
       return {
         ...state,
-        [action.day]: timeCopy
+        [action.day]: timeCopy,
+        all: timeAllCopy
       }
     default:
       return state;

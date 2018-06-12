@@ -26,7 +26,7 @@ class EditPrescriptionForm extends Component {
     } else {
       const prescriptionId = this.props.location.state.prescriptionId;
       const day = this.props.location.state.day;
-      const p = this.props.prescriptions[`${day}`].find(p => p.med.id === prescriptionId)
+      const p = this.props.prescriptions.all.find(p => p.med.id === prescriptionId)
       const takeTimes = p.times.map((t, idx) => { return {...t.take_time, rxTakeTimeId: t.rx_take_time.id, timesIdx: idx} })
 
       this.setState({
