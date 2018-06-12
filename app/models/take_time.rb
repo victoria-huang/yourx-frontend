@@ -1,5 +1,5 @@
 class TakeTime < ApplicationRecord
-  has_many :prescription_take_times
+  has_many :prescription_take_times, dependent: :delete_all
   has_many :prescriptions, through: :prescription_take_times
 
   before_create :determine_time_of_day
