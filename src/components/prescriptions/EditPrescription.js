@@ -36,7 +36,7 @@ class EditPrescription extends Component {
           :
           null
         }
-        <button name="editMed" onClick={this.handleClick}>Edit Med</button>
+        <button name="editMed" onClick={this.handleClick}>Edit</button>
       </div>
     )
   }

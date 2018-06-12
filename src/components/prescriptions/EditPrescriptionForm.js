@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import TakeTimesForm from './TakeTimesForm'
-import { createPrescription, createPrescriptionTakeTime } from '../../fetches'
+import EditTakeTimesForm from './EditTakeTimesForm'
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -8,7 +7,7 @@ const DEFAULT_STATE = {
   times: [],
 }
 
-class PrescriptionForm extends Component {
+class EditPrescriptionForm extends Component {
   state = {
     ...DEFAULT_STATE
   }
@@ -36,11 +35,10 @@ class PrescriptionForm extends Component {
         createPrescriptionTakeTime(timeBody)
       })
     })
-    .then(() => this.props.redirect())
-    // .then(() => this.setState({
-    //     ...DEFAULT_STATE
-    //   })
-    // )
+    .then(() => this.setState({
+        ...DEFAULT_STATE
+      })
+    )
   }
 
   handleChange = (event) => {
@@ -109,4 +107,4 @@ class PrescriptionForm extends Component {
   }
 }
 
-export default PrescriptionForm;
+export default EditPrescriptionForm;

@@ -50,6 +50,13 @@ class PatientPrescriptions extends Component {
     })
   }
 
+  redirect = () => {
+    this.setState({
+      ...DEFAULT_STATE
+    })
+    alert("Prescription Added!");
+  }
+
   render() {
     return (
       <div>
@@ -67,7 +74,7 @@ class PatientPrescriptions extends Component {
 
         { this.state.clicked && <MedsContainer day={this.state.whichClicked} /> }
 
-        { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} /> }
+        { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} redirect={this.redirect} /> }
       </div>
     )
   }

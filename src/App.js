@@ -9,6 +9,7 @@ import RegisterForm from './components/RegisterForm'
 import PatientHome from './components/patients/PatientHome';
 import PatientPrescriptions from './components/patients/PatientPrescriptions';
 import ProviderHome from './components/providers/ProviderHome';
+import EditPrescriptionForm from './components/prescriptions/EditPrescriptionForm'
 import withAuth from './components/withAuth';
 import withAuthSuccess from './components/withAuthSuccess'
 
@@ -20,6 +21,7 @@ const PatientRegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(P
 const ProviderRegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(ProviderRegisterForm))
 const RegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(RegisterForm))
 const WelcomeWithRouterAndAuthSuccess = withRouter(withAuthSuccess(Welcome))
+const EditPrescriptionFormWithRouterAndAuth = withRouter(withAuth(EditPrescriptionForm));
 
 class App extends Component {
   authSuccess = (json, history) => {
@@ -40,6 +42,7 @@ class App extends Component {
           <Route path='/register-choice' render={ (props) => <RegisterFormWithRouterAndAuthSuccess {...props} /> } />
           <Route path='/patient-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
           <Route path='/patient-prescriptions' render={ (props) => <PatientPrescriptionsWithRouterAndAuth {...props} /> } />
+          <Route path='/edit-patient-prescription' render={ (props) => <EditPrescriptionFormWithRouterAndAuth {...props} /> } />
           <Route path='/provider-home' render={ (props) => <ProviderHomeWithRouterAndAuth {...props} /> } />
         </div>
       </Router>
