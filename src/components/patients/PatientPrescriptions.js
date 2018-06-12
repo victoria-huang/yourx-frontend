@@ -74,7 +74,6 @@ class PatientPrescriptions extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.prescriptions.all)
   return {
     user: state.user,
     prescriptions: state.prescriptions,
