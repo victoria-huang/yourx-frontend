@@ -1,27 +1,16 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :patients do
+      resources :patients, only: [:create, :show] do
         get '/daily_meds', to: 'patients#get_daily_meds'
         get '/daily_adherence', to: 'patients#get_daily_adherence'
-
-        # resources :prescriptions
-        # resources :insurances
-        # resources :labs
-        # resources :emergency_contacts
       end
 
-      resources :doctors do
-        # resources :prescriptions
-      end
+      resources :doctors, only: [:create]
+      resources :prescriptions, only: [:create, :update, :destroy, :show]
+      resources :take_times, only: [:create]
+      resources :prescription_take_times, only: [:create, :update, :destroy]
 
-      resources :prescriptions
-      resources :take_times
-      resources :prescription_take_times
-
-      # resources :pharmacies do
-      #   resources :prescriptions
-      # end
       post '/patient_sessions', to: 'sessions#create_patient'
       post '/doctor_sessions', to: 'sessions#create_doctor'
     end

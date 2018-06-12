@@ -1,10 +1,10 @@
 class Api::V1::PrescriptionsController < ApplicationController
   before_action :set_prescription, only: [:show, :update, :destroy]
 
-  def index
-    prescriptions = Prescription.all
-    render json: prescriptions, status: 200
-  end
+  # def index
+  #   prescriptions = Prescription.all
+  #   render json: prescriptions, status: 200
+  # end
 
   def create
     @patient = Patient.find(current_user_id)
@@ -18,8 +18,14 @@ class Api::V1::PrescriptionsController < ApplicationController
   end
 
   def update
-    @prescription.update(prescription_params)
-    render json: @prescription, status: 200
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      @prescription.update(prescription_params)
+      render json: @prescription, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def destroy
