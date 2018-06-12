@@ -114,6 +114,31 @@ export default (state = {
       };
     case 'ADD_PRESCRIPTION':
       return {...state, all: state.all.concat(action.prescription)}
+    case 'EDIT_PRESCRIPTION':
+
+    case 'TAKE_PRESCRIPTION':
+      const prescriptionIdx = state.today.findIndex(p => action.rxTakeTimeId === p.times[0].rx_take_time.id)
+      let todayTakeCopy = state.today.slice()
+      todayTakeCopy[prescriptionIdx].times[0].rx_take_time.taken = true;
+
+      return {
+        ...state,
+        today: todayTakeCopy
+      }
+    case 'UNTAKE_PRESCRIPTION':
+      const prescriptionIndx = state.today.findIndex(p => action.rxTakeTimeId === p.times[0].rx_take_time.id)
+      let todayUntakeCopy = state.today.slice()
+      todayUntakeCopy[prescriptionIndx].times[0].rx_take_time.taken = false;
+
+      return {
+        ...state,
+        today: todayUntakeCopy
+      }
+    case 'DELETE_PRESCRIPTION':
+
+    case 'DELETE_DOSE':
+
+
     default:
       return state;
   }

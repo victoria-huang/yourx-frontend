@@ -55,7 +55,7 @@ class PatientHome extends Component {
     return (
       <div>
         Patient Home
-        <h1>Welcome {this.props.user.username}! Today is {getDate()}</h1>
+        <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
         <br />
         <Adherence />
         <MedsContainer day="today" />

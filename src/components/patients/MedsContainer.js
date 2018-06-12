@@ -17,28 +17,32 @@ const formatted = {
 }
 
 class MedsContainer extends Component {
+  // componentDidUpdate() {
+  //     console.log('update')
+  // }
+
   render() {
     const morningMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "morning").length > 0) {
-        return <MorningMed key={idx} {...p} />
+        return <MorningMed key={idx} {...p} day={this.props.day} />
       }
     })
 
     const afternoonMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "afternoon").length > 0) {
-        return <AfternoonMed key={idx} {...p} />
+        return <AfternoonMed key={idx} {...p} day={this.props.day} />
       }
     })
 
     const eveningMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "evening").length > 0) {
-        return <EveningMed key={idx} {...p} />
+        return <EveningMed key={idx} {...p} day={this.props.day} />
       }
     })
 
     const nightMeds = this.props.prescriptions[`${this.props.day}`].map((p, idx) => {
       if (p.times && p.times.filter(t => t.take_time.time_of_day === "night").length > 0) {
-        return <NightMed key={idx} {...p} />
+        return <NightMed key={idx} {...p} day={this.props.day} />
       }
     })
 
