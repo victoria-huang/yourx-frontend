@@ -10,7 +10,7 @@ class Api::V1::PrescriptionTakeTimesController < ApplicationController
     @patient = Patient.find(current_user_id)
 
     if authorized?(@patient)
-      prescription_take_time = PrescriptionTakeTime.create(prescription_take_time_params)
+      prescription_take_time = PrescriptionTakeTime.find_or_create_by(prescription_take_time_params)
       render json: prescription_take_time, status: 201
     else
       render json: { unauthorized: true }, status: :unauthorized
