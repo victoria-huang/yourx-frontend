@@ -29,9 +29,15 @@ class Api::V1::PrescriptionTakeTimesController < ApplicationController
   end
 
   def destroy
-    prescription_take_time_id = @prescription_take_time.id
-    @prescription_take_time.destroy
-    render json: {message: "PrescriptionTakeTime deleted", prescription_take_timeId: prescription_take_time_id}
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      prescription_take_time_id = @prescription_take_time.id
+      @prescription_take_time.destroy
+      render json: {message: "PrescriptionTakeTime deleted", prescription_take_timeId: prescription_take_time_id}
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def show
