@@ -5,8 +5,8 @@ const NightMed = (props) => {
   const times = props.times.map((t, idx) => {
     if (t.take_time.time_of_day === "night") {
       return (
-        <div>
-          <p key={idx}>Take at {t.take_time.formatted_time}</p>
+        <div key={idx}>
+          <p>Take at {t.take_time.formatted_time}</p>
           { props.times[idx].rx_take_time.taken && props.day === "today" ? "Taken" : null }
           <EditPrescription
             rxTakeTimeId={props.times[idx].rx_take_time.id}

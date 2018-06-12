@@ -27,6 +27,7 @@ class EditPrescription extends Component {
       this.props.history.push({
         pathname: '/edit-patient-prescription',
         state: {
+          day: this.props.day,
           prescriptionId: this.props.prescriptionId
         }
       })

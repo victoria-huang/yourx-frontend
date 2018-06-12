@@ -19,15 +19,6 @@ export const addPrescription = (prescription) => {
   }
 }
 
-//to do
-
-export const editPrescription = (prescriptionId) => {
-  return {
-    type: 'EDIT_PRESCRIPTION',
-    prescriptionId
-  }
-}
-
 export const takePrescription = (rxTakeTimeId, timesIdx) => {
   return {
     type: 'TAKE_PRESCRIPTION',
@@ -42,16 +33,25 @@ export const untakePrescription = (rxTakeTimeId, timesIdx) => {
   }
 }
 
-export const deletePrescription = (prescriptionId) => {
+export const deleteDose = (rxTakeTimeId, timesIdx, day) => {
   return {
-    type: 'DELETE_PRESCRIPTION',
+    type: 'DELETE_DOSE',
+    rxTakeTimeId, timesIdx, day
+  }
+}
+
+// to do
+
+export const editPrescription = (prescriptionId) => {
+  return {
+    type: 'EDIT_PRESCRIPTION',
     prescriptionId
   }
 }
 
-export const deleteDose = (rxTakeTimeId) => {
+export const deletePrescription = (prescriptionId) => {
   return {
-    type: 'DELETE_DOSE',
-    rxTakeTimeId
+    type: 'DELETE_PRESCRIPTION',
+    prescriptionId
   }
 }

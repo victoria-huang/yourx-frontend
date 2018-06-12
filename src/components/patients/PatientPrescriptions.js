@@ -72,7 +72,7 @@ class PatientPrescriptions extends Component {
         <button onClick={this.handleClickAddRx}>Add Prescription</button>
         <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
 
-        { this.state.clicked && <MedsContainer day={this.state.whichClicked} /> }
+        { this.state.clicked && <MedsContainer day={this.state.whichClicked} history={this.props.history} /> }
 
         { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} redirect={this.redirect} /> }
       </div>

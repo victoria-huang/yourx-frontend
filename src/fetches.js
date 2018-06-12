@@ -66,6 +66,15 @@ export const createPrescriptionTakeTime = (body) => {
   }).then(r => r.json())
 }
 
+export const deletePrescriptionTakeTime = (rxTakeTimeId) => {
+  return fetch(`http://localhost:3000/api/v1/prescription_take_times/${rxTakeTimeId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(r => r.json()).then(console.log)
+}
+
 export const takeMed = (rxTakeTimeId) => {
   return fetch(`http://localhost:3000/api/v1/prescription_take_times/${rxTakeTimeId}`, {
     method: 'PATCH',
