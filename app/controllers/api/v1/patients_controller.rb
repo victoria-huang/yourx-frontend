@@ -51,6 +51,7 @@ class Api::V1::PatientsController < ApplicationController
 
   def get_daily_meds
     @patient = Patient.find(current_user_id)
+    
     if authorized?(@patient)
       render json: @patient.get_daily_meds_and_times
     else

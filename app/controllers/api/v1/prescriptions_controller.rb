@@ -54,19 +54,19 @@ class Api::V1::PrescriptionsController < ApplicationController
   def prescription_params
     params.permit(
       :brand_name,
-      :generic_name,
-      :rxcui,
-      :image_url,
-      :amount_per_dose,
-      :dosage,
-      :formulation,
-      :route,
-      :daily_freq,
-      :weekly_freq,
-      :start_date,
-      :end_date,
-      :doctor_id,
-      :pharmacy_id,
+      # :generic_name,
+      # :rxcui,
+      # :image_url,
+      # :amount_per_dose,
+      # :dosage,
+      # :formulation,
+      # :route,
+      # :daily_freq,
+      # :weekly_freq,
+      # :start_date,
+      # :end_date,
+      # :doctor_id,
+      # :pharmacy_id,
       :patient_id
     )
   end
