@@ -72,7 +72,7 @@ export const deletePrescriptionTakeTime = (rxTakeTimeId) => {
     headers: {
       'Authorization': localStorage.getItem('token')
     }
-  }).then(r => r.json()).then(console.log)
+  })
 }
 
 export const takeMed = (rxTakeTimeId) => {
@@ -106,6 +106,27 @@ export const untakeMed = (rxTakeTimeId) => {
 export const getPrescription = (prescriptionId) => {
   return fetch(`http://localhost:3000/api/v1/prescriptions/${prescriptionId}`, {
     headers: {
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(res => res.json())
+}
+
+export const deletePrescriptionFetch = (prescriptionId) => {
+  return fetch(`http://localhost:3000/api/v1/prescriptions/${prescriptionId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(r => r.json()).then(console.log)
+}
+
+export const editPrescriptionFetch = (prescriptionId, rxBody) => {
+  return fetch(`http://localhost:3000/api/v1/prescriptions/${prescriptionId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(rxBody),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('token')
     }
   }).then(res => res.json())

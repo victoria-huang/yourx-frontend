@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TakeTimesForm from './TakeTimesForm';
-import { deletePrescriptionTakeTime } from '../../fetches';
-import { editPrescription, deletePrescription, deleteDose } from '../../actions/prescriptions'
+import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime } from '../../fetches';
+import { editPrescription, deletePrescription, deleteDose, addDose } from '../../actions/prescriptions'
 
 const DEFAULT_STATE = {
   brandName: '',
   addTimeFormClicked: false,
   times: [],
+  prescriptionId: '',
+  day: ''
 }
 
 class EditPrescriptionForm extends Component {
@@ -29,40 +31,53 @@ class EditPrescriptionForm extends Component {
 
       this.setState({
         brandName: p.med.brand_name,
-        times: takeTimes
+        times: takeTimes,
+        prescriptionId: prescriptionId,
+        day: day
       })
     }
   }
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault()
-  //
-  //   const rxBody = {
-  //     brand_name: this.state.brandName,
-  //     patient_id: this.props.patientId
-  //   }
-  //
-  //   createPrescription(rxBody)
-  //   .then(json => {
-  //     this.props.addPrescription(json)
-  //
-  //     const prescriptionId = json.med.id
-  //
-  //     this.state.times.forEach(time => {
-  //       const timeBody = {
-  //         prescription_id: prescriptionId,
-  //         take_time_id: time.id
-  //       }
-  //
-  //       createPrescriptionTakeTime(timeBody)
-  //     })
-  //   })
-  //   .then(() => this.setState({
-  //       ...DEFAULT_STATE
-  //     })
-  //   )
-  // }
-  //
+  handleSubmit = (event) => {
+    event.preventDefault()
+
+    const rxBody = {
+      brand_name: this.state.brandName,
+      patient_id: this.props.location.state.patientId
+    }
+
+    const times = [];
+
+    editPrescriptionFetch(this.state.prescriptionId, rxBody)
+    .then(json => {
+      this.props.editPrescription(json, this.state.day)
+
+      this.state.times.forEach(time => {
+        const timeBody = {
+          prescription_id: this.state.prescriptionId,
+          take_time_id: time.id
+        }
+
+        createPrescriptionTakeTime(timeBody)
+        .then((rxTakeTime, idx) => {
+          const obj = {
+            take_time: time,
+            rx_take_time: rxTakeTime
+          }
+          times.push(obj)
+
+          if (times.length === this.state.times.length) {
+            this.props.addDose(times, this.state.prescriptionId, this.state.day);
+          }
+        })
+      })
+    })
+    .then(() => {
+      alert('Prescription Edited!');
+      this.props.history.push('/patient-home')
+    })
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
@@ -87,13 +102,18 @@ class EditPrescriptionForm extends Component {
       times: this.state.times.filter(t => t.id !== id)
     })
 
-    this.props.deleteDose(rxTakeTimeId, timesIdx, this.props.location.state.day);
+    // this.props.deleteDose(rxTakeTimeId, timesIdx, this.state.day);
 
     deletePrescriptionTakeTime(rxTakeTimeId);
   }
 
-  handleDeletePrescription = (prescriptionId) => {
+  handleDeletePrescription = () => {
+    this.props.deletePrescription(this.state.prescriptionId, this.state.day);
 
+    deletePrescriptionFetch(this.state.prescriptionId);
+
+    alert('Prescription deleted!')
+    this.props.history.push('/patient-home')
   }
 
   render() {
@@ -137,7 +157,6 @@ class EditPrescriptionForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.prescriptions)
   return {
     prescriptions: state.prescriptions
   }
@@ -147,7 +166,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     editPrescription: editPrescription,
     deletePrescription: deletePrescription,
-    deleteDose: deleteDose
+    deleteDose: deleteDose,
+    addDose: addDose
   }, dispatch)
 }
 

@@ -40,18 +40,23 @@ export const deleteDose = (rxTakeTimeId, timesIdx, day) => {
   }
 }
 
-// to do
-
-export const editPrescription = (prescriptionId) => {
+export const deletePrescription = (prescriptionId, day) => {
   return {
-    type: 'EDIT_PRESCRIPTION',
-    prescriptionId
+    type: 'DELETE_PRESCRIPTION',
+    prescriptionId, day
   }
 }
 
-export const deletePrescription = (prescriptionId) => {
+export const editPrescription = (prescription, day) => {
   return {
-    type: 'DELETE_PRESCRIPTION',
-    prescriptionId
+    type: 'EDIT_PRESCRIPTION',
+    prescription, day
+  }
+}
+
+export const addDose = (times, prescriptionId, day) => {
+  return {
+    type: 'ADD_DOSE',
+    times, prescriptionId, day
   }
 }

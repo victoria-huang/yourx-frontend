@@ -28,6 +28,7 @@ class EditPrescription extends Component {
         pathname: '/edit-patient-prescription',
         state: {
           day: this.props.day,
+          patientId: this.props.user.userId,
           prescriptionId: this.props.prescriptionId
         }
       })

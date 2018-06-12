@@ -141,9 +141,23 @@ export default (state = {
         today: todayUntakeCopy
       }
     case 'EDIT_PRESCRIPTION':
+      const prescriptionEditIdx = state[action.day].findIndex(p => p.med.id === action.prescription.med.id)
+      let stateEditCopy = state[action.day].slice()
+      stateEditCopy[prescriptionEditIdx] = action.prescription
 
+      return {
+        ...state,
+        [action.day]: stateEditCopy
+      }
     case 'DELETE_PRESCRIPTION':
+      const prescriptionDeleteIdx = state[action.day].findIndex(p => p.med.id === action.prescriptionId)
+      let stateDayCopy = state[action.day].slice()
+      stateDayCopy.splice(prescriptionDeleteIdx, 1)
 
+      return {
+        ...state,
+        [action.day]: stateDayCopy
+      }
     case 'DELETE_DOSE':
       const doseDeleteIdx = state[action.day].findIndex(p => {
         if (p.times.length - 1 >= action.timesIdx) {
@@ -157,6 +171,15 @@ export default (state = {
       return {
         ...state,
         [action.day]: dayCopy
+      }
+    case 'ADD_DOSE':
+      const rxTimeIdx = state[action.day].findIndex(p => p.med.id === action.prescriptionId)
+      const timeCopy = state[action.day].slice()
+      timeCopy[rxTimeIdx] = {...timeCopy[rxTimeIdx], times: action.times}
+
+      return {
+        ...state,
+        [action.day]: timeCopy
       }
     default:
       return state;
