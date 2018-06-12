@@ -17,3 +17,10 @@ export const setAdherence = (percentage) => {
     percentage
   }
 }
+
+export const updateAdherence = (percentage) => {
+  return {
+    type: 'UPDATE_ADHERENCE',
+    percentage
+  }
+}

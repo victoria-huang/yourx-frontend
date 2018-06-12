@@ -11,6 +11,8 @@ export default (state = {}, action) => {
       return {};
     case 'SET_ADHERENCE':
       return {...state, adherence: action.percentage}
+    case 'UPDATE_ADHERENCE':
+      return {...state, adherence: action.percentage}
     default:
       return state;
   }
