@@ -15,6 +15,11 @@ import withAuthSuccess from './components/withAuthSuccess'
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
 const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
 const ProviderHomeWithRouterAndAuth = withRouter(withAuth(ProviderHome));
+const LoginFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(LoginForm))
+const PatientRegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(PatientRegisterForm))
+const ProviderRegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(ProviderRegisterForm))
+const RegisterFormWithRouterAndAuthSuccess = withRouter(withAuthSuccess(RegisterForm))
+const WelcomeWithRouterAndAuthSuccess = withRouter(withAuthSuccess(Welcome))
 
 class App extends Component {
   authSuccess = (json, history) => {
@@ -27,12 +32,12 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path='/' component={Welcome} />
-          <Route path='/patient-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/patient_sessions" onSuccess={this.authSuccess} {...props} type='Patient' /> } />
-          <Route path='/provider-login' render={ (props) => <LoginForm url="http://localhost:3000/api/v1/doctor_sessions" onSuccess={this.authSuccess} {...props} type='Provider' /> } />
-          <Route path='/patient-register' render={ (props) => <PatientRegisterForm url="http://localhost:3000/api/v1/patients" onSuccess={this.authSuccess} {...props} /> } />
-          <Route path='/provider-register' render={ (props) => <ProviderRegisterForm url="http://localhost:3000/api/v1/doctors" onSuccess={this.authSuccess} {...props} /> } />
-          <Route path='/register-choice' render={ (props) => <RegisterForm {...props} /> } />
+          <Route exact path='/' component={WelcomeWithRouterAndAuthSuccess} />
+          <Route path='/patient-login' render={ (props) => <LoginFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/patient_sessions" onSuccess={this.authSuccess} {...props} type='Patient' /> } />
+          <Route path='/provider-login' render={ (props) => <LoginFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/doctor_sessions" onSuccess={this.authSuccess} {...props} type='Provider' /> } />
+          <Route path='/patient-register' render={ (props) => <PatientRegisterFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/patients" onSuccess={this.authSuccess} {...props} /> } />
+          <Route path='/provider-register' render={ (props) => <ProviderRegisterFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/doctors" onSuccess={this.authSuccess} {...props} /> } />
+          <Route path='/register-choice' render={ (props) => <RegisterFormWithRouterAndAuthSuccess {...props} /> } />
           <Route path='/patient-home' render={ (props) => <PatientHomeWithRouterAndAuth {...props} /> } />
           <Route path='/patient-prescriptions' render={ (props) => <PatientPrescriptionsWithRouterAndAuth {...props} /> } />
           <Route path='/provider-home' render={ (props) => <ProviderHomeWithRouterAndAuth {...props} /> } />

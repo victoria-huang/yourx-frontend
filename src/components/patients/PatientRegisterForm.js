@@ -23,16 +23,6 @@ export default class PatientRegisterForm extends Component {
     ...DEFAULT_STATE
   }
 
-  componentDidMount() {
-    if (localStorage.getItem('token')) {
-      let userClass = localStorage.getItem('userClass').toLowerCase()
-      if (userClass === "doctor") {
-        userClass = "provider"
-      }
-      this.props.history.push(`/${userClass}-home`)
-    }
-  }
-
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
