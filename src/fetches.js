@@ -117,7 +117,8 @@ export const deletePrescriptionFetch = (prescriptionId) => {
     headers: {
       'Authorization': localStorage.getItem('token')
     }
-  }).then(r => r.json()).then(console.log)
+  })
+  // .then(r => r.json()).then(console.log)
 }
 
 export const editPrescriptionFetch = (prescriptionId, rxBody) => {

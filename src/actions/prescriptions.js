@@ -33,12 +33,12 @@ export const untakePrescription = (rxTakeTimeId, timesIdx) => {
   }
 }
 
-export const deleteDose = (rxTakeTimeId, timesIdx, day) => {
-  return {
-    type: 'DELETE_DOSE',
-    rxTakeTimeId, timesIdx, day
-  }
-}
+// export const deleteDose = (rxTakeTimeId, timesIdx, day) => {
+//   return {
+//     type: 'DELETE_DOSE',
+//     rxTakeTimeId, timesIdx, day
+//   }
+// }
 
 export const deletePrescription = (prescriptionId, day) => {
   return {

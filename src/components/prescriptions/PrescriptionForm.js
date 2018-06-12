@@ -7,7 +7,7 @@ const DEFAULT_STATE = {
   addTimeFormClicked: true,
   times: [],
 }
-// NEED TO ADD STORE UPDATE WITH CREATE TAKE TIME
+
 class PrescriptionForm extends Component {
   state = {
     ...DEFAULT_STATE
@@ -20,6 +20,8 @@ class PrescriptionForm extends Component {
       brand_name: this.state.brandName,
       patient_id: this.props.patientId
     }
+
+    const times = [];
 
     createPrescription(rxBody)
     .then(json => {
@@ -34,13 +36,23 @@ class PrescriptionForm extends Component {
         }
 
         createPrescriptionTakeTime(timeBody)
+        .then((rxTakeTime, idx) => {
+          const obj = {
+            take_time: time,
+            rx_take_time: rxTakeTime
+          }
+          times.push(obj)
+
+          if (times.length === this.state.times.length) {
+            this.props.addDose(times, prescriptionId, 'all');
+          }
+        })
       })
     })
-    .then(() => this.props.redirect())
-    // .then(() => this.setState({
-    //     ...DEFAULT_STATE
-    //   })
-    // )
+    .then(() => {
+      alert('Prescription Added!')
+      this.props.history.push('/patient-home')
+    })
   }
 
   handleChange = (event) => {
@@ -65,7 +77,7 @@ class PrescriptionForm extends Component {
   removeTime = (id) => {
     this.setState({
       times: this.state.times.filter(t => t.id !== id)
-    }, () => {console.log(this.state)})
+    })
   }
 
   render() {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
-import { addPrescription, setAllPrescriptions } from  '../../actions/prescriptions'
+import { addPrescription, setAllPrescriptions, addDose } from  '../../actions/prescriptions'
 import MedsContainer from './MedsContainer'
 import PrescriptionForm from '../prescriptions/PrescriptionForm'
 
@@ -50,13 +50,6 @@ class PatientPrescriptions extends Component {
     })
   }
 
-  redirect = () => {
-    this.setState({
-      ...DEFAULT_STATE
-    })
-    alert("Prescription Added!");
-  }
-
   render() {
     return (
       <div>
@@ -74,16 +67,17 @@ class PatientPrescriptions extends Component {
 
         { this.state.clicked && <MedsContainer day={this.state.whichClicked} history={this.props.history} /> }
 
-        { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} redirect={this.redirect} /> }
+        { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> }
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.prescriptions.all)
   return {
     user: state.user,
-    prescriptions: state.prescriptions
+    prescriptions: state.prescriptions,
   }
 }
 
@@ -91,7 +85,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setUser: setUser,
     addPrescription: addPrescription,
-    setAllPrescriptions: setAllPrescriptions
+    setAllPrescriptions: setAllPrescriptions,
+    addDose: addDose
   }, dispatch)
 }
 

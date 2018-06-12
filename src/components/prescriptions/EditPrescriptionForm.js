@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TakeTimesForm from './TakeTimesForm';
 import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime } from '../../fetches';
-import { editPrescription, deletePrescription, deleteDose, addDose } from '../../actions/prescriptions'
+import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions'
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -102,8 +102,6 @@ class EditPrescriptionForm extends Component {
       times: this.state.times.filter(t => t.id !== id)
     })
 
-    // this.props.deleteDose(rxTakeTimeId, timesIdx, this.state.day);
-
     deletePrescriptionTakeTime(rxTakeTimeId);
   }
 
@@ -166,7 +164,6 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     editPrescription: editPrescription,
     deletePrescription: deletePrescription,
-    deleteDose: deleteDose,
     addDose: addDose
   }, dispatch)
 }

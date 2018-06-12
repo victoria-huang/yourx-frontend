@@ -158,20 +158,20 @@ export default (state = {
         ...state,
         [action.day]: stateDayCopy
       }
-    case 'DELETE_DOSE':
-      const doseDeleteIdx = state[action.day].findIndex(p => {
-        if (p.times.length - 1 >= action.timesIdx) {
-          return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
-        }
-      })
-
-      let dayCopy = state[action.day].slice()
-      dayCopy[doseDeleteIdx].times.splice(action.timesIdx, 1)
-
-      return {
-        ...state,
-        [action.day]: dayCopy
-      }
+    // case 'DELETE_DOSE':
+    //   const doseDeleteIdx = state[action.day].findIndex(p => {
+    //     if (p.times.length - 1 >= action.timesIdx) {
+    //       return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
+    //     }
+    //   })
+    //
+    //   let dayCopy = state[action.day].slice()
+    //   dayCopy[doseDeleteIdx].times.splice(action.timesIdx, 1)
+    //
+    //   return {
+    //     ...state,
+    //     [action.day]: dayCopy
+    //   }
     case 'ADD_DOSE':
       const rxTimeIdx = state[action.day].findIndex(p => p.med.id === action.prescriptionId)
       const timeCopy = state[action.day].slice()
