@@ -68,13 +68,15 @@ class PatientHome extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    prescriptions: state.prescriptions
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setDailyPrescriptions: setDailyPrescriptions,
+    setAllPrescriptions: setAllPrescriptions,
     setUser: setUser,
     setAdherence: setAdherence,
     logout: logout

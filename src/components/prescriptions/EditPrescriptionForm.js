@@ -97,7 +97,9 @@ class EditPrescriptionForm extends Component {
     })
   }
 
-  removeTime = (id, rxTakeTimeId, timesIdx) => {
+  removeTime = (e, id, rxTakeTimeId) => {
+    e.preventDefault()
+    e.stopPropagation();
     this.setState({
       times: this.state.times.filter(t => t.id !== id)
     })
@@ -121,7 +123,7 @@ class EditPrescriptionForm extends Component {
           <p>
             {t.day} at {t.formatted_time}
             &nbsp;
-            <button onClick={() => this.removeTime(t.id, t.rxTakeTimeId, t.timesIdx)}>X</button>
+            <button onClick={(e) => this.removeTime(e, t.id, t.rxTakeTimeId)}>X</button>
           </p>
         </div>
       )

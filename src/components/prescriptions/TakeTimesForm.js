@@ -12,7 +12,8 @@ class TakeTimesForm extends Component {
   }
 
   handleSubmitClick = (event) => {
-    event.preventDefault()
+    event.preventDefault();
+    event.stopPropagation();
     createTakeTime(this.state)
     .then(json => {
       this.props.handleAddTime(json)
