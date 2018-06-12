@@ -43,7 +43,7 @@ class PatientPrescriptions extends Component {
     })
   }
 
-  handleAddRx = () => {
+  handleClickAddRx = () => {
     this.setState({
       addRxClicked: !this.state.addRxClicked,
       clicked: false
@@ -62,7 +62,7 @@ class PatientPrescriptions extends Component {
         <button onClick={this.handleClick} name="fri">Friday</button>
         <button onClick={this.handleClick} name="sat">Saturday</button>
         <button onClick={this.handleClick} name="sun">Sunday</button>
-        <button onClick={this.handleAddRx}>Add Prescription</button>
+        <button onClick={this.handleClickAddRx}>Add Prescription</button>
         <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
 
         { this.state.clicked && <MedsContainer day={this.state.whichClicked} /> }

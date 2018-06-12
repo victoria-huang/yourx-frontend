@@ -113,7 +113,7 @@ export default (state = {
         sun: sunRx
       };
     case 'ADD_PRESCRIPTION':
-      return {...state, all: [...state.all, action.prescription]}
+      return {...state, all: state.all.concat(action.prescription)}
     default:
       return state;
   }

@@ -10,6 +10,7 @@ import PatientHome from './components/patients/PatientHome';
 import PatientPrescriptions from './components/patients/PatientPrescriptions';
 import ProviderHome from './components/providers/ProviderHome';
 import withAuth from './components/withAuth';
+import withAuthSuccess from './components/withAuthSuccess'
 
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
 const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
@@ -18,6 +19,7 @@ const ProviderHomeWithRouterAndAuth = withRouter(withAuth(ProviderHome));
 class App extends Component {
   authSuccess = (json, history) => {
     localStorage.setItem('token', json.token);
+    localStorage.setItem('userClass', json.user_class)
     json.user_class === 'Patient' ? history.push("/patient-home") : history.push("/provider-home")
   }
 

@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 
 export default class Welcome extends Component {
+  componentDidMount() {
+    if (localStorage.getItem('token')) {
+      let userClass = localStorage.getItem('userClass').toLowerCase()
+      if (userClass === "doctor") {
+        userClass = "provider"
+      }
+      this.props.history.push(`/${userClass}-home`)
+    }
+  }
+
   handleClick = (event) => {
     const path = `/${event.target.name}-login`;
     this.props.history.push(path)
