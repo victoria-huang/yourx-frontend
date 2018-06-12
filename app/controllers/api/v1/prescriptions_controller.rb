@@ -29,7 +29,13 @@ class Api::V1::PrescriptionsController < ApplicationController
   end
 
   def show
-    render json: @prescription, status: 200
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      render json: @prescription, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   private
