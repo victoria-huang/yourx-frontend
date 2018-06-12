@@ -18,8 +18,14 @@ class Api::V1::PrescriptionTakeTimesController < ApplicationController
   end
 
   def update
-    @prescription_take_time.update(prescription_take_time_params)
-    render json: @prescription_take_time, status: 200
+    @patient = Patient.find(current_user_id)
+
+    if authorized?(@patient)
+      @prescription_take_time.update(prescription_take_time_params)
+      render json: @prescription_take_time, status: 200
+    else
+      render json: { unauthorized: true }, status: :unauthorized
+    end
   end
 
   def destroy
@@ -34,7 +40,7 @@ class Api::V1::PrescriptionTakeTimesController < ApplicationController
 
   private
   def prescription_take_time_params
-    params.permit(:prescription_id, :take_time_id)
+    params.permit(:prescription_id, :take_time_id, :taken)
   end
 
   def set_prescription_take_time
