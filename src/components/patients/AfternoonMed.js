@@ -4,7 +4,21 @@ import EditPrescription from '../prescriptions/EditPrescription'
 const AfternoonMed = (props) => {
   const times = props.times.map((t, idx) => {
     if (t.take_time.time_of_day === "afternoon") {
-      return <p key={idx}>Take at {t.take_time.formatted_time}</p>
+      return (
+        <div>
+          <p key={idx}>Take at {t.take_time.formatted_time}</p>
+          { props.times[idx].rx_take_time.taken && props.day === "today" ? "Taken" : null }
+          <EditPrescription
+            rxTakeTimeId={props.times[idx].rx_take_time.id}
+            timesIdx={idx}
+            prescriptionId={props.med.id}
+            day={props.day}
+            history={props.history}
+            text={props.times[idx].rx_take_time.taken ? 'Untake' : 'Take'}
+          />
+          <br />
+        </div>
+      )
     }
   })
 
@@ -12,14 +26,6 @@ const AfternoonMed = (props) => {
     <div>
       <h4>{props.med.brand_name}</h4>
       { times }
-      { props.times[0].rx_take_time.taken && props.day === "today" ? "Taken" : null }
-      <EditPrescription
-        rxTakeTimeId={props.times[0].rx_take_time.id}
-        prescriptionId={props.med.id}
-        day={props.day}
-        text={props.times[0].rx_take_time.taken ? 'Untake' : 'Take'}
-      />
-      <br />
     </div>
   )
 }

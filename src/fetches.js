@@ -93,3 +93,11 @@ export const untakeMed = (rxTakeTimeId) => {
     }
   })
 }
+
+export const getPrescription = (prescriptionId) => {
+  return fetch(`http://localhost:3000/api/v1/prescriptions/${prescriptionId}`, {
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    }
+  }).then(res => res.json())
+}

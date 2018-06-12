@@ -9,20 +9,20 @@ class EditTakeTimesForm extends Component {
   state = {
     ...DEFAULT_STATE
   }
-
-  handleSubmitClick = (event) => {
-    event.preventDefault()
-    createTakeTime(this.state)
-    .then(json => {
-      this.props.handleAddTime(json)
-    })
-  }
-
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+  //
+  // handleSubmitClick = (event) => {
+  //   event.preventDefault()
+  //   createTakeTime(this.state)
+  //   .then(json => {
+  //     this.props.handleAddTime(json)
+  //   })
+  // }
+  //
+  // handleChange = (event) => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
 
   render() {
     return (

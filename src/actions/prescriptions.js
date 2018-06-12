@@ -28,17 +28,17 @@ export const editPrescription = (prescriptionId) => {
   }
 }
 
-export const takePrescription = (rxTakeTimeId) => {
+export const takePrescription = (rxTakeTimeId, timesIdx) => {
   return {
     type: 'TAKE_PRESCRIPTION',
-    rxTakeTimeId
+    rxTakeTimeId, timesIdx
   }
 }
 
-export const untakePrescription = (rxTakeTimeId) => {
+export const untakePrescription = (rxTakeTimeId, timesIdx) => {
   return {
     type: 'UNTAKE_PRESCRIPTION',
-    rxTakeTimeId
+    rxTakeTimeId, timesIdx
   }
 }
 

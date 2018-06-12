@@ -117,18 +117,26 @@ export default (state = {
     case 'EDIT_PRESCRIPTION':
 
     case 'TAKE_PRESCRIPTION':
-      const prescriptionIdx = state.today.findIndex(p => action.rxTakeTimeId === p.times[0].rx_take_time.id)
+      const prescriptionIdx = state.today.findIndex(p => {
+        if (p.times.length - 1 >= action.timesIdx) {
+          return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
+        }
+      })
       let todayTakeCopy = state.today.slice()
-      todayTakeCopy[prescriptionIdx].times[0].rx_take_time.taken = true;
+      todayTakeCopy[prescriptionIdx].times[action.timesIdx].rx_take_time.taken = true;
 
       return {
         ...state,
         today: todayTakeCopy
       }
     case 'UNTAKE_PRESCRIPTION':
-      const prescriptionIndx = state.today.findIndex(p => action.rxTakeTimeId === p.times[0].rx_take_time.id)
+      const prescriptionIndx = state.today.findIndex(p => {
+        if (p.times.length - 1 >= action.timesIdx) {
+          return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
+        }
+      })
       let todayUntakeCopy = state.today.slice()
-      todayUntakeCopy[prescriptionIndx].times[0].rx_take_time.taken = false;
+      todayUntakeCopy[prescriptionIndx].times[action.timesIdx].rx_take_time.taken = false;
 
       return {
         ...state,

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import EditTakeTimesForm from './EditTakeTimesForm'
+import { getPrescription } from '../../fetches'
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -12,61 +13,72 @@ class EditPrescriptionForm extends Component {
     ...DEFAULT_STATE
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault()
-
-    const rxBody = {
-      brand_name: this.state.brandName,
-      patient_id: this.props.patientId
+  componentDidMount() {
+    if (!this.props.location.state) {
+      this.props.history.push('/patient-home');
+    } else {
+      const prescriptionId = this.props.location.state.prescriptionId;
+      getPrescription(prescriptionId)
+      .then(console.log);
     }
-
-    createPrescription(rxBody)
-    .then(json => {
-      this.props.addPrescription(json)
-
-      const prescriptionId = json.med.id
-
-      this.state.times.forEach(time => {
-        const timeBody = {
-          prescription_id: prescriptionId,
-          take_time_id: time.id
-        }
-
-        createPrescriptionTakeTime(timeBody)
-      })
-    })
-    .then(() => this.setState({
-        ...DEFAULT_STATE
-      })
-    )
   }
 
-  handleChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  handleAddTimeFormClick = (event) => {
-    this.setState({
-      addTimeFormClicked: true
-    })
-  }
-
-  handleAddTime = (time, takeTimeId) => {
-    this.setState({
-      addTimeFormClicked: false,
-      times: [...this.state.times, time]
-    })
-  }
-
-  removeTime = (id) => {
-    this.setState({
-      times: this.state.times.filter(t => t.id !== id)
-    }, () => {console.log(this.state)})
-  }
+  // handleSubmit = (event) => {
+  //   event.preventDefault()
+  //
+  //   const rxBody = {
+  //     brand_name: this.state.brandName,
+  //     patient_id: this.props.patientId
+  //   }
+  //
+  //   createPrescription(rxBody)
+  //   .then(json => {
+  //     this.props.addPrescription(json)
+  //
+  //     const prescriptionId = json.med.id
+  //
+  //     this.state.times.forEach(time => {
+  //       const timeBody = {
+  //         prescription_id: prescriptionId,
+  //         take_time_id: time.id
+  //       }
+  //
+  //       createPrescriptionTakeTime(timeBody)
+  //     })
+  //   })
+  //   .then(() => this.setState({
+  //       ...DEFAULT_STATE
+  //     })
+  //   )
+  // }
+  //
+  // handleChange = (event) => {
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
+  //
+  // handleAddTimeFormClick = (event) => {
+  //   this.setState({
+  //     addTimeFormClicked: true
+  //   })
+  // }
+  //
+  // handleAddTime = (time, takeTimeId) => {
+  //   this.setState({
+  //     addTimeFormClicked: false,
+  //     times: [...this.state.times, time]
+  //   })
+  // }
+  //
+  // removeTime = (id) => {
+  //   this.setState({
+  //     times: this.state.times.filter(t => t.id !== id)
+  //   }, () => {console.log(this.state)})
+  // }
 
   render() {
+    // console.log(this.props.location.state.prescriptionId)
     const takeTimes = this.state.times.map((t, idx) => {
       return (
         <div key={idx}>
@@ -81,7 +93,7 @@ class EditPrescriptionForm extends Component {
 
     return (
       <div>
-        <h1>Add Prescription</h1>
+        <h1>Edit Prescription</h1>
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
             <label htmlFor="brandName">Medication Name</label>
@@ -92,7 +104,7 @@ class EditPrescriptionForm extends Component {
           { takeTimes }
 
           { this.state.addTimeFormClicked ?
-            <TakeTimesForm handleAddTime={this.handleAddTime} />
+            <EditTakeTimesForm handleAddTime={this.handleAddTime} />
             :
             <button onClick={this.handleAddTimeFormClick}>Add Another Time</button>
           }
