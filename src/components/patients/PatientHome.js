@@ -56,8 +56,12 @@ class PatientHome extends Component {
     return (
       <div>
         <PatientNavBar history={this.props.history} />
+        <div className="home">
+          <div className="home-header">
+            <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
+          </div>
+        </div>
 
-        <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
         <br />
         <Adherence />
         <MedsContainer day="today" history={this.props.history} />
