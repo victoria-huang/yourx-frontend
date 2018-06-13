@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink, Redirect, withRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Redirect, withRouter, Switch } from 'react-router-dom';
 import './App.css';
 import Welcome from './components/Welcome';
 import LoginForm from './components/LoginForm';
@@ -12,6 +12,7 @@ import ProviderHome from './components/providers/ProviderHome';
 import EditPrescriptionForm from './components/prescriptions/EditPrescriptionForm'
 import withAuth from './components/withAuth';
 import withAuthSuccess from './components/withAuthSuccess'
+import NotFound from './components/NotFound'
 
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
 const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
@@ -33,7 +34,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Switch>
           <Route exact path='/' component={WelcomeWithRouterAndAuthSuccess} />
           <Route path='/patient-login' render={ (props) => <LoginFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/patient_sessions" onSuccess={this.authSuccess} {...props} type='Patient' /> } />
           <Route path='/provider-login' render={ (props) => <LoginFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/doctor_sessions" onSuccess={this.authSuccess} {...props} type='Provider' /> } />
@@ -44,7 +45,8 @@ class App extends Component {
           <Route path='/patient-prescriptions' render={ (props) => <PatientPrescriptionsWithRouterAndAuth {...props} /> } />
           <Route path='/edit-patient-prescription' render={ (props) => <EditPrescriptionFormWithRouterAndAuth {...props} /> } />
           <Route path='/provider-home' render={ (props) => <ProviderHomeWithRouterAndAuth {...props} /> } />
-        </div>
+          <Route path='*' component={NotFound} />
+        </Switch>
       </Router>
     );
   }

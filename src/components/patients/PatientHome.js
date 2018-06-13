@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { setDailyPrescriptions, setAllPrescriptions } from '../../actions/prescriptions'
-import { setUser, setAdherence, logout } from '../../actions/user'
+import { setUser, setAdherence } from '../../actions/user'
 import { getUser, fetchPatientAdherence, fetchPatientDailyMeds, fetchPatient } from '../../fetches'
 import Adherence from './Adherence'
 import MedsContainer from './MedsContainer'
+import PatientNavBar from '../PatientNavBar'
 
 function getDate() {
   const days = {
@@ -50,22 +51,17 @@ class PatientHome extends Component {
     })
   }
 
-  handleLogout = () => {
-    this.props.logout()
-    this.props.history.push("/")
-  }
-
   render() {
     // console.log(this.props)
     return (
       <div>
-        Patient Home
+        <PatientNavBar history={this.props.history} />
+
         <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
         <br />
         <Adherence />
         <MedsContainer day="today" history={this.props.history} />
         <button onClick={() => this.props.history.push("/patient-prescriptions")}>All Prescriptions</button>
-        <button onClick={this.handleLogout}>Logout</button>
       </div>
     )
   }
@@ -83,8 +79,7 @@ const mapDispatchToProps = (dispatch) => {
     setDailyPrescriptions: setDailyPrescriptions,
     setAllPrescriptions: setAllPrescriptions,
     setUser: setUser,
-    setAdherence: setAdherence,
-    logout: logout
+    setAdherence: setAdherence
   }, dispatch)
 }
 

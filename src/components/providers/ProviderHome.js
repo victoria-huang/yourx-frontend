@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from '../../actions/user'
+import PatientNavBar from '../PatientNavBar'
 
 class ProviderHome extends Component {
   handleLogout = () => {
@@ -12,12 +13,14 @@ class ProviderHome extends Component {
   render() {
     return (
       <div>
+        <PatientNavBar history={this.props.history} />
+
         <h1>
         Thank you for your interest in YouRx!
         <br />
         Provider functionality coming soon!
         </h1>
-        
+
         <button onClick={this.handleLogout}>Logout</button>
       </div>
     )

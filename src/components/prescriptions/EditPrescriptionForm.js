@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import TakeTimesForm from './TakeTimesForm';
 import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime } from '../../fetches';
 import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions'
+import PatientNavBar from '../PatientNavBar'
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -131,6 +132,7 @@ class EditPrescriptionForm extends Component {
 
     return (
       <div>
+        <PatientNavBar history={this.props.history} />
         <h1>Edit Prescription</h1>
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">

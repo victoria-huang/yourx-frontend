@@ -6,6 +6,7 @@ import { setUser } from '../../actions/user'
 import { addPrescription, setAllPrescriptions, addDose } from  '../../actions/prescriptions'
 import MedsContainer from './MedsContainer'
 import PrescriptionForm from '../prescriptions/PrescriptionForm'
+import PatientNavBar from '../PatientNavBar'
 
 const DEFAULT_STATE = {
   addRxClicked: false,
@@ -54,7 +55,7 @@ class PatientPrescriptions extends Component {
     return (
       <div>
         Patient Prescriptions
-
+        <PatientNavBar history={this.props.history} />
         <button onClick={this.handleClick} name="mon">Monday</button>
         <button onClick={this.handleClick} name="tues">Tuesday</button>
         <button onClick={this.handleClick} name="wed">Wednesday</button>
