@@ -134,6 +134,15 @@
   font-size: 3em;
 }
 
+.column h2 {
+  text-align: center;
+}
+
+.meds-header {
+  text-align: center;
+  font-size: 2.5em;
+}
+
 /* .row:after {
   content: "";
   display: table;

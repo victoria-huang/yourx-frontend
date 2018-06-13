@@ -24,7 +24,7 @@ class PatientNavBar extends Component {
   render() {
     return (
       <div>
-        <div className="ui grey inverted small borderless top fixed menu">
+        <div className="ui teal inverted small borderless top fixed menu">
           <a onClick={this.handleHome} name="patient-home" className="item">
             <img src={require('../assets/pill_logo.png')} height='28px' width='28px' alt='pill logo' />
           </a>
