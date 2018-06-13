@@ -109,12 +109,15 @@ class EditPrescriptionForm extends Component {
   }
 
   handleDeletePrescription = () => {
-    this.props.deletePrescription(this.state.prescriptionId, this.state.day);
+    let confirmed = window.confirm('Are you sure you want to delete this prescription?');
+    if (confirmed) {
+      this.props.deletePrescription(this.state.prescriptionId, this.state.day);
 
-    deletePrescriptionFetch(this.state.prescriptionId);
+      deletePrescriptionFetch(this.state.prescriptionId);
 
-    alert('Prescription deleted!')
-    this.props.history.push('/patient-home')
+      alert('Prescription deleted!')
+      this.props.history.push('/patient-home')
+    }
   }
 
   render() {
