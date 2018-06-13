@@ -58,12 +58,11 @@ class PatientHome extends Component {
         <PatientNavBar history={this.props.history} />
         <div className="home">
           <div className="home-header">
+            <Adherence />
             <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
           </div>
         </div>
 
-        <br />
-        <Adherence />
         <MedsContainer day="today" history={this.props.history} />
         <button onClick={() => this.props.history.push("/patient-prescriptions")}>All Prescriptions</button>
       </div>

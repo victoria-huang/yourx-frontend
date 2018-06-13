@@ -13,7 +13,7 @@ const RegisterForm = (props) => {
         &nbsp; &nbsp;
         <button className="ui button huge" onClick={() => props.history.push("/provider-register")}>Provider</button>
         <br /><br />
-        <div class="ui inverted divider"></div>
+        <div className="ui inverted divider"></div>
         <a className="back-link" onClick={() => props.history.push("/")}>
            &#8592; Back to Welcome
         </a>

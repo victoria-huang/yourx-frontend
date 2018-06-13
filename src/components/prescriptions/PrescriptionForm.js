@@ -110,7 +110,7 @@ class PrescriptionForm extends Component {
         </div>
       )
     })
-    console.log(this.props)
+
     return (
       <div>
         <PatientNavBar history={this.props.history} />

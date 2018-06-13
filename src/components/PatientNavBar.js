@@ -9,15 +9,27 @@ class PatientNavBar extends Component {
     this.props.history.push("/")
   }
 
+  handleHome = () => {
+    this.props.history.push('/patient-home')
+  }
+
+  handlePrescriptions = () => {
+    this.props.history.push("/patient-prescriptions")
+  }
+
+  handleAddPrescription = () => {
+    this.props.history.push("/add-patient-prescription")
+  }
+
   render() {
     return (
       <div>
         <div className="ui grey inverted small borderless top fixed menu">
-          <a href="/patient-home" className="item">
+          <a onClick={this.handleHome} name="patient-home" className="item">
             <img src={require('../assets/pill_logo.png')} height='28px' width='28px' alt='pill logo' />
           </a>
 
-          <a href="/patient-prescriptions" className="item">
+          <a onClick={this.handlePrescriptions} name="patient-prescriptions" className="item">
             <i className="big medkit icon"></i>
           </a>
           <a className="item">
@@ -25,7 +37,7 @@ class PatientNavBar extends Component {
           </a>
 
           <div className="right menu">
-            <a href="/add-patient-prescription" className="item">
+            <a onClick={this.handleAddPrescription} name="add-patient-prescription" className="item">
                 <i className="big icons">
                   <i className="pills icon"></i>
                   <i className="top right corner add icon"></i>
