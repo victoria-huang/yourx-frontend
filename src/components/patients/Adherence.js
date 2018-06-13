@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class Adherence extends Component {
   render() {
     return (
-      <div className="column left-col">
+      <div className="header-column left-col">
         <div style={{ width: "80%", stroke: "white", strokeLinecap: "round", }}>
           { this.props.adherence || this.props.adherence === 0 ?
             <div>

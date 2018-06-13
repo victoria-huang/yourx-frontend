@@ -50,14 +50,31 @@ class MedsContainer extends Component {
       <div>
         <div></div>
         <h1>{formatted[this.props.day]} Medications</h1>
-        <h3>Morning (6 AM - 12 PM)</h3>
-        { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }
-        <h3>Afternoon (12 PM - 6 PM)</h3>
-        { afternoonMeds.findIndex(e => e !== undefined) > -1 ? afternoonMeds : "None" }
-        <h3>Evening (6 PM - 12 AM)</h3>
-        { eveningMeds.findIndex(e => e !== undefined) > -1 ? eveningMeds : "None" }
-        <h3>Night (12 AM - 6 AM)</h3>
-        { nightMeds.findIndex(e => e !== undefined) > -1 ? nightMeds : "None" }
+
+        <div className="ui two column grid centered container">
+          <div className="two column centered row">
+            <div className="column">
+              <h3>Morning (6 AM - 12 PM)</h3>
+              <div className="ui four column grid centered container">
+                { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }
+              </div>
+            </div>
+            <div className="column">
+              <h3>Afternoon (12 PM - 6 PM)</h3>
+              { afternoonMeds.findIndex(e => e !== undefined) > -1 ? afternoonMeds : "None" }
+            </div>
+          </div>
+          <div className="two column centered row">
+            <div className="column">
+              <h3>Evening (6 PM - 12 AM)</h3>
+              { eveningMeds.findIndex(e => e !== undefined) > -1 ? eveningMeds : "None" }
+            </div>
+            <div className="column">
+              <h3>Night (12 AM - 6 AM)</h3>
+              { nightMeds.findIndex(e => e !== undefined) > -1 ? nightMeds : "None" }
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

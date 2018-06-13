@@ -103,7 +103,7 @@
   z-index: 500;
 }
 
-.column {
+.header-column {
   float: left;
   padding: 10px;
 }
@@ -134,8 +134,8 @@
   font-size: 3em;
 }
 
-.row:after {
+/* .row:after {
   content: "";
   display: table;
   clear: both;
-}
+} */

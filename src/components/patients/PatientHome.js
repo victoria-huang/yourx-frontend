@@ -64,7 +64,7 @@ class PatientHome extends Component {
 
           <div className="patient-home row">
             <Adherence />
-            <div className="column right-col">
+            <div className="header-column right-col">
               <h1>Hi {this.props.user.username}!</h1>
               <div className="ui inverted divider"></div>
               <h2>Today is {getDate()}</h2>

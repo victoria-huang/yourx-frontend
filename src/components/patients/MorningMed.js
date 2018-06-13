@@ -23,7 +23,7 @@ const MorningMed = (props) => {
   })
 
   return (
-    <div>
+    <div className="column">
       <h4>{props.med.brand_name}</h4>
       { times }
     </div>
