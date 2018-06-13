@@ -48,6 +48,7 @@ class MedsContainer extends Component {
 
     return (
       <div>
+        <div></div>
         <h1>{formatted[this.props.day]} Medications</h1>
         <h3>Morning (6 AM - 12 PM)</h3>
         { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }

@@ -5,11 +5,13 @@ import { connect } from 'react-redux';
 class Adherence extends Component {
   render() {
     return (
-      <div>
-        <h1>Your Daily Adherence</h1>
-        <div style={{ paddingLeft: 40, paddingRight: 40, paddingBottom: 10, width: "400px", stroke: "#3e98c7", strokeLinecap: "round", }}>
+      <div className="column left-col">
+        <div style={{ width: "80%", stroke: "white", strokeLinecap: "round", }}>
           { this.props.adherence || this.props.adherence === 0 ?
-            <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
+            <div>
+              <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
+              <p>Your Daily Adherence</p>
+            </div>
             :
             "Loading adherence tracker..."
           }

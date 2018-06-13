@@ -14,15 +14,10 @@
 }
 
 .content-container video {
-  /* Make video to at least 100% wide and tall */
   min-width: 100%;
   min-height: 100%;
-
-  /* Setting width & height to auto prevents the browser from stretching or squishing the video */
   width: auto;
   height: auto;
-
-  /* Center the video */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -53,17 +48,6 @@
   border-radius: 25px;
 }
 
-/* .auth{
-  background: rgba(247, 247, 247, 0.5);
-} */
-/*
-.content-header {
-  font-size: 2em;
-  padding-bottom: 20px;
-  padding: 3px;
-  margin: 3px;
-} */
-
 .content-register {
   font-size: 2em;
   padding-top: 50px;
@@ -82,11 +66,6 @@
   margin: 0px;
 }
 
-/* .errors {
-  font-size: 1em;
-  color: red;
-} */
-
 .back-link {
   color: #34495E;
 }
@@ -96,40 +75,67 @@
 }
 
 .CircularProgressbar-path {
-  stroke: rgba(62, 152, 199, 1);
+  stroke: rgb(71, 255, 156);
 }
 
-/* .CircularProgressbar-text {
-  x: 40;
-  y: 52;
-} */
-
-
-.home {
-  text-align: center;
-}
-
-/* .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-} */
-
-.home-header {
-  background-color: #222;
-  height: 300px;
-  padding: 20px;
+.patient-home-header {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 600px;
   color: white;
 }
 
-/* .App-title {
-  font-size: 1.5em;
+.patient-home-background {
+  height: 600px;
+  z-index: -1000;
+  position: absolute;
 }
 
-.App-intro {
-  font-size: large;
+.patient-home-background img {
+  height: 600px;
+  width: 100%;
+  opacity: 0.5;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
+.patient-home {
+  width: 78%;
+  margin: auto;
+  /* position: absolute; */
+  z-index: 500;
+}
+
+.column {
+  float: left;
+  padding: 10px;
+}
+
+.left-col {
+  width: 35%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 580px;
+}
+
+.right-col {
+  width: 65%;
+  padding-left: 2%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 580px;
+}
+
+.right-col h1 {
+  font-size: 6em;
+}
+
+.right-col h2 {
+  font-size: 3em;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -56,15 +56,23 @@ class PatientHome extends Component {
     return (
       <div>
         <PatientNavBar history={this.props.history} />
-        <div className="home">
-          <div className="home-header">
+
+        <div className="patient-home-header">
+          <div className="patient-home-background">
+            <img src={require('../../assets/color_pills.jpg')} alt="background" />
+          </div>
+
+          <div className="patient-home row">
             <Adherence />
-            <h1>Hi {this.props.user.username}! Today is {getDate()}</h1>
+            <div className="column right-col">
+              <h1>Hi {this.props.user.username}!</h1>
+              <div className="ui inverted divider"></div>
+              <h2>Today is {getDate()}</h2>
+            </div>
           </div>
         </div>
 
         <MedsContainer day="today" history={this.props.history} />
-        <button onClick={() => this.props.history.push("/patient-prescriptions")}>All Prescriptions</button>
       </div>
     )
   }
