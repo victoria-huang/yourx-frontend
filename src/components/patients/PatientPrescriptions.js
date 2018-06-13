@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
-import { addPrescription, setAllPrescriptions, addDose } from  '../../actions/prescriptions'
+import { setAllPrescriptions } from  '../../actions/prescriptions'
 import MedsContainer from './MedsContainer'
 import PrescriptionForm from '../prescriptions/PrescriptionForm'
 import PatientNavBar from '../PatientNavBar'
 
 const DEFAULT_STATE = {
-  addRxClicked: false,
+  // addRxClicked: false,
   clicked: false,
   whichClicked: ''
 }
@@ -38,18 +38,18 @@ class PatientPrescriptions extends Component {
 
   handleClick = (event) => {
     this.setState({
-      addRxClicked: false,
+      // addRxClicked: false,
       clicked: true,
       whichClicked: event.target.name
     })
   }
 
-  handleClickAddRx = () => {
-    this.setState({
-      addRxClicked: !this.state.addRxClicked,
-      clicked: false
-    })
-  }
+  // handleClickAddRx = () => {
+  //   this.setState({
+  //     addRxClicked: !this.state.addRxClicked,
+  //     clicked: false
+  //   })
+  // }
 
   render() {
     return (
@@ -63,12 +63,11 @@ class PatientPrescriptions extends Component {
         <button onClick={this.handleClick} name="fri">Friday</button>
         <button onClick={this.handleClick} name="sat">Saturday</button>
         <button onClick={this.handleClick} name="sun">Sunday</button>
-        <button onClick={this.handleClickAddRx}>Add Prescription</button>
-        <button onClick={() => this.props.history.push("/patient-home")}>Home</button>
+        { /* <button onClick={this.handleClickAddRx}>Add Prescription</button> */ }
 
         { this.state.clicked && <MedsContainer day={this.state.whichClicked} history={this.props.history} /> }
 
-        { this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> }
+        { /* this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> */ }
       </div>
     )
   }
@@ -84,9 +83,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setUser: setUser,
-    addPrescription: addPrescription,
-    setAllPrescriptions: setAllPrescriptions,
-    addDose: addDose
+    setAllPrescriptions: setAllPrescriptions
   }, dispatch)
 }
 

@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
-import TakeTimesForm from './TakeTimesForm'
-import { createPrescription, createPrescriptionTakeTime } from '../../fetches'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addPrescription, addDose } from '../../actions/prescriptions';
+import { setUser } from '../../actions/user';
+import TakeTimesForm from './TakeTimesForm';
+import { getUser, createPrescription, createPrescriptionTakeTime } from '../../fetches';
+import PatientNavBar from '../PatientNavBar'
 
 const DEFAULT_STATE = {
   brandName: '',
   addTimeFormClicked: true,
-  times: [],
+  times: []
 }
 
 class PrescriptionForm extends Component {
@@ -13,12 +18,21 @@ class PrescriptionForm extends Component {
     ...DEFAULT_STATE
   }
 
+  componentDidMount() {
+    getUser()
+    .then(json => this.props.setUser({
+      username: json[0].username,
+      userId: json[0].user_id,
+      userClass: json[0].user_class
+    }))
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
 
     const rxBody = {
       brand_name: this.state.brandName,
-      patient_id: this.props.patientId
+      patient_id: this.props.user.userId
     }
 
     const times = [];
@@ -51,7 +65,9 @@ class PrescriptionForm extends Component {
     })
     .then(() => {
       alert('Prescription Added!')
-      this.props.history.push('/patient-home')
+      this.setState({
+        ...DEFAULT_STATE
+      })
     })
   }
 
@@ -94,9 +110,11 @@ class PrescriptionForm extends Component {
         </div>
       )
     })
-
+    console.log(this.props)
     return (
       <div>
+        <PatientNavBar history={this.props.history} />
+
         <h1>Add Prescription</h1>
         <form className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
@@ -115,12 +133,23 @@ class PrescriptionForm extends Component {
           <br /><br />
           <button type="submit" className="fluid ui large button">Submit</button>
         </form>
-
-
-
       </div>
     )
   }
 }
 
-export default PrescriptionForm;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    setUser: setUser,
+    addPrescription: addPrescription,
+    addDose: addDose
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrescriptionForm);

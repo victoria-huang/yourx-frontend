@@ -25,7 +25,7 @@ class PatientNavBar extends Component {
           </a>
 
           <div className="right menu">
-            <a className="item">
+            <a href="/add-patient-prescription" className="item">
                 <i className="big icons">
                   <i className="pills icon"></i>
                   <i className="top right corner add icon"></i>
