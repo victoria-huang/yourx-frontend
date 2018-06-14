@@ -56,7 +56,7 @@ class PatientPrescriptions extends Component {
     return (
       <div>
         Patient Prescriptions
-        <PatientNavBar history={this.props.history} />
+        <PatientNavBar />
         <button onClick={this.handleClick} name="mon">Monday</button>
         <button onClick={this.handleClick} name="tues">Tuesday</button>
         <button onClick={this.handleClick} name="wed">Wednesday</button>

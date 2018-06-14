@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logout } from '../../actions/user'
-import PatientNavBar from '../PatientNavBar'
+import ProviderNavBar from '../ProviderNavBar'
 
 class ProviderHome extends Component {
   handleLogout = () => {
@@ -13,15 +13,21 @@ class ProviderHome extends Component {
   render() {
     return (
       <div>
-        <PatientNavBar history={this.props.history} />
+        <ProviderNavBar />
 
-        <h1>
-        Thank you for your interest in YouRx!
-        <br />
-        Provider functionality coming soon!
-        </h1>
+          <div className="patient-home-header">
+            <div className="patient-home-background">
+              <img src={require('../../assets/color_pills.jpg')} alt="background" />
+            </div>
 
-        <button onClick={this.handleLogout}>Logout</button>
+            <div className="patient-home row">
+              <div className="header-column right-col">
+                <h1>Thank you for your interest in YouRx. !</h1>
+                <div className="ui inverted divider"></div>
+                <h2>Provider functionality coming soon!</h2>
+              </div>
+            </div>
+          </div>
       </div>
     )
   }

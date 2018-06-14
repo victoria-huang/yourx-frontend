@@ -56,7 +56,7 @@ class PatientHome extends Component {
     // console.log(this.props)
     return (
       <div>
-        <PatientNavBar history={this.props.history} />
+        <PatientNavBar />
 
         <div className="patient-home-header">
           <div className="patient-home-background">

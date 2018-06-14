@@ -4,22 +4,14 @@ import { bindActionCreators } from 'redux';
 import { logout } from '../actions/user';
 import { withRouter } from 'react-router-dom'
 
-class PatientNavBar extends Component {
+class ProviderNavBar extends Component {
   handleLogout = () => {
     this.props.logout()
     this.props.history.push("/")
   }
 
   handleHome = () => {
-    this.props.history.push('/patient-home')
-  }
-
-  handlePrescriptions = () => {
-    this.props.history.push("/patient-prescriptions")
-  }
-
-  handleAddPrescription = () => {
-    this.props.history.push("/add-patient-prescription")
+    this.props.history.push('/provider-home')
   }
 
   render() {
@@ -30,24 +22,10 @@ class PatientNavBar extends Component {
             <img src={require('../assets/pill_logo.png')} height='28px' width='28px' alt='pill logo' />
           </a>
 
-          <a onClick={this.handlePrescriptions} name="patient-prescriptions" className="item">
-            <i className="big medkit icon"></i>
-          </a>
-          <a className="item">
-            <i className="big chart line icon"></i>
-          </a>
-
           <div className="right menu">
-            <a onClick={this.handleAddPrescription} name="add-patient-prescription" className="item">
-                <i className="big icons">
-                  <i className="pills icon"></i>
-                  <i className="top right corner add icon"></i>
-                </i>
-            </a>
             <div className="ui simple dropdown item">
               <i className="big user icon"></i><i className="dropdown icon"></i>
               <div className="menu">
-                <a className="item">Profile</a>
                 <a onClick={this.handleLogout} className="item">Logout</a>
               </div>
             </div>
@@ -67,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(PatientNavBar));
+export default withRouter(connect(null, mapDispatchToProps)(ProviderNavBar));

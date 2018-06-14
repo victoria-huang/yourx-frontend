@@ -114,7 +114,7 @@ class PrescriptionForm extends Component {
 
     return (
       <div>
-        <PatientNavBar history={this.props.history} />
+        <PatientNavBar />
 
         <h1>Add Prescription</h1>
         <form className="ui form" onSubmit={this.handleSubmit}>
