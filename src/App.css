@@ -132,9 +132,10 @@
 
 .right-col h2 {
   font-size: 3em;
+  padding-bottom: 0px;
 }
 
-.column h2 {
+.column h2, p {
   text-align: center;
 }
 
@@ -155,3 +156,38 @@
   display: table;
   clear: both;
 } */
+
+.modal {
+  font-size: 1em;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 2em;
+  text-align: center;
+  padding: 10px;
+}
+.modal > .content-modal {
+  text-align: center;
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
