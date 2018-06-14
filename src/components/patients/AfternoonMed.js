@@ -16,7 +16,7 @@ const AfternoonMed = (props) => {
               <a className="close" onClick={close}>
                 &times;
               </a>
-              <div className="header">{props.med.brand_name}</div>
+              <div className="header">{props.med.brand_name.toLowerCase()}</div>
               <div className="content-modal">
                 {" "}
                 Take at {t.take_time.formatted_time}

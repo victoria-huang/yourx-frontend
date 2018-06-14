@@ -33,57 +33,53 @@ class PrescriptionForm extends Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(this.state)
+    event.preventDefault();
+
     getRxcui(this.state.brandName)
-    .then(json => {
-      // if (json.idGroup.rxnormId[0]) {}
+    .then(json => this.setState({
+      rxcui: json.idGroup.rxnormId[0]
+    }, () => {
+      const rxBody = {
+        brand_name: this.state.brandName,
+        rxcui: this.state.rxcui,
+        sig: this.state.sig,
+        patient_id: this.props.user.userId
+      }
 
-      return this.setState({
-        rxcui: json.idGroup.rxnormId[0]
+      const times = [];
+
+      createPrescription(rxBody)
+      .then(json => {
+        this.props.addPrescription(json)
+
+        const prescriptionId = json.med.id
+
+        this.state.times.forEach(time => {
+          const timeBody = {
+            prescription_id: prescriptionId,
+            take_time_id: time.id
+          }
+          createPrescriptionTakeTime(timeBody)
+          .then((rxTakeTime, idx) => {
+            const obj = {
+              take_time: time,
+              rx_take_time: rxTakeTime
+            }
+            times.push(obj)
+
+            if (times.length === this.state.times.length) {
+              this.props.addDose(times, prescriptionId, 'all');
+            }
+          })
+          .then(() => {
+            alert('Prescription Added!')
+            this.setState({
+              ...DEFAULT_STATE
+            })
+          })
+        })
       })
-    })
-
-    // const rxBody = {
-    //   brand_name: this.state.brandName,
-    //   sig: this.state.sig,
-    //   patient_id: this.props.user.userId
-    // }
-    //
-    // const times = [];
-    //
-    // createPrescription(rxBody)
-    // .then(json => {
-    //   this.props.addPrescription(json)
-    //
-    //   const prescriptionId = json.med.id
-    //
-    //   this.state.times.forEach(time => {
-    //     const timeBody = {
-    //       prescription_id: prescriptionId,
-    //       take_time_id: time.id
-    //     }
-    //
-    //     createPrescriptionTakeTime(timeBody)
-    //     .then((rxTakeTime, idx) => {
-    //       const obj = {
-    //         take_time: time,
-    //         rx_take_time: rxTakeTime
-    //       }
-    //       times.push(obj)
-    //
-    //       if (times.length === this.state.times.length) {
-    //         this.props.addDose(times, prescriptionId, 'all');
-    //       }
-    //     })
-    //   })
-    // })
-    // .then(() => {
-    //   alert('Prescription Added!')
-    //   this.setState({
-    //     ...DEFAULT_STATE
-    //   })
-    // })
+    }))
   }
 
   handleChange = (event) => {
@@ -124,7 +120,7 @@ class PrescriptionForm extends Component {
 
     this.setState({
       brandName: value
-    }, () => {console.log(this.state)})
+    })
   }
 
   getOptions = (input) => {
@@ -134,7 +130,7 @@ class PrescriptionForm extends Component {
 
     return getSearchDrugNames(input)
     .then(json => {
-      const values = json.map(name => { return { value: name, label: name } })
+      const values = json.slice(0, 8).map(name => { return { value: name, label: name } })
       return { options: values }
     })
   }
