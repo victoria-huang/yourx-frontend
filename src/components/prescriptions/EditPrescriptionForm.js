@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TakeTimesForm from './TakeTimesForm';
-import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime } from '../../fetches';
+import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime,  getSearchDrugNames, getRxcui } from '../../fetches';
 import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions';
 import PatientNavBar from '../PatientNavBar';
 import Footer from '../Footer';
+import Select, { Async } from 'react-select';
+import 'react-select/dist/react-select.css';
 
 const DEFAULT_STATE = {
   brandName: '',
+  rxcui: '',
+  sig: '',
   addTimeFormClicked: false,
   times: [],
   prescriptionId: '',
@@ -33,6 +37,8 @@ class EditPrescriptionForm extends Component {
 
       this.setState({
         brandName: p.med.brand_name,
+        rxcui: p.med.rxcui,
+        sig: p.med.sig,
         times: takeTimes,
         prescriptionId: prescriptionId,
         day: day
@@ -43,41 +49,48 @@ class EditPrescriptionForm extends Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    const rxBody = {
-      brand_name: this.state.brandName,
-      patient_id: this.props.location.state.patientId
-    }
+    getRxcui(this.state.brandName)
+    .then(json => this.setState({
+      rxcui: json.idGroup.rxnormId[0]
+    }, () => {
+      const rxBody = {
+        brand_name: this.state.brandName,
+        rxcui: this.state.rxcui,
+        sig: this.state.sig,
+        patient_id: this.props.location.state.patientId
+      }
 
-    const times = [];
+      const times = [];
 
-    editPrescriptionFetch(this.state.prescriptionId, rxBody)
-    .then(json => {
-      this.props.editPrescription(json, this.state.day)
+      editPrescriptionFetch(this.state.prescriptionId, rxBody)
+      .then(json => {
+        this.props.editPrescription(json, this.state.day)
 
-      this.state.times.forEach(time => {
-        const timeBody = {
-          prescription_id: this.state.prescriptionId,
-          take_time_id: time.id
-        }
-
-        createPrescriptionTakeTime(timeBody)
-        .then((rxTakeTime, idx) => {
-          const obj = {
-            take_time: time,
-            rx_take_time: rxTakeTime
+        this.state.times.forEach(time => {
+          const timeBody = {
+            prescription_id: this.state.prescriptionId,
+            take_time_id: time.id
           }
-          times.push(obj)
 
-          if (times.length === this.state.times.length) {
-            this.props.addDose(times, this.state.prescriptionId, this.state.day);
-          }
+          createPrescriptionTakeTime(timeBody)
+          .then((rxTakeTime, idx) => {
+            const obj = {
+              take_time: time,
+              rx_take_time: rxTakeTime
+            }
+            times.push(obj)
+
+            if (times.length === this.state.times.length) {
+              this.props.addDose(times, this.state.prescriptionId, this.state.day);
+            }
+          })
+          .then(() => {
+            alert('Prescription Edited!');
+            this.props.history.push('/patient-home')
+          })
         })
       })
-    })
-    .then(() => {
-      alert('Prescription Edited!');
-      this.props.history.push('/patient-home')
-    })
+    }))
   }
 
   handleChange = (event) => {
@@ -109,6 +122,32 @@ class EditPrescriptionForm extends Component {
     deletePrescriptionTakeTime(rxTakeTimeId);
   }
 
+  handleSearch = (event) => {
+    let value;
+
+    if (!event) {
+      value = ''
+    } else {
+      value = event.value
+    }
+
+    this.setState({
+      brandName: value
+    })
+  }
+
+  getOptions = (input) => {
+    if (!input) {
+			return Promise.resolve({ options: [] });
+		}
+
+    return getSearchDrugNames(input)
+    .then(json => {
+      const values = json.slice(0, 8).map(name => { return { value: name, label: name } })
+      return { options: values }
+    })
+  }
+
   handleDeletePrescription = () => {
     let confirmed = window.confirm('Are you sure you want to delete this prescription?');
     if (confirmed) {
@@ -138,10 +177,19 @@ class EditPrescriptionForm extends Component {
       <div>
         <PatientNavBar />
         <h1>Edit Prescription</h1>
-        <form className="ui form" onSubmit={this.handleSubmit}>
+
+        <h4>Medication Name</h4>
+        <Select.Async
+          name="brandName"
+          value={ { label: this.state.brandName, value: this.state.brandName } }
+          onChange={this.handleSearch}
+          loadOptions={this.getOptions}
+        />
+        <br />
+        <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
-            <label htmlFor="brandName">Medication Name</label>
-            <input name="brandName" type="text" placeholder='name' value={this.state.brandName} onChange={this.handleChange} />
+            <label htmlFor="sig">Directions</label>
+            <input name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
           </div>
 
           <h3>Add Times</h3>

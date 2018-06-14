@@ -59,6 +59,7 @@ class PrescriptionForm extends Component {
             prescription_id: prescriptionId,
             take_time_id: time.id
           }
+          
           createPrescriptionTakeTime(timeBody)
           .then((rxTakeTime, idx) => {
             const obj = {
