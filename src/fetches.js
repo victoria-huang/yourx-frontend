@@ -136,20 +136,21 @@ export const editPrescriptionFetch = (prescriptionId, rxBody) => {
 export const getSearchDrugNames = (searchTerm) => {
   return fetch('https://rxnav.nlm.nih.gov/REST/displaynames', {
     headers : {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
-  }).then(res => res.json())
-    // .then(json => {
-	  //    return messages.displayTermsList.term.filter(e => e.toLowerCase().includes( searchTerm.toLowerCase() ))
-    // )
+  })
+  .then(res => res.json())
+  .then(json => {
+     return json.displayTermsList.term.filter(e => e.toLowerCase().includes( searchTerm.toLowerCase() ))
+  })
 }
 
 export const getRxcui = (drugName) => {
   const search = drugName.toLowerCase().split(' ').join('+');
   return fetch(`https://rxnav.nlm.nih.gov/REST/rxcui?name=${search}`, {
     headers : {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   }).then(res => res.json())
@@ -159,7 +160,7 @@ export const getInteractions = (rxcuiArray) => {
   const searchNums = rxcuiArray.join('+');
   return fetch(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${searchNums}`, {
     headers : {
-      'Content-Type': 'application/json',
+      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   }).then(res => res.json())

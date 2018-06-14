@@ -20,8 +20,8 @@ const MorningMed = (props) => {
               <div className="content-modal">
                 {" "}
                 Take at {t.take_time.formatted_time}
-                <br />
-                { props.times[idx].rx_take_time.taken && props.day === "today" ? "Taken" : null }
+                <br /><br />
+                { props.times[idx].rx_take_time.taken && props.day === "today" ? "Taken!" : null }
               </div>
               <div className="actions">
                 <EditPrescription

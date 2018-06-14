@@ -4,12 +4,16 @@ import { bindActionCreators } from 'redux';
 import { addPrescription, addDose } from '../../actions/prescriptions';
 import { setUser } from '../../actions/user';
 import TakeTimesForm from './TakeTimesForm';
-import { getUser, createPrescription, createPrescriptionTakeTime } from '../../fetches';
+import { getUser, createPrescription, createPrescriptionTakeTime, getSearchDrugNames, getRxcui } from '../../fetches';
 import PatientNavBar from '../PatientNavBar';
 import Footer from '../Footer';
+import Select, { Async } from 'react-select';
+import 'react-select/dist/react-select.css';
 
 const DEFAULT_STATE = {
   brandName: '',
+  rxcui: '',
+  sig: '',
   addTimeFormClicked: true,
   times: []
 }
@@ -30,46 +34,56 @@ class PrescriptionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-
-    const rxBody = {
-      brand_name: this.state.brandName,
-      patient_id: this.props.user.userId
-    }
-
-    const times = [];
-
-    createPrescription(rxBody)
+    console.log(this.state)
+    getRxcui(this.state.brandName)
     .then(json => {
-      this.props.addPrescription(json)
+      // if (json.idGroup.rxnormId[0]) {}
 
-      const prescriptionId = json.med.id
-
-      this.state.times.forEach(time => {
-        const timeBody = {
-          prescription_id: prescriptionId,
-          take_time_id: time.id
-        }
-
-        createPrescriptionTakeTime(timeBody)
-        .then((rxTakeTime, idx) => {
-          const obj = {
-            take_time: time,
-            rx_take_time: rxTakeTime
-          }
-          times.push(obj)
-
-          if (times.length === this.state.times.length) {
-            this.props.addDose(times, prescriptionId, 'all');
-          }
-        })
+      return this.setState({
+        rxcui: json.idGroup.rxnormId[0]
       })
     })
-    .then(() => {
-      alert('Prescription Added!')
-      this.setState({
-        ...DEFAULT_STATE
-      })
-    })
+
+    // const rxBody = {
+    //   brand_name: this.state.brandName,
+    //   sig: this.state.sig,
+    //   patient_id: this.props.user.userId
+    // }
+    //
+    // const times = [];
+    //
+    // createPrescription(rxBody)
+    // .then(json => {
+    //   this.props.addPrescription(json)
+    //
+    //   const prescriptionId = json.med.id
+    //
+    //   this.state.times.forEach(time => {
+    //     const timeBody = {
+    //       prescription_id: prescriptionId,
+    //       take_time_id: time.id
+    //     }
+    //
+    //     createPrescriptionTakeTime(timeBody)
+    //     .then((rxTakeTime, idx) => {
+    //       const obj = {
+    //         take_time: time,
+    //         rx_take_time: rxTakeTime
+    //       }
+    //       times.push(obj)
+    //
+    //       if (times.length === this.state.times.length) {
+    //         this.props.addDose(times, prescriptionId, 'all');
+    //       }
+    //     })
+    //   })
+    // })
+    // .then(() => {
+    //   alert('Prescription Added!')
+    //   this.setState({
+    //     ...DEFAULT_STATE
+    //   })
+    // })
   }
 
   handleChange = (event) => {
@@ -99,6 +113,32 @@ class PrescriptionForm extends Component {
     })
   }
 
+  handleSearch = (event) => {
+    let value;
+
+    if (!event) {
+      value = ''
+    } else {
+      value = event.value
+    }
+
+    this.setState({
+      brandName: value
+    }, () => {console.log(this.state)})
+  }
+
+  getOptions = (input) => {
+    if (!input) {
+			return Promise.resolve({ options: [] });
+		}
+
+    return getSearchDrugNames(input)
+    .then(json => {
+      const values = json.map(name => { return { value: name, label: name } })
+      return { options: values }
+    })
+  }
+
   render() {
     const takeTimes = this.state.times.map((t, idx) => {
       return (
@@ -117,10 +157,19 @@ class PrescriptionForm extends Component {
         <PatientNavBar />
 
         <h1>Add Prescription</h1>
-        <form className="ui form" onSubmit={this.handleSubmit}>
+
+        <h4>Medication Name</h4>
+        <Select.Async
+          name="brandName"
+          value={ { label: this.state.brandName, value: this.state.brandName } }
+          onChange={this.handleSearch}
+          loadOptions={this.getOptions}
+        />
+        <br />
+        <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
-            <label htmlFor="brandName">Medication Name</label>
-            <input name="brandName" type="text" placeholder='name' value={this.state.brandName} onChange={this.handleChange} />
+            <label htmlFor="sig">Directions</label>
+            <input name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
           </div>
 
           <h3>Add Times</h3>
