@@ -54,6 +54,8 @@ class Api::V1::PrescriptionsController < ApplicationController
   def prescription_params
     params.permit(
       :brand_name,
+      :rxcui,
+      :sig
       # :generic_name,
       # :rxcui,
       # :image_url,
