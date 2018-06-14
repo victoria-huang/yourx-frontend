@@ -19,7 +19,8 @@ const MorningMed = (props) => {
               <div className="header">{props.med.brand_name.toLowerCase()}</div>
               <div className="content-modal">
                 {" "}
-                Take at {t.take_time.formatted_time}
+                <p>Directions: {props.med.sig ? props.med.sig : "No directions! Click edit to add."}</p>
+                <p>Take at {t.take_time.formatted_time}</p>
                 <br /><br />
                 { props.times[idx].rx_take_time.taken && props.day === "today" ? "Taken!" : null }
               </div>
