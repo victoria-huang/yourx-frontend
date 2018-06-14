@@ -7,6 +7,7 @@ import { setAllPrescriptions } from  '../../actions/prescriptions'
 import MedsContainer from './MedsContainer'
 import PrescriptionForm from '../prescriptions/PrescriptionForm'
 import PatientNavBar from '../PatientNavBar'
+import Footer from '../Footer';
 
 const DEFAULT_STATE = {
   // addRxClicked: false,
@@ -67,6 +68,7 @@ class PatientPrescriptions extends Component {
 
         { this.state.clicked && <MedsContainer day={this.state.whichClicked} history={this.props.history} /> }
 
+        <Footer />
         { /* this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> */ }
       </div>
     )

@@ -5,7 +5,8 @@ import { addPrescription, addDose } from '../../actions/prescriptions';
 import { setUser } from '../../actions/user';
 import TakeTimesForm from './TakeTimesForm';
 import { getUser, createPrescription, createPrescriptionTakeTime } from '../../fetches';
-import PatientNavBar from '../PatientNavBar'
+import PatientNavBar from '../PatientNavBar';
+import Footer from '../Footer';
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -133,6 +134,7 @@ class PrescriptionForm extends Component {
           <br /><br />
           <button type="submit" className="fluid ui large button">Submit</button>
         </form>
+        <Footer />
       </div>
     )
   }

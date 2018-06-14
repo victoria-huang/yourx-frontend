@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setDailyPrescriptions, setAllPrescriptions } from '../../actions/prescriptions'
-import { setUser, setAdherence } from '../../actions/user'
-import { getUser, fetchPatientAdherence, fetchPatientDailyMeds, fetchPatient } from '../../fetches'
-import Adherence from './Adherence'
-import MedsContainer from './MedsContainer'
-import PatientNavBar from '../PatientNavBar'
+import { setDailyPrescriptions, setAllPrescriptions } from '../../actions/prescriptions';
+import { setUser, setAdherence } from '../../actions/user';
+import { getUser, fetchPatientAdherence, fetchPatientDailyMeds, fetchPatient } from '../../fetches';
+import Adherence from './Adherence';
+import MedsContainer from './MedsContainer';
+import PatientNavBar from '../PatientNavBar';
+import Footer from '../Footer';
 
 function getDate() {
   const days = {
@@ -73,7 +74,8 @@ class PatientHome extends Component {
         </div>
 
         <MedsContainer day="today" history={this.props.history} />
-      </div>
+        <Footer />
+    </div>
     )
   }
 }

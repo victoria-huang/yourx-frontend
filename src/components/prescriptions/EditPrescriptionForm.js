@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TakeTimesForm from './TakeTimesForm';
 import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFetch, createPrescriptionTakeTime } from '../../fetches';
-import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions'
-import PatientNavBar from '../PatientNavBar'
+import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions';
+import PatientNavBar from '../PatientNavBar';
+import Footer from '../Footer';
 
 const DEFAULT_STATE = {
   brandName: '',
@@ -156,6 +157,7 @@ class EditPrescriptionForm extends Component {
         </form>
         <br /><br />
         <button onClick={this.handleDeletePrescription}>DELETE PRESCRIPTION</button>
+        <Footer />
       </div>
     )
   }
