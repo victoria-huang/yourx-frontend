@@ -140,7 +140,7 @@ class PrescriptionForm extends Component {
     const takeTimes = this.state.times.map((t, idx) => {
       return (
         <div key={idx}>
-          <p>
+          <p className="med-time">
             {t.day} at {t.formatted_time}
             &nbsp;
             <button onClick={(e) => this.removeTime(e, t.id)}>X</button>
@@ -153,33 +153,35 @@ class PrescriptionForm extends Component {
       <div>
         <PatientNavBar />
 
-        <h1>Add Prescription</h1>
+        <h1 className="meds-header">Add Prescription</h1>
+        <div className="ui inverted divider"></div>
+        <div className="ui very padded container">
+          <h4>Medication Name</h4>
+          <Select.Async
+            name="brandName"
+            value={ { label: this.state.brandName, value: this.state.brandName } }
+            onChange={this.handleSearch}
+            loadOptions={this.getOptions}
+          />
+          <br />
+          <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
+            <div className="field">
+              <label htmlFor="sig"><h4>Directions</h4></label>
+              <textarea name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
+            </div>
 
-        <h4>Medication Name</h4>
-        <Select.Async
-          name="brandName"
-          value={ { label: this.state.brandName, value: this.state.brandName } }
-          onChange={this.handleSearch}
-          loadOptions={this.getOptions}
-        />
-        <br />
-        <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
-          <div className="field">
-            <label htmlFor="sig">Directions</label>
-            <textarea name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
-          </div>
-
-          <h3>Add Times</h3>
-          { takeTimes }
-
-          { this.state.addTimeFormClicked ?
-            <TakeTimesForm handleAddTime={this.handleAddTime} />
-            :
-            <button onClick={this.handleAddTimeFormClick}>Add Another Time</button>
-          }
-          <br /><br />
-          <button type="submit" className="fluid ui large button">Submit</button>
-        </form>
+            <h4>Times</h4>
+            { takeTimes }
+            <br />
+            { this.state.addTimeFormClicked ?
+              <TakeTimesForm handleAddTime={this.handleAddTime} />
+              :
+              <button className="ui button" onClick={this.handleAddTimeFormClick}>Add Another Time</button>
+            }
+            <br /><br />
+            <button type="submit" className="fluid ui large button">Submit</button>
+          </form>
+        </div>
         <Footer />
       </div>
     )
