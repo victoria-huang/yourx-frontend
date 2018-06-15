@@ -7,7 +7,7 @@ const RegisterForm = (props) => {
         <img src={require('../assets/blur_bg.jpg')} alt='background' />
       </div>
 
-      <div className="content auth">
+      <div className="my-content auth">
         <h1 className="content-register">Register as:</h1>
         <button className="ui button huge" onClick={() => props.history.push("/patient-register")}>Patient</button>
         &nbsp; &nbsp;

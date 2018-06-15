@@ -11,7 +11,7 @@ class PatientNavBar extends Component {
   }
 
   handleHome = () => {
-    this.props.history.push('/patient-home')
+    this.props.history.push("/patient-home")
   }
 
   handlePrescriptions = () => {
@@ -20,6 +20,10 @@ class PatientNavBar extends Component {
 
   handleAddPrescription = () => {
     this.props.history.push("/add-patient-prescription")
+  }
+
+  handleInteractions = () => {
+    this.props.history.push("/interactions")
   }
 
   render() {
@@ -33,6 +37,11 @@ class PatientNavBar extends Component {
           <a onClick={this.handlePrescriptions} name="patient-prescriptions" className="item">
             <i className="big medkit icon"></i>
           </a>
+
+          <a onClick={this.handleInteractions} name="interactions" className="item">
+            <i className="big exclamation triangle icon"></i>
+          </a>
+
           <a className="item">
             <i className="big chart line icon"></i>
           </a>

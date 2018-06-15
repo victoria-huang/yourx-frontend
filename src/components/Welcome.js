@@ -15,7 +15,7 @@ export default class Welcome extends Component {
           </video>
         </div>
 
-        <div className="content home">
+        <div className="my-content home">
           <img src={require("../assets/pill_logo.png")} height='90px' width='90px' alt='pill logo' />
           <h1 className="logo">Y o u R x</h1>
           <h2>Embrace your health.</h2>

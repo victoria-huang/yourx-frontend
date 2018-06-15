@@ -66,7 +66,7 @@ class LoginForm extends Component {
         <div className="content-container">
           <img src={require('../assets/blur_bg.jpg')} alt='background' />
         </div>
-        <div className="content auth">
+        <div className="my-content auth">
           { this.props.type === "Patient" ?
             <i aria-hidden="true" className="circular pills huge icon"></i>
           :
