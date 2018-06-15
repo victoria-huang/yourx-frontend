@@ -10,7 +10,7 @@ class Adherence extends Component {
           { this.props.adherence || this.props.adherence === 0 ?
             <div>
               <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
-              <p>Your Daily Adherence</p>
+              <p>My Daily Adherence</p>
             </div>
             :
             "Loading adherence tracker..."

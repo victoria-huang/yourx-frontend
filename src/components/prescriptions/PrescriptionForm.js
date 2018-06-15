@@ -59,7 +59,7 @@ class PrescriptionForm extends Component {
             prescription_id: prescriptionId,
             take_time_id: time.id
           }
-          
+
           createPrescriptionTakeTime(timeBody)
           .then((rxTakeTime, idx) => {
             const obj = {
@@ -166,7 +166,7 @@ class PrescriptionForm extends Component {
         <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
           <div className="field">
             <label htmlFor="sig">Directions</label>
-            <input name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
+            <textarea name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
           </div>
 
           <h3>Add Times</h3>

@@ -191,3 +191,23 @@
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
+
+.pillbox {
+  width: 100px;
+  height: 100px;
+}
+
+.pillbox-button {
+  border: 3px solid rgb(0, 172, 164);
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.pillbox-buttons {
+  width: 100%;
+  justify-content: center;
+}
+
+.prompt {
+  text-align: center;
+}

@@ -57,16 +57,42 @@ class PatientPrescriptions extends Component {
       <div>
         Patient Prescriptions
         <PatientNavBar />
-        <button onClick={this.handleClick} name="mon">Monday</button>
-        <button onClick={this.handleClick} name="tues">Tuesday</button>
-        <button onClick={this.handleClick} name="wed">Wednesday</button>
-        <button onClick={this.handleClick} name="thurs">Thursday</button>
-        <button onClick={this.handleClick} name="fri">Friday</button>
-        <button onClick={this.handleClick} name="sat">Saturday</button>
-        <button onClick={this.handleClick} name="sun">Sunday</button>
-        { /* <button onClick={this.handleClickAddRx}>Add Prescription</button> */ }
+        <h1 className="meds-header">My Pillbox</h1>
+        <br />
+        <div className="teal massive ui basic buttons pillbox-buttons">
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="mon">M</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="tues">T</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="wed">W</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="thurs">Th</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="fri">F</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="sat">Sa</button>
+          </div>
+          <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="sun">Su</button>
+          </div>
+        </div>
 
-        { this.state.clicked && <MedsContainer day={this.state.whichClicked} history={this.props.history} /> }
+        { this.state.clicked ?
+          <MedsContainer day={this.state.whichClicked} history={this.props.history} />
+          :
+          <div className="prompt">
+            <br />
+            <i className="huge long arrow alternate up icon"></i>
+            <h1>Click on a day to see your medications</h1>
+            <br /><br /><br /><br /><br /><br />
+          </div>
+        }
 
         <Footer />
         { /* this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> */ }

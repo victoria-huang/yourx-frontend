@@ -49,7 +49,7 @@ class MedsContainer extends Component {
     return (
       <div>
         <div></div>
-        <h1 className="meds-header">{formatted[this.props.day]} Pillbox</h1>
+        <h1 className="meds-header">{formatted[this.props.day]} Meds</h1>
         <br />
         <div className="ui two column grid centered container">
           <div className="two column centered row">
