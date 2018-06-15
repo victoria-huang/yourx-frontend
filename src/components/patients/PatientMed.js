@@ -6,9 +6,9 @@ function getRandomNum() {
   return Math.floor((Math.random() * 4) + 1);
 }
 
-const MorningMed = (props) => {
+const PatientMed = (props) => {
   const times = props.times.map((t, idx) => {
-    if (t.take_time.time_of_day === "morning") {
+    if (t.take_time.time_of_day === props.timeOfDay) {
       return (
         <Popup key={idx} trigger={<img src={require(`../../assets/pill_${props.times[idx].rx_take_time.taken && props.day === "today" ? "check" : getRandomNum()}.png`)} height='40px' width='40px'/>} modal>
           {close => (
@@ -48,4 +48,4 @@ const MorningMed = (props) => {
   )
 }
 
-export default MorningMed;
+export default PatientMed;
