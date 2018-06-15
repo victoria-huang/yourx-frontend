@@ -20,12 +20,27 @@ function getDate() {
     0: "Sunday"
   }
 
+  const months = {
+    1: "Jan",
+    2: "Feb",
+    3: "Mar",
+    4: "Apr",
+    5: "May",
+    6: "Jun",
+    7: "Jul",
+    8: "Aug",
+    9: "Sept",
+    10: "Oct",
+    11: "Nov",
+    12: "Dec"
+  }
+
   const date = new Date();
   const day = days[date.getDay()]
   const dd = date.getDate();
   const mm = date.getMonth() + 1;
   const yyyy = date.getFullYear();
-  return `${day}, ${mm}/${dd}/${yyyy}`
+  return `${day}, ${months[mm]} ${dd}, ${yyyy}`
 }
 
 class PatientHome extends Component {
