@@ -22,3 +22,7 @@
 every 1.day, at: '12:00 am' do
   runner "PrescriptionTakeTime.reset_taken", :environment => "development"
 end
+
+every 1.day, at: '11:59 pm' do
+  runner "Patient.track_adherence", :environment => "development"
+end

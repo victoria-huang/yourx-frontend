@@ -4,6 +4,6 @@ class PrescriptionTakeTime < ApplicationRecord
 
   def self.reset_taken
     self.all.each { |t| t.update(taken: false) }
-    Rails.logger.info("TakeTimes updated at #{Time.now}")
+    # Rails.logger.info("TakeTimes updated at #{Time.now}")
   end
 end

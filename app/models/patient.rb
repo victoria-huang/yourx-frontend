@@ -5,6 +5,7 @@ class Patient < ApplicationRecord
   has_many :emergency_contacts
   has_many :labs
   has_many :prescriptions
+  has_many :adherences
   has_many :doctors, through: :prescriptions
   has_many :pharmacies, through: :prescriptions
 
@@ -43,5 +44,13 @@ class Patient < ApplicationRecord
     else
       (total_taken / total_times) * 100
     end
+  end
+
+  def self.track_adherence
+    self.all.each do |patient|
+      percent = patient.daily_adherence
+      Adherence.create(percent: percent, patient_id: patient.id)
+    end
+    # Rails.logger.info("Adherences created at #{Time.now}")
   end
 end
