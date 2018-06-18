@@ -61,6 +61,9 @@ class PatientPrescriptions extends Component {
         <br />
         <div className="teal massive ui basic buttons pillbox-buttons">
           <div className="pillbox-button">
+            <button className="ui button pillbox" onClick={this.handleClick} name="sun">Su</button>
+          </div>
+          <div className="pillbox-button">
             <button className="ui button pillbox" onClick={this.handleClick} name="mon">M</button>
           </div>
           <div className="pillbox-button">
@@ -78,9 +81,6 @@ class PatientPrescriptions extends Component {
           <div className="pillbox-button">
             <button className="ui button pillbox" onClick={this.handleClick} name="sat">Sa</button>
           </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="sun">Su</button>
-          </div>
         </div>
 
         { this.state.clicked ?
@@ -88,9 +88,10 @@ class PatientPrescriptions extends Component {
           :
           <div className="prompt">
             <br /><br /><br />
-            <i className="huge long arrow alternate up icon"></i>
-            <h2>Click on a day to see your medications</h2>
-            <br /><br /><br /><br /><br /><br />
+            <i className="huge arrow up icon animated infinite bounce"></i>
+            <br /><br /><br />
+            <p className="click-day">Click on a day to see your medications</p>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
           </div>
         }
 
