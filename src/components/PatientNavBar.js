@@ -26,6 +26,10 @@ class PatientNavBar extends Component {
     this.props.history.push("/interactions")
   }
 
+  handleAdherences = () => {
+    this.props.history.push("/adherence-tracker")
+  }
+
   render() {
     return (
       <div>
@@ -42,7 +46,7 @@ class PatientNavBar extends Component {
             <i className="big exclamation triangle icon"></i>
           </a>
 
-          <a className="item">
+          <a onClick={this.handleAdherences} name="adherences" className="item">
             <i className="big chart line icon"></i>
           </a>
 

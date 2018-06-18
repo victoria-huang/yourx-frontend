@@ -15,6 +15,7 @@ import withAuth from './components/withAuth';
 import withAuthSuccess from './components/withAuthSuccess'
 import NotFound from './components/NotFound'
 import InteractionsContainer from './components/patients/InteractionsContainer'
+import Adherences from './components/patients/Adherences'
 
 const PatientHomeWithRouterAndAuth = withRouter(withAuth(PatientHome));
 const PatientPrescriptionsWithRouterAndAuth = withRouter(withAuth(PatientPrescriptions));
@@ -27,6 +28,7 @@ const WelcomeWithRouterAndAuthSuccess = withRouter(withAuthSuccess(Welcome))
 const EditPrescriptionFormWithRouterAndAuth = withRouter(withAuth(EditPrescriptionForm));
 const PrescriptionFormWithRouterAndAuth = withRouter(withAuth(PrescriptionForm));
 const InteractionsContainerWithRouterAndAuth = withRouter(withAuth(InteractionsContainer));
+const AdherencesWithRouterAndAuth = withRouter(withAuth(Adherences));
 
 class App extends Component {
   authSuccess = (json, history) => {
@@ -51,6 +53,7 @@ class App extends Component {
           <Route path='/add-patient-prescription' render={ (props) => <PrescriptionFormWithRouterAndAuth {...props} /> } />
           <Route path='/provider-home' render={ (props) => <ProviderHomeWithRouterAndAuth {...props} /> } />
           <Route path='/interactions' render={ (props) => <InteractionsContainerWithRouterAndAuth {...props} /> } />
+          <Route path='/adherence-tracker' render={ (props) => <AdherencesWithRouterAndAuth {...props} /> } />
           <Route path='*' component={NotFound} />
         </Switch>
       </Router>
