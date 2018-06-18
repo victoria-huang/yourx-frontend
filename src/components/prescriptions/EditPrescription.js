@@ -39,11 +39,11 @@ class EditPrescription extends Component {
     return (
       <div>
         {this.props.day === 'today' ?
-          <button name="takeMed" onClick={this.handleClick}>{this.props.text}</button>
+          <button className="ui basic button" name="takeMed" onClick={this.handleClick}>{this.props.text}</button>
           :
           null
         }
-        <button name="editMed" onClick={this.handleClick}>Edit</button>
+        <button className="ui basic button" name="editMed" onClick={this.handleClick}>Edit</button>
       </div>
     )
   }

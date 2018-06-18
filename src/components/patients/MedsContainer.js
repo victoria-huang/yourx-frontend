@@ -53,6 +53,7 @@ class MedsContainer extends Component {
               <div className="ui three column padded grid centered container">
                 { morningMeds.findIndex(e => e !== undefined) > -1 ? morningMeds : "None" }
               </div>
+              <br /><br /><br />
             </div>
             <div className="column">
               <h2><img src={require('../../assets/afternoon.png')} height='50px' width='50px' alt="afternoon" /> Afternoon</h2>
@@ -61,6 +62,7 @@ class MedsContainer extends Component {
               <div className="ui three column padded grid centered container">
                 { afternoonMeds.findIndex(e => e !== undefined) > -1 ? afternoonMeds : "None" }
               </div>
+              <br /><br /><br />
             </div>
           </div>
           <div className="two column centered row">

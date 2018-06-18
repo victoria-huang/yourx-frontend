@@ -56,6 +56,7 @@ export default class InteractionsContainer extends Component {
             <p>{ this.state.isLoaded? "No interactions found." : null }</p>
           }
         </div>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
         <Footer />
       </div>
     )

@@ -22,7 +22,7 @@ class ProviderHome extends Component {
 
             <div className="patient-home row">
               <div className="header-column right-col">
-                <h1>Thank you for your interest in YouRx. !</h1>
+                <h1>Thank you for your interest in YouRx.</h1>
                 <div className="ui inverted divider"></div>
                 <h2>Provider functionality coming soon!</h2>
               </div>

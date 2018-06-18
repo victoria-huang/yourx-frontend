@@ -205,7 +205,7 @@ class EditPrescriptionForm extends Component {
             <button className="ui button" type="submit" className="fluid ui large button">Submit</button>
           </form>
           <br /><br />
-          <button className="ui red button" onClick={this.handleDeletePrescription}>DELETE PRESCRIPTION</button>
+          <button className="ui red button" onClick={this.handleDeletePrescription}>Delete Prescription</button>
         </div>
         <Footer />
       </div>

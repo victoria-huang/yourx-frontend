@@ -87,9 +87,9 @@ class PatientPrescriptions extends Component {
           <MedsContainer day={this.state.whichClicked} history={this.props.history} />
           :
           <div className="prompt">
-            <br />
+            <br /><br /><br />
             <i className="huge long arrow alternate up icon"></i>
-            <h1>Click on a day to see your medications</h1>
+            <h2>Click on a day to see your medications</h2>
             <br /><br /><br /><br /><br /><br />
           </div>
         }

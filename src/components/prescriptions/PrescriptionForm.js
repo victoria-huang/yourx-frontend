@@ -171,6 +171,7 @@ class PrescriptionForm extends Component {
             </div>
 
             <h4>Times</h4>
+            <div className="ui inverted divider"></div>
             { takeTimes }
             <br />
             { this.state.addTimeFormClicked ?

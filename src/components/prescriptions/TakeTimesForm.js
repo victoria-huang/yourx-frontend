@@ -32,7 +32,7 @@ class TakeTimesForm extends Component {
         <form className="ui form">
           <div className="fields">
             <div className="field">
-              <label htmlFor="day">Day</label>
+              <h5>Day</h5>
               <select className="ui dropdown" name="day" value={this.state.day} onChange={this.handleChange}>
                 <option value="">Select</option>
                 <option value="Monday">Monday</option>
@@ -46,7 +46,7 @@ class TakeTimesForm extends Component {
             </div>
 
             <div className="field">
-              <label htmlFor="rx_time">Time to Take</label>
+              <h5>Time to Take</h5>
               <input name="rx_time" type="time" placeholder='name' value={this.state.rx_time} onChange={this.handleChange} />
             </div>
           </div>
