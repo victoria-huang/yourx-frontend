@@ -13,6 +13,7 @@ const DEFAULT_STATE = {
   brandName: '',
   rxcui: '',
   sig: '',
+  dosage: '',
   addTimeFormClicked: false,
   times: [],
   prescriptionId: '',
@@ -39,6 +40,7 @@ class EditPrescriptionForm extends Component {
         brandName: p.med.brand_name,
         rxcui: p.med.rxcui,
         sig: p.med.sig,
+        dosage: p.med.dosage,
         times: takeTimes,
         prescriptionId: prescriptionId,
         day: day
@@ -57,6 +59,7 @@ class EditPrescriptionForm extends Component {
         brand_name: this.state.brandName,
         rxcui: this.state.rxcui,
         sig: this.state.sig,
+        dosage: this.state.dosage,
         patient_id: this.props.location.state.patientId
       }
 
