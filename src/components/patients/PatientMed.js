@@ -2,15 +2,11 @@ import React from 'react'
 import EditPrescription from '../prescriptions/EditPrescription'
 import Popup from "reactjs-popup";
 
-function getRandomNum() {
-  return Math.floor((Math.random() * 4) + 1);
-}
-
 const PatientMed = (props) => {
   const times = props.times.map((t, idx) => {
     if (t.take_time.time_of_day === props.timeOfDay) {
       return (
-        <Popup key={idx} trigger={<img src={require(`../../assets/pill_${props.times[idx].rx_take_time.taken && props.day === "today" ? "check" : getRandomNum()}.png`)} height='40px' width='40px' alt='pill' />} modal>
+        <Popup key={idx} trigger={<img src={require(`../../assets/${props.times[idx].rx_take_time.taken && props.day === "today" ? "pill_check.png" : props.med.image_url}`)} height='40px' width='40px' alt='pill' />} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
@@ -19,6 +15,7 @@ const PatientMed = (props) => {
               <div className="header">{props.med.brand_name.toLowerCase()}</div>
               <div className="content-modal">
                 {" "}
+                <p>Dosage: {props.med.dosage ? props.med.dosage: "No dosage! Click edit to add."}</p>
                 <p>Directions: {props.med.sig ? props.med.sig : "No directions! Click edit to add."}</p>
                 <p>Take at {t.take_time.formatted_time}</p>
                 <br /><br />

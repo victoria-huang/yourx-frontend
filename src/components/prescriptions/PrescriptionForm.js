@@ -14,8 +14,13 @@ const DEFAULT_STATE = {
   brandName: '',
   rxcui: '',
   sig: '',
+  dosage: '',
   addTimeFormClicked: true,
   times: []
+}
+
+function getRandomNum() {
+  return Math.floor((Math.random() * 4) + 1);
 }
 
 class PrescriptionForm extends Component {
@@ -43,6 +48,8 @@ class PrescriptionForm extends Component {
         brand_name: this.state.brandName,
         rxcui: this.state.rxcui,
         sig: this.state.sig,
+        dosage: this.state.dosage,
+        image_url: `pill_${getRandomNum()}.png`,
         patient_id: this.props.user.userId
       }
 
@@ -165,6 +172,11 @@ class PrescriptionForm extends Component {
           />
           <br />
           <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
+            <div className="field">
+              <label htmlFor="dosage"><h4>Dosage</h4></label>
+              <input name="dosage" type="text" placeholder='Dosage e.g. 1 mg, 1 tablet...' value={this.state.dosage} onChange={this.handleChange} />
+            </div>
+
             <div className="field">
               <label htmlFor="sig"><h4>Directions</h4></label>
               <textarea name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />

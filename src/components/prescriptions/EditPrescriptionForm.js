@@ -189,6 +189,11 @@ class EditPrescriptionForm extends Component {
           <br />
           <form autoComplete="off" className="ui form" onSubmit={this.handleSubmit}>
             <div className="field">
+              <label htmlFor="dosage"><h4>Dosage</h4></label>
+              <input name="dosage" type="text" placeholder='Dosage e.g. 1 mg, 1 tablet...' value={this.state.dosage} onChange={this.handleChange} />
+            </div>
+
+            <div className="field">
               <label htmlFor="sig">Directions</label>
               <textarea name="sig" type="text" placeholder='Directions' value={this.state.sig} onChange={this.handleChange} />
             </div>
