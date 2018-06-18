@@ -46,7 +46,7 @@ export default class Adherences extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: this.state.adherences.map(a => a.percent)
+          data: this.state.adherences.map(a => Math.round(a.percent))
         }
       ]
     };

@@ -40,7 +40,7 @@ class MedsContainer extends Component {
     })
 
     return (
-      <div>
+      <div className="animated fadeIn">
         <div></div>
         <h1 className="meds-header">{formatted[this.props.day]} Meds</h1>
         <br />
