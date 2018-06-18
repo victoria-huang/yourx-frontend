@@ -21,6 +21,8 @@ export default class Adherences extends Component {
         isLoaded: true
       }))
     })
+
+    window.scrollTo(0,0);
   }
 
   getData = () => {

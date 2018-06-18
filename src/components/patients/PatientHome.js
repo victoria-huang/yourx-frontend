@@ -65,6 +65,8 @@ class PatientHome extends Component {
         this.props.setAllPrescriptions(json.prescriptions);
       })
     })
+
+    window.scrollTo(0,0);
   }
 
   render() {

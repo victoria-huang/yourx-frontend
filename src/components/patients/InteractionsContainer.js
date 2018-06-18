@@ -29,6 +29,8 @@ export default class InteractionsContainer extends Component {
         })
       })
     })
+
+    window.scrollTo(0,0);
   }
 
   render() {

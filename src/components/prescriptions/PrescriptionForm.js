@@ -35,6 +35,8 @@ class PrescriptionForm extends Component {
       userId: json[0].user_id,
       userClass: json[0].user_class
     }))
+
+    window.scrollTo(0,0);
   }
 
   handleSubmit = (event) => {

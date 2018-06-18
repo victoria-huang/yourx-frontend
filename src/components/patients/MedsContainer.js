@@ -56,7 +56,7 @@ class MedsContainer extends Component {
               <br /><br /><br />
             </div>
             <div className="column">
-              <h2><img src={require('../../assets/afternoon.png')} height='50px' width='50px' alt="afternoon" /> Afternoon</h2>
+              <h2><img src={require('../../assets/afternoon.png')} height='40px' width='40px' alt="afternoon" /> Afternoon</h2>
               <p>12 PM - 6 PM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">
@@ -75,7 +75,7 @@ class MedsContainer extends Component {
               </div>
             </div>
             <div className="column">
-              <h2><img src={require('../../assets/night.png')} height='50px' width='50px' alt="night" /> Night</h2>
+              <h2><img src={require('../../assets/night.png')} height='45px' width='45px' alt="night" /> Night</h2>
               <p>12 AM - 6 AM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">

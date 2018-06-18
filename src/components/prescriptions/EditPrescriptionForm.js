@@ -46,6 +46,8 @@ class EditPrescriptionForm extends Component {
         day: day
       })
     }
+
+    window.scrollTo(0,0);
   }
 
   handleSubmit = (event) => {
