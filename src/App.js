@@ -39,7 +39,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <Router onUpdate={() => window.scrollTo(0, 0)}>
         <Switch>
           <Route exact path='/' component={WelcomeWithRouterAndAuthSuccess} />
           <Route path='/patient-login' render={ (props) => <LoginFormWithRouterAndAuthSuccess url="http://localhost:3000/api/v1/patient_sessions" onSuccess={this.authSuccess} {...props} type='Patient' /> } />

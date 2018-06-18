@@ -221,10 +221,48 @@ body {
 }
 
 .footer {
+  padding: 50px;
   width: 100%;
   margin-top: 100px;
   background-color: rgb(0, 172, 164);
-  height: 300px;
+  height: 30%;
+  color: white;
+}
+
+.footer-end {
+  width: 100%;
+  background-color: rgb(2, 83, 79);
+  height: 30px;
+  text-align: center;
+  padding: 5px;
+  color: white;
+}
+
+.footer-slogan {
+  text-align: left;
+  font-size: 1.4em;
+}
+
+.footer-header {
+  font-size: 1.6em;
+}
+
+.footer-links a {
+  font-size: 1.2em;
+  color: white;
+}
+
+.footer-contact a {
+  color: white;
+}
+
+.footer-logo {
+  font-family: 'Bad Script', cursive;
+  font-size: 3em;
+}
+
+.footer-sig {
+  text-align: right;
 }
 
 /* .row:after {
