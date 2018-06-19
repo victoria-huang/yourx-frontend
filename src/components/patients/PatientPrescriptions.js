@@ -62,7 +62,7 @@ class PatientPrescriptions extends Component {
         <h1 className="meds-header">My Pillbox</h1>
         <br />
         <div className="ui centered grid container">
-          <button className="ui large button" onClick={this.handleListView}>View as List</button>
+          <button className="ui basic large button" onClick={this.handleListView}>View as List</button>
         </div>
         <br />
         <div className="ui inverted divider"></div>

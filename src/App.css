@@ -90,8 +90,6 @@ body {
 
 /*
  * react-circular-progressbar styles
- *
- * All of the styles in this file are optional and configurable!
  */
 
 .CircularProgressbar {
@@ -119,15 +117,6 @@ body {
   fill: #d6d6d6;
 }
 
-/*
- * Sample background styles. Use these with e.g.:
- *
- *   <CircularProgressbar
- *     className="CircularProgressbar-inverted"
- *     background
- *     percentage={50}
- *   />
- */
 .CircularProgressbar.CircularProgressbar-inverted .CircularProgressbar-background {
   fill: rgb(71, 255, 156);
 }
@@ -259,15 +248,10 @@ body {
   text-align: right;
 }
 
-/* .row:after {
-  content: "";
-  display: table;
-  clear: both;
-} */
-
 .modal {
   font-size: 1em;
 }
+
 .modal > .header {
   width: 100%;
   border-bottom: 1px solid gray;
@@ -275,17 +259,20 @@ body {
   text-align: center;
   padding: 10px;
 }
+
 .modal > .content-modal {
   text-align: center;
   width: 100%;
   padding: 10px 5px;
 }
+
 .modal > .actions {
   width: 100%;
   padding: 10px 5px;
   margin: auto;
   text-align: center;
 }
+
 .modal > .close {
   cursor: pointer;
   position: absolute;

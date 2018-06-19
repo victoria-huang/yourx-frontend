@@ -10,11 +10,11 @@ class Adherence extends Component {
         <div style={{ stroke: 'white', path: { stroke: `rgba(71, 255, 156, ${this.props.adherence / 100})` },}}>
           { this.props.adherence || this.props.adherence === 0 ?
             <div>
-              <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
+              <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" initialAnimation="true" />
               <p>My Daily Adherence</p>
             </div>
             :
-            "Loading adherence tracker..."
+            <div className="ui large active inline loader">Loading tracker...</div>
           }
         </div>
       </div>
