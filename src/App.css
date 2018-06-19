@@ -315,6 +315,44 @@ body {
   display: none;
 }
 
+/* a hover animations */
+
+.hover-link {
+  cursor: pointer;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+}
+
+.hover-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: rgb(117, 249, 225);
+  transition: width .3s;
+}
+
+.hover-link:hover::after {
+  width: 100%;
+  //transition: width .3s;
+}
+
+.hover-img img {
+	-webkit-transform: rotate(0) scale(1);
+	transform: rotate(0) scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+  height: 40px;
+  width: 40px;
+}
+
+.hover-img img:hover {
+	-webkit-transform: rotate(30deg) scale(1);
+	transform: rotate(30deg) scale(1);
+  cursor: pointer;
+}
+
 /* media queries */
 
 @media only screen and (max-width: 650px) {
@@ -399,6 +437,11 @@ body {
 
   .mobile-nav {
     display: block;
+  }
+
+  .hover-img img {
+    height: 30px;
+    width: 30px;
   }
 }
 

@@ -19,13 +19,14 @@ const Footer = (props) => {
           <div className="three wide column footer-links">
             <div className="footer-header">Links</div>
             <div className="ui inverted divider"></div>
-            <a onClick={() => props.history.push('/patient-home')}>Home</a>
+
+            <a className="hover-link" onClick={() => props.history.push('/patient-home')}>Home</a>
             <br /><br />
-            <a onClick={() => props.history.push('/patient-prescriptions')}>Pillbox</a>
+            <a className="hover-link" onClick={() => props.history.push('/patient-prescriptions')}>Pillbox</a>
             <br /><br />
-            <a onClick={() => props.history.push('/interactions')}>Interaction Checker</a>
+            <a className="hover-link" onClick={() => props.history.push('/interactions')}>Interaction Checker</a>
             <br /><br />
-            <a onClick={() => props.history.push('/adherence-tracker')}>Adherence Tracker</a>
+            <a className="hover-link" onClick={() => props.history.push('/adherence-tracker')}>Adherence Tracker</a>
             <br /><br />
           </div>
           <div className="one wide column"></div>
@@ -39,8 +40,9 @@ const Footer = (props) => {
             +1 732 668 9197
             <br /><br />
             <i className="ui large envelope outline icon"></i>
-            <a href="mailto:vctrah@gmail.com">vctrah@gmail.com</a>
+            <a className="hover-link" href="mailto:vctrah@gmail.com">vctrah@gmail.com</a>
             <br /><br />
+
             <a href="https://github.com/victoria-huang" target="_blank"><i className="large circular github link icon"></i></a>&nbsp;&nbsp;
             <a href="https://www.linkedin.com/in/victoriah92/" target="_blank"><i className="large circular linkedin link icon"></i></a>&nbsp;&nbsp;
             <a href="https://medium.com/@victoria.huang" target="_blank"><i className="large circular medium link icon"></i></a>&nbsp;&nbsp;

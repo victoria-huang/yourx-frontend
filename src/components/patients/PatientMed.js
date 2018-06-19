@@ -6,7 +6,7 @@ const PatientMed = (props) => {
   const times = props.times.map((t, idx) => {
     if (t.take_time.time_of_day === props.timeOfDay) {
       return (
-        <Popup key={idx} trigger={<img src={require(`../../assets/${props.times[idx].rx_take_time.taken && props.day === "today" ? "pill_check.png" : props.med.image_url}`)} height='40px' width='40px' alt='pill' />} modal>
+        <Popup key={idx} trigger={<div className="hover-img"><img src={require(`../../assets/${props.times[idx].rx_take_time.taken && props.day === "today" ? "pill_check.png" : props.med.image_url}`)} alt='pill' /></div>} modal>
           {close => (
             <div className="modal">
               <a className="close" onClick={close}>
