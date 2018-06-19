@@ -8,11 +8,12 @@ import MedsContainer from './MedsContainer'
 import PrescriptionForm from '../prescriptions/PrescriptionForm'
 import PatientNavBar from '../PatientNavBar'
 import Footer from '../Footer';
+import MedListView from './MedListView'
 
 const DEFAULT_STATE = {
-  // addRxClicked: false,
   clicked: false,
-  whichClicked: ''
+  whichClicked: '',
+  listView: false
 }
 
 class PatientPrescriptions extends Component {
@@ -41,24 +42,29 @@ class PatientPrescriptions extends Component {
 
   handleClick = (event) => {
     this.setState({
-      // addRxClicked: false,
       clicked: true,
-      whichClicked: event.target.name
+      whichClicked: event.target.name,
+      listView: false
     })
   }
 
-  // handleClickAddRx = () => {
-  //   this.setState({
-  //     addRxClicked: !this.state.addRxClicked,
-  //     clicked: false
-  //   })
-  // }
+  handleListView = () => {
+    this.setState({
+      ...DEFAULT_STATE,
+      listView: true
+    })
+  }
 
   render() {
     return (
       <div>
         <PatientNavBar />
         <h1 className="meds-header">My Pillbox</h1>
+        <br />
+        <div className="ui centered grid container">
+          <button className="ui large button" onClick={this.handleListView}>View as List</button>
+        </div>
+        <br />
         <div className="ui inverted divider"></div>
         <div className="ui seven column centered grid container">
           <div className="computer only seven column centered row">
@@ -137,17 +143,21 @@ class PatientPrescriptions extends Component {
         { this.state.clicked ?
           <MedsContainer day={this.state.whichClicked} history={this.props.history} />
           :
-          <div className="prompt">
-            <br /><br /><br />
-            <i className="huge arrow up icon animated infinite bounce"></i>
-            <br /><br /><br />
-            <p className="click-day">Click on a day to see your medications</p>
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          </div>
+          this.state.listView ?
+            <div>
+              <MedListView prescriptions={this.props.prescriptions.all} patientId={this.props.user.userId} />
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
+            :
+            <div className="prompt">
+              <br /><br /><br />
+              <i className="huge arrow up icon animated infinite bounce"></i>
+              <br /><br /><br />
+              <p className="click-day">Click on a day to see your medications</p>
+              <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            </div>
         }
-
         <Footer />
-        { /* this.state.addRxClicked && <PrescriptionForm patientId={this.props.user.userId} addPrescription={this.props.addPrescription} addDose={this.props.addDose} history={this.props.history} /> */ }
       </div>
     )
   }
