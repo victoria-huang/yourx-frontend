@@ -87,10 +87,10 @@ class EditPrescriptionForm extends Component {
 
             if (times.length === this.state.times.length) {
               this.props.addDose(times, this.state.prescriptionId, this.state.day);
+              alert('Prescription Edited!');
             }
           })
           .then(() => {
-            alert('Prescription Edited!');
             this.props.history.push('/patient-home')
           })
         })
@@ -148,7 +148,7 @@ class EditPrescriptionForm extends Component {
 
     return getSearchDrugNames(input)
     .then(json => {
-      const values = json.slice(0, 8).map(name => { return { value: name, label: name } })
+      const values = json.slice(0, 30).map(name => { return { value: name, label: name } })
       return { options: values }
     })
   }
@@ -172,7 +172,7 @@ class EditPrescriptionForm extends Component {
           <p className="med-time">
             {t.day} at {t.formatted_time}
             &nbsp;
-            <button onClick={(e) => this.removeTime(e, t.id, t.rxTakeTimeId)}>X</button>
+            <button className="ui mini button" onClick={(e) => this.removeTime(e, t.id, t.rxTakeTimeId)}>X</button>
           </p>
         </div>
       )
@@ -209,7 +209,7 @@ class EditPrescriptionForm extends Component {
             { this.state.addTimeFormClicked ?
               <TakeTimesForm handleAddTime={this.handleAddTime} />
               :
-              <button onClick={this.handleAddTimeFormClick}>Add Another Time</button>
+              <button className="ui button" onClick={this.handleAddTimeFormClick}>Add Another Time</button>
             }
             <br /><br />
             <button className="ui button" type="submit" className="fluid ui large button">Submit</button>

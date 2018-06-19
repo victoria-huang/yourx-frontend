@@ -75,19 +75,19 @@ class PrescriptionForm extends Component {
               take_time: time,
               rx_take_time: rxTakeTime
             }
-            times.push(obj)
+            times.push(obj);
 
             if (times.length === this.state.times.length) {
               this.props.addDose(times, prescriptionId, 'all');
             }
           })
-          .then(() => {
-            alert('Prescription Added!')
-            this.setState({
-              ...DEFAULT_STATE
-            })
-          })
         })
+      })
+      .then(() => {
+        this.setState({
+          ...DEFAULT_STATE
+        });
+        alert('Prescription Added!');
       })
     }))
   }
@@ -140,7 +140,7 @@ class PrescriptionForm extends Component {
 
     return getSearchDrugNames(input)
     .then(json => {
-      const values = json.slice(0, 8).map(name => { return { value: name, label: name } })
+      const values = json.slice(0, 30).map(name => { return { value: name, label: name } })
       return { options: values }
     })
   }
@@ -152,7 +152,7 @@ class PrescriptionForm extends Component {
           <p className="med-time">
             {t.day} at {t.formatted_time}
             &nbsp;
-            <button onClick={(e) => this.removeTime(e, t.id)}>X</button>
+            <button className="ui mini button" onClick={(e) => this.removeTime(e, t.id)}>X</button>
           </p>
         </div>
       )

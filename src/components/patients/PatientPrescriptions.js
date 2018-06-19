@@ -57,7 +57,6 @@ class PatientPrescriptions extends Component {
   render() {
     return (
       <div>
-        Patient Prescriptions
         <PatientNavBar />
         <h1 className="meds-header">My Pillbox</h1>
         <div className="ui inverted divider"></div>

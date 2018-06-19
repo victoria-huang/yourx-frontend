@@ -20,7 +20,13 @@ export default class InteractionsContainer extends Component {
         const rxcuis = patient.prescriptions.map(p => p.med.rxcui).filter(r => r);
 
         getInteractions(rxcuis).then(r => {
-          const interactions = r.fullInteractionTypeGroup[0].fullInteractionType.map(i => i.interactionPair[0]);
+          let interactions;
+
+          if (r.fullInteractionTypeGroup) {
+            interactions = r.fullInteractionTypeGroup[0].fullInteractionType.map(i => i.interactionPair[0]);
+          } else {
+            interactions = [];
+          }
 
           this.setState({
             interactions,
@@ -55,7 +61,7 @@ export default class InteractionsContainer extends Component {
               { showInteractions }
             </div>
             :
-            <p>{ this.state.isLoaded? "No interactions found." : null }</p>
+            <p>{ this.state.isLoaded ? "No interactions found." : null }</p>
           }
         </div>
         <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
