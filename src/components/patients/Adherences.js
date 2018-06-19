@@ -57,6 +57,18 @@ export default class Adherences extends Component {
   }
 
   render() {
+    const chartOptions = {
+      scales: {
+      yAxes: [{
+          ticks: {
+              beginAtZero:true,
+              min: 0,
+              max: 100
+          }
+        }]
+      }
+    }
+
     return (
       <div>
         <PatientNavBar />
@@ -69,7 +81,7 @@ export default class Adherences extends Component {
           <div className={ this.state.isLoaded ? "ui disabled loader" : "ui active inverted dimmer" }>
             <div className="ui huge text loader">Loading</div>
           </div>
-          { <Line data={this.getData()} /> }
+          { <Line data={this.getData()} options={chartOptions} /> }
         </div>
 
         <Footer />
