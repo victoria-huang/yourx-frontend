@@ -10,8 +10,8 @@ const Footer = (props) => {
             <h1 className="footer-logo">Y o u R x</h1>
             <div className="footer-slogan">Embrace your health.</div>
             <br />
-            As a pharmacist, my primary goal is to help my patients stay healthy and happy.
-            This is your virtual pillbox, designed to allow you take control of your health.
+            My primary goal as a pharmacist is to help my patients stay healthy and happy.
+            This is your virtual pillbox, designed to allow you to easily take control of your health.
             <br /><br />
             <div className="footer-sig">&hearts; Victoria Huang, Pharm.D.</div>
           </div>
@@ -41,12 +41,12 @@ const Footer = (props) => {
             <i className="ui large envelope outline icon"></i>
             <a href="mailto:vctrah@gmail.com">vctrah@gmail.com</a>
             <br /><br />
-            <a href="https://github.com/victoria-huang"><i className="large circular github link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://www.linkedin.com/in/victoriah92/"><i className="large circular linkedin link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://medium.com/@victoria.huang"><i className="large circular medium link icon"></i></a>&nbsp;&nbsp;
-            <a href="http://facebook.com"><i className="large circular facebook link icon"></i></a>&nbsp;&nbsp;
-            <a href="http://twitter.com"><i className="large circular twitter link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://www.victoriahuang.me"><i className="large circular user circle link icon"></i></a>
+            <a href="https://github.com/victoria-huang" target="_blank"><i className="large circular github link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/in/victoriah92/" target="_blank"><i className="large circular linkedin link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://medium.com/@victoria.huang" target="_blank"><i className="large circular medium link icon"></i></a>&nbsp;&nbsp;
+            <a href="http://facebook.com" target="_blank"><i className="large circular facebook link icon"></i></a>&nbsp;&nbsp;
+            <a href="http://twitter.com" target="_blank"><i className="large circular twitter link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://www.victoriahuang.me" target="_blank"><i className="large circular user circle link icon"></i></a>
           </div>
         </div>
       </div>

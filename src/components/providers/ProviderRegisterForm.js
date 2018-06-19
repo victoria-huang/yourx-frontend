@@ -92,19 +92,16 @@ export default class ProviderRegisterForm extends Component {
               { errors }
             </ul>
 
-            <form className="ui form" onSubmit={this.handleSubmit}>
+            <form className="ui large form" onSubmit={this.handleSubmit}>
               <div className="field">
-                <h4>Username</h4>
                 <input name="username" type="text" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
               </div>
 
               <div className="field">
-                <h4>Password</h4>
                 <input name="password" type="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
               </div>
 
               <div className="field">
-                <h4>Name</h4>
                 <div className="two fields">
                   <div className="field">
                     <input name="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} placeholder="First Name" />
@@ -116,12 +113,10 @@ export default class ProviderRegisterForm extends Component {
               </div>
 
               <div className="field">
-                <h4>Specialty</h4>
                 <input name="specialty" type="text" value={this.state.specialty} onChange={this.handleChange} placeholder="Specialty" />
               </div>
 
               <div className="field">
-                <h4>Street</h4>
                   <div className="fields">
                     <div className="twelve wide field">
                       <input name="street_one" type="text" value={this.state.street_one} onChange={this.handleChange} placeholder="Street" />
@@ -134,13 +129,11 @@ export default class ProviderRegisterForm extends Component {
 
               <div className="three fields">
                 <div className="field">
-                  <h4>City</h4>
                   <input name="city" type="text" value={this.state.city} onChange={this.handleChange} placeholder="City" />
                 </div>
                 <div className="field">
-                  <h4>State</h4>
-                  <select className="ui dropdown" name="user_state" value={this.state.user_state} onChange={this.handleChange}>
-                    <option value="">Select</option>
+                  <select className="ui search dropdown" name="user_state" value={this.state.user_state} onChange={this.handleChange}>
+                    <option value="">State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -195,23 +188,20 @@ export default class ProviderRegisterForm extends Component {
                   </select>
                 </div>
                 <div className="field">
-                  <h4>Zipcode</h4>
                   <input name="zipcode" type="number" value={this.state.zipcode} onChange={this.handleChange} placeholder="Zipcode" />
                 </div>
               </div>
 
               <div className="two fields">
                 <div className="field">
-                  <h4>Email</h4>
                   <input name="email" type="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
                 </div>
                 <div className="field">
-                  <h4>Phone</h4>
                   <input name="phone" type="tel" value={this.state.phone} onChange={this.handleChange} placeholder="Phone" />
                 </div>
               </div>
 
-              <button type="submit" className="ui fluid button">Create Account</button>
+              <button type="submit" className="ui large fluid button">Create Account</button>
             </form>
             <div className="ui inverted divider"></div>
             <a className="back-link" onClick={() => this.props.history.push("/register-choice")}>

@@ -35,7 +35,7 @@ class PatientPrescriptions extends Component {
         this.props.setAllPrescriptions(json.prescriptions);
       })
     })
-    
+
     window.scrollTo(0,0);
   }
 
@@ -60,31 +60,81 @@ class PatientPrescriptions extends Component {
         Patient Prescriptions
         <PatientNavBar />
         <h1 className="meds-header">My Pillbox</h1>
-        <br />
-        <div className="teal massive ui basic buttons pillbox-buttons">
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="sun">Su</button>
+        <div className="ui inverted divider"></div>
+        <div className="ui seven column centered grid container">
+          <div className="computer only seven column centered row">
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="sun">Su</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="mon">M</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="tues">T</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="wed">W</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="thurs">Th</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="fri">F</button>
+            </div>
+            <div className="column">
+              <button className="ui teal massive button pillbox" onClick={this.handleClick} name="sat">Sa</button>
+            </div>
           </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="mon">M</button>
+
+          <div className="tablet only seven column centered row">
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="sun">Su</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="mon">M</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="tues">T</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="wed">W</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="thurs">Th</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="fri">F</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="sat">Sa</button>
+            </div>
           </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="tues">T</button>
-          </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="wed">W</button>
-          </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="thurs">Th</button>
-          </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="fri">F</button>
-          </div>
-          <div className="pillbox-button">
-            <button className="ui button pillbox" onClick={this.handleClick} name="sat">Sa</button>
+
+          <div className="mobile only seven column centered row">
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="sun">S</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="mon">M</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="tues">T</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="wed">W</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="thurs">T</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="fri">F</button>
+            </div>
+            <div className="column">
+              <button className="ui teal small button pillbox" onClick={this.handleClick} name="sat">S</button>
+            </div>
           </div>
         </div>
-
+        <br />
         { this.state.clicked ?
           <MedsContainer day={this.state.whichClicked} history={this.props.history} />
           :

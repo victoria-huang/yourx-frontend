@@ -47,7 +47,7 @@ class MedsContainer extends Component {
         <div className="ui two column grid centered container">
           <div className="two column centered row">
             <div className="column">
-              <h2><img src={require('../../assets/morning.png')} height='50px' width='50px' alt="morning" /> Morning</h2>
+              <h2><img src={require('../../assets/morning.png')} height='50px' width='50px' alt="morning" /><br /> Morning</h2>
               <p>6 AM - 12 PM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">
@@ -56,7 +56,7 @@ class MedsContainer extends Component {
               <br /><br /><br />
             </div>
             <div className="column">
-              <h2><img src={require('../../assets/afternoon.png')} height='40px' width='40px' alt="afternoon" /> Afternoon</h2>
+              <h2><img src={require('../../assets/afternoon.png')} height='50px' width='50px' alt="afternoon" /><br /> Afternoon</h2>
               <p>12 PM - 6 PM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">
@@ -67,7 +67,7 @@ class MedsContainer extends Component {
           </div>
           <div className="two column centered row">
             <div className="column">
-              <h2><img src={require('../../assets/evening.png')} height='50px' width='50px' alt="evening" /> Evening</h2>
+              <h2><img src={require('../../assets/evening.png')} height='50px' width='50px' alt="evening" /><br /> Evening</h2>
               <p>6 PM - 12 AM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">
@@ -75,7 +75,7 @@ class MedsContainer extends Component {
               </div>
             </div>
             <div className="column">
-              <h2><img src={require('../../assets/night.png')} height='45px' width='45px' alt="night" /> Night</h2>
+              <h2><img src={require('../../assets/night.png')} height='50px' width='50px' alt="night" /><br /> Night</h2>
               <p>12 AM - 6 AM</p>
               <div className="ui inverted divider"></div>
               <div className="ui three column padded grid centered container">

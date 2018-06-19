@@ -95,13 +95,7 @@ body {
  */
 
 .CircularProgressbar {
-  /*
-   * This fixes an issue where the CircularProgressbar svg has
-   * 0 width inside a "display: flex" container, and thus not visible.
-   *
-   * If you're not using "display: flex", you can remove this style.
-   */
-  width: 100%;
+  width: 80%;
 }
 
 .CircularProgressbar .CircularProgressbar-path {
@@ -311,7 +305,7 @@ body {
   height: 100px;
 }
 
-.pillbox-button {
+/* .pillbox-button {
   border: 3px solid rgb(0, 172, 164);
   border-radius: 10px;
   margin: 5px;
@@ -320,8 +314,120 @@ body {
 .pillbox-buttons {
   width: 100%;
   justify-content: center;
-}
+} */
 
 .prompt {
   text-align: center;
+}
+
+.main-nav {
+  display: block;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 420px) {
+  .patient-home-header {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 260px;
+    color: white;
+  }
+
+  .patient-home-background {
+    height: 260px;
+    z-index: -1000;
+    position: absolute;
+  }
+
+  .patient-home-background img {
+    height: 260px;
+    width: 100%;
+    opacity: 0.5;
+  }
+
+  .patient-home {
+    width: 78%;
+    margin: auto;
+    /* position: absolute; */
+    z-index: 500;
+  }
+
+  .header-column {
+    float: left;
+    padding: 10px;
+  }
+
+  .left-col {
+    width: 40%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 240px;
+  }
+
+  .right-col {
+    width: 60%;
+    padding-left: 2%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 280px;
+  }
+
+  .right-col h1 {
+    font-size: 2.8em;
+  }
+
+  .right-col h2 {
+    font-size: 1.5em;
+    padding-bottom: 0px;
+  }
+
+  .CircularProgressbar {
+    width: 90%;
+  }
+
+  .meds-header {
+    text-align: center;
+    font-size: 2.2em;
+  }
+
+  .click-day {
+    font-size: 1.2em;
+  }
+
+  .pillbox {
+    width: 100%;
+    height: 100%;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 430px) {
+  .pillbox {
+    width: 100%;
+    height: 80px;
+  }
+
+  .footer-logo {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-height: 1367px) and (min-height: 1365px) {
+  .footer {
+    height: 650px;
+  }
 }

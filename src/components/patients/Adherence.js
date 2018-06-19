@@ -7,7 +7,7 @@ class Adherence extends Component {
   render() {
     return (
       <div className="header-column left-col">
-        <div style={{ width: "80%", stroke: 'white', path: { stroke: `rgba(71, 255, 156, ${this.props.adherence / 100})` },}}>
+        <div style={{ stroke: 'white', path: { stroke: `rgba(71, 255, 156, ${this.props.adherence / 100})` },}}>
           { this.props.adherence || this.props.adherence === 0 ?
             <div>
               <CircularProgressbar percentage={Math.round(this.props.adherence)} strokeWidth="5" />
