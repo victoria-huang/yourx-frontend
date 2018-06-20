@@ -49,7 +49,7 @@ class Patient < ApplicationRecord
   def self.track_adherence
     self.all.each do |patient|
       percent = patient.daily_adherence
-      Adherence.create(percent: percent, patient_id: patient.id)
+      Adherence.create(percent: percent, patient_id: patient.id, created_at: 1.days.ago)
     end
     # Rails.logger.info("Adherences created at #{Time.now}")
   end
