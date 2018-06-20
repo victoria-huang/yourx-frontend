@@ -8,6 +8,7 @@ const NotFound = (props) => {
       </div>
 
       <div className="my-content">
+        <img src={require('../assets/sad_pill_red.png')} alt='sad pill' />
         <h1 className="content-404 animated fadeInDownBig">Page Not Found</h1>
         <div className="ui inverted divider"></div>
         <a className="back-link" onClick={() => props.history.push("/")}>
