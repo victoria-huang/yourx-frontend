@@ -10,8 +10,15 @@ class Api::V1::PrescriptionsController < ApplicationController
     @patient = Patient.find(current_user_id)
 
     if authorized?(@patient)
-      prescription = Prescription.create(prescription_params)
-      render json: prescription, status: 201
+      @prescription = Prescription.create(prescription_params)
+
+      if @prescription.valid?
+        render json: @prescription, status: 201
+      else
+        render json: {
+          errors: @prescription.errors.full_messages
+        }, status: :unprocessable_entity
+      end
     else
       render json: { unauthorized: true }, status: :unauthorized
     end

@@ -31,3 +31,15 @@
 
 en:
   hello: "Hello world"
+
+# en:
+#   activerecord:
+#     attributes:
+#       prescription:
+#         take_times: ""
+#     errors:
+#       models:
+#         prescription:
+#           attributes:
+#             take_times:
+#               too_short: "Must have at least one time to take medication"

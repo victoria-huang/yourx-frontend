@@ -2,6 +2,9 @@ class TakeTime < ApplicationRecord
   has_many :prescription_take_times, dependent: :delete_all
   has_many :prescriptions, through: :prescription_take_times
 
+  # validates :day, presence: true, inclusion: { in: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
+  # validates :rx_time, presence: true
+
   before_create :determine_time_of_day
 
   def determine_time_of_day

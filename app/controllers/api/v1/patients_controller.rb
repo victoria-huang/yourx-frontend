@@ -13,7 +13,7 @@ class Api::V1::PatientsController < ApplicationController
   def create
     @patient = Patient.create(patient_params)
 
-    if @patient
+    if @patient.valid?
       render json: token_json(@patient)
     else
       render json: {
@@ -51,7 +51,7 @@ class Api::V1::PatientsController < ApplicationController
 
   def get_daily_meds
     @patient = Patient.find(current_user_id)
-    
+
     if authorized?(@patient)
       render json: @patient.get_daily_meds_and_times
     else

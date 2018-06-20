@@ -13,7 +13,7 @@ class Api::V1::DoctorsController < ApplicationController
   def create
     @doctor = Doctor.create(doctor_params)
 
-    if @doctor
+    if @doctor.valid?
       render json: token_json(@doctor)
     else
       render json: {
