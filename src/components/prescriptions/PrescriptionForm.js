@@ -16,7 +16,8 @@ const DEFAULT_STATE = {
   sig: '',
   dosage: '',
   addTimeFormClicked: true,
-  times: []
+  times: [],
+  errors: []
 }
 
 function getRandomNum() {
@@ -41,47 +42,66 @@ class PrescriptionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    if (this.state.brandName && this.state.times.length > 0) {
+      getRxcui(this.state.brandName)
+      .then(json => this.setState({
+        rxcui: json.idGroup.rxnormId[0]
+      }, () => {
+        const rxBody = {
+          brand_name: this.state.brandName,
+          rxcui: this.state.rxcui,
+          sig: this.state.sig,
+          dosage: this.state.dosage,
+          image_url: `pill_${getRandomNum()}.png`,
+          patient_id: this.props.user.userId
+        }
 
-    getRxcui(this.state.brandName)
-    .then(json => this.setState({
-      rxcui: json.idGroup.rxnormId[0]
-    }, () => {
-      const rxBody = {
-        brand_name: this.state.brandName,
-        rxcui: this.state.rxcui,
-        sig: this.state.sig,
-        dosage: this.state.dosage,
-        image_url: `pill_${getRandomNum()}.png`,
-        patient_id: this.props.user.userId
+        createPrescription(rxBody)
+        .then(json => {
+          if (json.errors) {
+            this.setState({
+              errors: json.errors
+            })
+          } else {
+            this.onSuccess(json)
+          }
+        })
+      }))
+    } else if (!this.state.brandName){
+      this.setState({
+        errors: ["Medication name cannot be blank"]
+      })
+    } else if (this.state.times.length === 0) {
+      this.setState({
+        errors: ["Must have at least one time to take medication"]
+      })
+    }
+  }
+
+  onSuccess = (json) => {
+    this.props.addPrescription(json)
+
+    const prescriptionId = json.med.id
+
+    const times = [];
+
+    this.state.times.forEach(time => {
+      const timeBody = {
+        prescription_id: prescriptionId,
+        take_time_id: time.id
       }
 
-      const times = [];
+      createPrescriptionTakeTime(timeBody)
+      .then((rxTakeTime, idx) => {
+        const obj = {
+          take_time: time,
+          rx_take_time: rxTakeTime
+        }
+        times.push(obj);
 
-      createPrescription(rxBody)
-      .then(json => {
-        this.props.addPrescription(json)
-
-        const prescriptionId = json.med.id
-
-        this.state.times.forEach(time => {
-          const timeBody = {
-            prescription_id: prescriptionId,
-            take_time_id: time.id
-          }
-
-          createPrescriptionTakeTime(timeBody)
-          .then((rxTakeTime, idx) => {
-            const obj = {
-              take_time: time,
-              rx_take_time: rxTakeTime
-            }
-            times.push(obj);
-
-            if (times.length === this.state.times.length) {
-              this.props.addDose(times, prescriptionId, 'all');
-            }
-          })
-        })
+        if (times.length === this.state.times.length) {
+          this.props.addDose(times, prescriptionId, 'all');
+        }
       })
       .then(() => {
         this.setState({
@@ -89,7 +109,7 @@ class PrescriptionForm extends Component {
         });
         alert('Prescription Added!');
       })
-    }))
+    })
   }
 
   handleChange = (event) => {
@@ -146,6 +166,8 @@ class PrescriptionForm extends Component {
   }
 
   render() {
+    const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> });
+
     const takeTimes = this.state.times.map((t, idx) => {
       return (
         <div key={idx}>
@@ -165,6 +187,15 @@ class PrescriptionForm extends Component {
         <h1 className="meds-header">Add Prescription</h1>
         <div className="ui inverted divider"></div>
         <div className="ui very padded container">
+          { this.state.errors.length > 0 ?
+            <div className="ui error message">
+              <ul className="list">
+                { errors }
+              </ul>
+            </div>
+          :
+            null
+          }
           <h4>Medication Name</h4>
           <Select.Async
             name="brandName"

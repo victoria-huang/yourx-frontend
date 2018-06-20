@@ -17,7 +17,8 @@ const DEFAULT_STATE = {
   addTimeFormClicked: false,
   times: [],
   prescriptionId: '',
-  day: ''
+  day: '',
+  errors: []
 }
 
 class EditPrescriptionForm extends Component {
@@ -52,50 +53,70 @@ class EditPrescriptionForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    if (this.state.brandName && this.state.times.length > 0) {
+      getRxcui(this.state.brandName)
+      .then(json => this.setState({
+        rxcui: json.idGroup.rxnormId[0]
+      }, () => {
+        const rxBody = {
+          brand_name: this.state.brandName,
+          rxcui: this.state.rxcui,
+          sig: this.state.sig,
+          dosage: this.state.dosage,
+          patient_id: this.props.location.state.patientId
+        }
 
-    getRxcui(this.state.brandName)
-    .then(json => this.setState({
-      rxcui: json.idGroup.rxnormId[0]
-    }, () => {
-      const rxBody = {
-        brand_name: this.state.brandName,
-        rxcui: this.state.rxcui,
-        sig: this.state.sig,
-        dosage: this.state.dosage,
-        patient_id: this.props.location.state.patientId
+        editPrescriptionFetch(this.state.prescriptionId, rxBody)
+        .then(json => {
+          if (json.errors) {
+            this.setState({
+              errors: json.errors
+            })
+          } else {
+            this.onSuccess(json)
+          }
+        })
+      }))
+    } else if (!this.state.brandName){
+      this.setState({
+        errors: ["Medication name cannot be blank"]
+      })
+    } else if (this.state.times.length === 0) {
+      this.setState({
+        errors: ["Must have at least one time to take medication"]
+      })
+    }
+  }
+
+  onSuccess = (json) => {
+    this.props.editPrescription(json, this.state.day);
+
+    const times = [];
+
+    this.state.times.forEach(time => {
+      const timeBody = {
+        prescription_id: this.state.prescriptionId,
+        take_time_id: time.id
       }
 
-      const times = [];
+      createPrescriptionTakeTime(timeBody)
+      .then((rxTakeTime, idx) => {
+        const obj = {
+          take_time: time,
+          rx_take_time: rxTakeTime
+        }
 
-      editPrescriptionFetch(this.state.prescriptionId, rxBody)
-      .then(json => {
-        this.props.editPrescription(json, this.state.day)
+        times.push(obj)
 
-        this.state.times.forEach(time => {
-          const timeBody = {
-            prescription_id: this.state.prescriptionId,
-            take_time_id: time.id
-          }
-
-          createPrescriptionTakeTime(timeBody)
-          .then((rxTakeTime, idx) => {
-            const obj = {
-              take_time: time,
-              rx_take_time: rxTakeTime
-            }
-            times.push(obj)
-
-            if (times.length === this.state.times.length) {
-              this.props.addDose(times, this.state.prescriptionId, this.state.day);
-              alert('Prescription Edited!');
-            }
-          })
-          .then(() => {
-            this.props.history.push('/patient-home')
-          })
-        })
+        if (times.length === this.state.times.length) {
+          this.props.addDose(times, this.state.prescriptionId, this.state.day);
+          alert('Prescription Edited!');
+        }
       })
-    }))
+      .then(() => {
+        this.props.history.push('/patient-home')
+      })
+    })
   }
 
   handleChange = (event) => {
@@ -166,6 +187,8 @@ class EditPrescriptionForm extends Component {
   }
 
   render() {
+    const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> });
+
     const takeTimes = this.state.times.map((t, idx) => {
       return (
         <div key={idx}>
@@ -184,6 +207,15 @@ class EditPrescriptionForm extends Component {
         <h1 className="meds-header">Edit Prescription</h1>
         <div className="ui inverted divider"></div>
         <div className="ui very padded container">
+          { this.state.errors.length > 0 ?
+            <div className="ui error message">
+              <ul className="list">
+                { errors }
+              </ul>
+            </div>
+          :
+            null
+          }
           <h4>Medication Name</h4>
           <Select.Async
             name="brandName"

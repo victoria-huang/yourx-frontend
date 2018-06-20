@@ -40,7 +40,7 @@ class LoginForm extends Component {
     .then(json => {
       if (json.errors) {
         this.setState({
-          errors: [json.errors]
+          errors: json.errors
         })
       } else {
         this.setState({

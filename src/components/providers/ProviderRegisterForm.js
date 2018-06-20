@@ -63,7 +63,7 @@ export default class ProviderRegisterForm extends Component {
     .then(json => {
       if (json.errors) {
         this.setState({
-          errors: [json.errors]
+          errors: json.errors
         })
       } else {
         this.setState({
@@ -77,7 +77,7 @@ export default class ProviderRegisterForm extends Component {
 
 
   render() {
-    const errors = this.state.errors.map(error => { return <li>{error}</li> });
+    const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> });
 
     return (
       <div>
@@ -88,9 +88,15 @@ export default class ProviderRegisterForm extends Component {
           <h1 className="meds-header">Provider Register</h1>
           <div className="ui inverted divider"></div>
           <div className="ui very padded container">
-            <ul>
-              { errors }
-            </ul>
+            { this.state.errors.length > 0 ?
+              <div className="ui error message">
+                <ul className="list">
+                  { errors }
+                </ul>
+              </div>
+            :
+              null
+            }
 
             <form className="ui large form" onSubmit={this.handleSubmit}>
               <div className="field">
