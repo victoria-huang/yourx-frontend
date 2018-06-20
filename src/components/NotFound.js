@@ -8,7 +8,7 @@ const NotFound = (props) => {
       </div>
 
       <div className="my-content">
-        <h1 className="content-404">Page Not Found</h1>
+        <h1 className="content-404 animated fadeInDownBig">Page Not Found</h1>
         <div className="ui inverted divider"></div>
         <a className="back-link" onClick={() => props.history.push("/")}>
            &#8592; Back to YouRx
