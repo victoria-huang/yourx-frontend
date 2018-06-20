@@ -131,7 +131,7 @@ class EditPrescriptionForm extends Component {
     })
   }
 
-  handleAddTime = (time, takeTimeId) => {
+  handleAddTime = (time) => {
     this.setState({
       addTimeFormClicked: false,
       times: [...this.state.times, time]

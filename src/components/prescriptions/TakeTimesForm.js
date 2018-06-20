@@ -3,7 +3,8 @@ import { createTakeTime } from '../../fetches'
 
 const DEFAULT_STATE = {
   day: '',
-  rx_time: ''
+  rx_time: '',
+  errors: []
 }
 
 class TakeTimesForm extends Component {
@@ -14,10 +15,20 @@ class TakeTimesForm extends Component {
   handleSubmitClick = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    createTakeTime(this.state)
-    .then(json => {
-      this.props.handleAddTime(json)
-    })
+    if (this.state.day && this.state.rx_time) {
+      createTakeTime(this.state)
+      .then(json => {
+        this.props.handleAddTime(json)
+      })
+    } else if (!this.state.day) {
+      this.setState({
+        errors: ["You must select a day"]
+      })
+    } else if (!this.state.rx_time) {
+      this.setState({
+        errors: ["You must select a time"]
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -27,8 +38,11 @@ class TakeTimesForm extends Component {
   }
 
   render() {
+    const errors = this.state.errors.map((error, idx) => { return <p className="error" key={idx}>{error}</p> });
+
     return (
       <div>
+        { errors }
         <form className="ui form">
           <div className="fields">
             <div className="field">
@@ -53,6 +67,7 @@ class TakeTimesForm extends Component {
 
           <button className="ui button" onClick={this.handleSubmitClick}>Add Time</button>
         </form>
+
       </div>
     )
   }

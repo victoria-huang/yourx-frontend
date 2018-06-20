@@ -292,6 +292,11 @@ body {
   height: 100px;
 }
 
+.error {
+  color: red;
+  text-align: left;
+}
+
 /* .pillbox-button {
   border: 3px solid rgb(0, 172, 164);
   border-radius: 10px;
