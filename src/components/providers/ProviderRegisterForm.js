@@ -100,26 +100,26 @@ export default class ProviderRegisterForm extends Component {
 
             <form className="ui large form" onSubmit={this.handleSubmit}>
               <div className="field">
-                <input name="username" type="text" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
+                <input required name="username" type="text" value={this.state.username} onChange={this.handleChange} placeholder="Username" />
               </div>
 
               <div className="field">
-                <input name="password" type="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
+                <input required name="password" type="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" />
               </div>
 
               <div className="field">
                 <div className="two fields">
                   <div className="field">
-                    <input name="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} placeholder="First Name" />
+                    <input required name="first_name" type="text" value={this.state.first_name} onChange={this.handleChange} placeholder="First Name" />
                   </div>
                   <div className="field">
-                    <input name="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} placeholder="Last Name" />
+                    <input required name="last_name" type="text" value={this.state.last_name} onChange={this.handleChange} placeholder="Last Name" />
                   </div>
                 </div>
               </div>
 
               <div className="field">
-                <input name="specialty" type="text" value={this.state.specialty} onChange={this.handleChange} placeholder="Specialty" />
+                <input required name="specialty" type="text" value={this.state.specialty} onChange={this.handleChange} placeholder="Specialty" />
               </div>
 
               <div className="field">
@@ -200,7 +200,7 @@ export default class ProviderRegisterForm extends Component {
 
               <div className="two fields">
                 <div className="field">
-                  <input name="email" type="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
+                  <input required name="email" type="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" />
                 </div>
                 <div className="field">
                   <input name="phone" type="tel" value={this.state.phone} onChange={this.handleChange} placeholder="Phone" />

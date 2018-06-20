@@ -87,11 +87,11 @@ class LoginForm extends Component {
 
           <form className="ui form" onSubmit={this.handleSubmit}>
             <div className="field ui big fluid left icon input">
-              <input name="username" type="text" placeholder='username' value={this.state.username} onChange={this.handleChange} />
+              <input required name="username" type="text" placeholder='username' value={this.state.username} onChange={this.handleChange} />
               <i className="user icon"></i>
             </div>
             <div className="field ui big fluid left icon input">
-              <input name="password" type="password" placeholder='password' value={this.state.password} onChange={this.handleChange} />
+              <input required name="password" type="password" placeholder='password' value={this.state.password} onChange={this.handleChange} />
               <i className="key icon"></i>
             </div>
             <button type="submit" className="fluid ui large button">Login as {this.props.type}</button>
