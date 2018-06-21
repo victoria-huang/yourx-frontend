@@ -55,6 +55,8 @@ class Patient < ApplicationRecord
       percent = patient.daily_adherence
       Adherence.create(percent: percent, patient_id: patient.id, created_at: 1.days.ago)
     end
+
+    PrescriptionTakeTime.reset_taken
     # Rails.logger.info("Adherences created at #{Time.now}")
   end
 end
