@@ -128,6 +128,7 @@ export default (state = {
         if (p.times.length - 1 >= action.timesIdx) {
           return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
         }
+        return null
       })
       let todayTakeCopy = state.today.slice()
       todayTakeCopy[prescriptionIdx].times[action.timesIdx].rx_take_time.taken = true;
@@ -141,6 +142,7 @@ export default (state = {
         if (p.times.length - 1 >= action.timesIdx) {
           return action.rxTakeTimeId === p.times[action.timesIdx].rx_take_time.id
         }
+        return null
       })
       let todayUntakeCopy = state.today.slice()
       todayUntakeCopy[prescriptionIndx].times[action.timesIdx].rx_take_time.taken = false;

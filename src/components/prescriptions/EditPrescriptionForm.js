@@ -6,7 +6,7 @@ import { deletePrescriptionTakeTime, deletePrescriptionFetch, editPrescriptionFe
 import { editPrescription, deletePrescription, addDose } from '../../actions/prescriptions';
 import PatientNavBar from '../PatientNavBar';
 import Footer from '../Footer';
-import Select, { Async } from 'react-select';
+import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
 const DEFAULT_STATE = {
@@ -187,6 +187,7 @@ class EditPrescriptionForm extends Component {
   }
 
   render() {
+    console.log(this.props)
     const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> });
 
     const takeTimes = this.state.times.map((t, idx) => {
@@ -244,7 +245,7 @@ class EditPrescriptionForm extends Component {
               <button className="ui button" onClick={this.handleAddTimeFormClick}>Add Another Time</button>
             }
             <br /><br />
-            <button className="ui button" type="submit" className="fluid ui large button">Submit</button>
+            <button type="submit" className="fluid ui large button">Submit</button>
           </form>
           <br /><br />
           <button className="ui red button" onClick={this.handleDeletePrescription}>Delete Prescription</button>

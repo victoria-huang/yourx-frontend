@@ -7,7 +7,7 @@ import TakeTimesForm from './TakeTimesForm';
 import { getUser, createPrescription, createPrescriptionTakeTime, getSearchDrugNames, getRxcui } from '../../fetches';
 import PatientNavBar from '../PatientNavBar';
 import Footer from '../Footer';
-import Select, { Async } from 'react-select';
+import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
 const DEFAULT_STATE = {

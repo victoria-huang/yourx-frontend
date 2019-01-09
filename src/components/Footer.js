@@ -43,12 +43,12 @@ const Footer = (props) => {
             <a className="hover-link" href="mailto:vctrah@gmail.com">vctrah@gmail.com</a>
             <br /><br />
 
-            <a href="https://github.com/victoria-huang" target="_blank"><i className="large circular github link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://www.linkedin.com/in/victoriah92/" target="_blank"><i className="large circular linkedin link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://medium.com/@victoria.huang" target="_blank"><i className="large circular medium link icon"></i></a>&nbsp;&nbsp;
-            <a href="http://facebook.com" target="_blank"><i className="large circular facebook link icon"></i></a>&nbsp;&nbsp;
-            <a href="http://twitter.com" target="_blank"><i className="large circular twitter link icon"></i></a>&nbsp;&nbsp;
-            <a href="https://www.victoriahuang.me" target="_blank"><i className="large circular user circle link icon"></i></a>
+            <a href="https://github.com/victoria-huang" target="_blank" rel="noopener noreferrer"><i className="large circular github link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://www.linkedin.com/in/victoriah92/" target="_blank" rel="noopener noreferrer"><i className="large circular linkedin link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://medium.com/@victoria.huang" target="_blank" rel="noopener noreferrer"><i className="large circular medium link icon"></i></a>&nbsp;&nbsp;
+            <a href="http://facebook.com" target="_blank" rel="noopener noreferrer"><i className="large circular facebook link icon"></i></a>&nbsp;&nbsp;
+            <a href="http://twitter.com" target="_blank" rel="noopener noreferrer"><i className="large circular twitter link icon"></i></a>&nbsp;&nbsp;
+            <a href="https://www.victoriahuang.me" target="_blank" rel="noopener noreferrer"><i className="large circular user circle link icon"></i></a>
           </div>
         </div>
       </div>

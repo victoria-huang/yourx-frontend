@@ -41,6 +41,7 @@ const PatientMed = (props) => {
         </Popup>
       )
     }
+    return null
   })
 
   return (
