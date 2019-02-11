@@ -118,7 +118,6 @@ export const deletePrescriptionFetch = (prescriptionId) => {
       'Authorization': localStorage.getItem('token')
     }
   })
-  // .then(r => r.json()).then(console.log)
 }
 
 export const editPrescriptionFetch = (prescriptionId, rxBody) => {
@@ -136,7 +135,6 @@ export const editPrescriptionFetch = (prescriptionId, rxBody) => {
 export const getSearchDrugNames = (searchTerm) => {
   return fetch('https://rxnav.nlm.nih.gov/REST/displaynames', {
     headers : {
-      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   })
@@ -150,7 +148,6 @@ export const getRxcui = (drugName) => {
   const search = drugName.toLowerCase().split(' ').join('+');
   return fetch(`https://rxnav.nlm.nih.gov/REST/rxcui?name=${search}`, {
     headers : {
-      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   }).then(res => res.json())
@@ -160,7 +157,6 @@ export const getInteractions = (rxcuiArray) => {
   const searchNums = rxcuiArray.join('+');
   return fetch(`https://rxnav.nlm.nih.gov/REST/interaction/list.json?rxcuis=${searchNums}`, {
     headers : {
-      // 'Content-Type': 'application/json',
       'Accept': 'application/json'
      }
   }).then(res => res.json())

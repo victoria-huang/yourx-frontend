@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
-// import 'react-circular-progressbar/dist/styles.css';
 import { connect } from 'react-redux';
 
 class Adherence extends Component {

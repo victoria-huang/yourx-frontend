@@ -72,7 +72,7 @@ class LoginForm extends Component {
           :
             <i aria-hidden="true" className="circular user doctor huge icon"></i>
           }
-          {/*<h1 className="content-header">{this.props.type} Login</h1>*/}
+
           <br /><br /><br />
 
           { this.state.errors.length > 0 ?

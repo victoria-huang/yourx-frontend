@@ -5,7 +5,6 @@ import { getUser, fetchPatient } from '../../fetches';
 import { setUser } from '../../actions/user'
 import { setAllPrescriptions } from  '../../actions/prescriptions'
 import MedsContainer from './MedsContainer'
-// import PrescriptionForm from '../prescriptions/PrescriptionForm'
 import PatientNavBar from '../PatientNavBar'
 import Footer from '../Footer';
 import MedListView from './MedListView'

@@ -154,7 +154,6 @@ body {
 .patient-home {
   width: 78%;
   margin: auto;
-  /* position: absolute; */
   z-index: 500;
 }
 
@@ -297,17 +296,6 @@ body {
   text-align: left;
 }
 
-/* .pillbox-button {
-  border: 3px solid rgb(0, 172, 164);
-  border-radius: 10px;
-  margin: 5px;
-}
-
-.pillbox-buttons {
-  width: 100%;
-  justify-content: center;
-} */
-
 .prompt {
   text-align: center;
 }
@@ -382,7 +370,6 @@ body {
   .patient-home {
     width: 78%;
     margin: auto;
-    /* position: absolute; */
     z-index: 500;
   }
 
