@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  glucose: 9.99
+  heart_rate: 1
+  systolic_bp: 1
+  diastolic_bp: 1
+  height_inches: 1
+  weight_lbs: 9.99
+  temperature_f: 9.99
+  resp_rate: 1
+  patient: one
+
+two:
+  glucose: 9.99
+  heart_rate: 1
+  systolic_bp: 1
+  diastolic_bp: 1
+  height_inches: 1
+  weight_lbs: 9.99
+  temperature_f: 9.99
+  resp_rate: 1
+  patient: two
