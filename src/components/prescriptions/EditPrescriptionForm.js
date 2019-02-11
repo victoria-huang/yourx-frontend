@@ -187,7 +187,6 @@ class EditPrescriptionForm extends Component {
   }
 
   render() {
-    console.log(this.props)
     const errors = this.state.errors.map((error, idx) => { return <li key={idx}>{error}</li> });
 
     const takeTimes = this.state.times.map((t, idx) => {
