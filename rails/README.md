@@ -1,1 +1,0 @@
-YouRx is your virtual pillbox, designed to allow you to easily take control of your health. Schedule when to take medication, track adherence, and check for harmful drug interactions. [Video demo](https://youtu.be/I5FhDrszFVc)
