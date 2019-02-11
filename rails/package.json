@@ -1,0 +1,29 @@
+{
+  "name": "yourx-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "antd": "^3.6.2",
+    "chart.js": "^2.7.2",
+    "react": "^16.4.0",
+    "react-chartjs-2": "^2.7.2",
+    "react-circular-progressbar": "^0.8.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.4",
+    "react-select": "^1.2.1",
+    "react-sticky-footer": "^0.1.0-rc3",
+    "reactjs-popup": "^1.1.1",
+    "redux": "^4.0.0",
+    "semantic-ui-calendar": "0.0.8",
+    "semantic-ui-calendar-react": "^0.4.6",
+    "semantic-ui-react": "^0.81.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
