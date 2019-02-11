@@ -3,13 +3,4 @@ class PatientSerializer < ActiveModel::Serializer
   has_many :prescriptions
   has_many :adherences
 
-  # def med
-  #   meds = []
-  #
-  #   object.prescriptions.each do |p|
-  #     meds << ActiveModelSerializers::SerializableResource.new(p, serializer: PrescriptionSerializer)
-  #   end
-  #
-  #   meds
-  # end
 end

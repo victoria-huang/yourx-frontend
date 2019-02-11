@@ -1,14 +1,5 @@
 class Api::V1::PatientsController < ApplicationController
-  before_action :set_patient, only: [:show] #NOTE: also :update, :destroy if needed later
-
-  # def index
-  #   if valid_token?
-  #     patients = Patient.all
-  #     render json: patients, status: 200
-  #   else
-  #     render json: { unauthorized: true }, status: :unauthorized
-  #   end
-  # end
+  before_action :set_patient, only: [:show]
 
   def create
     @patient = Patient.create(patient_params)
@@ -21,25 +12,6 @@ class Api::V1::PatientsController < ApplicationController
       }, status: :unprocessable_entity
     end
   end
-
-  # def update
-  #   if authorized?(@patient)
-  #     @patient.update(patient_params)
-  #     render json: @patient, status: 200
-  #   else
-  #     render json: { unauthorized: true }, status: :unauthorized
-  #   end
-  # end
-
-  # def destroy
-  #   if authorized?(@patient)
-  #     patient_id = @patient.id
-  #     @patient.destroy
-  #     render json: {message: "Patient deleted", patientId: patient_id}
-  #   else
-  #     render json: { unauthorized: true }, status: :unauthorized
-  #   end
-  # end
 
   def show
     if authorized?(@patient)

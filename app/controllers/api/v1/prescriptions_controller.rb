@@ -1,11 +1,6 @@
 class Api::V1::PrescriptionsController < ApplicationController
   before_action :set_prescription, only: [:show, :update, :destroy]
 
-  # def index
-  #   prescriptions = Prescription.all
-  #   render json: prescriptions, status: 200
-  # end
-
   def create
     @patient = Patient.find(current_user_id)
 
@@ -65,16 +60,6 @@ class Api::V1::PrescriptionsController < ApplicationController
       :sig,
       :dosage,
       :image_url,
-      # :generic_name,
-      # :amount_per_dose,
-      # :formulation,
-      # :route,
-      # :daily_freq,
-      # :weekly_freq,
-      # :start_date,
-      # :end_date,
-      # :doctor_id,
-      # :pharmacy_id,
       :patient_id
     )
   end

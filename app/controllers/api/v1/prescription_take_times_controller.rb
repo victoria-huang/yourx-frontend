@@ -1,10 +1,5 @@
 class Api::V1::PrescriptionTakeTimesController < ApplicationController
-  before_action :set_prescription_take_time, only: [:update, :destroy] #NOTE: also :show if needed
-
-  # def index
-  #   prescription_take_times = PrescriptionTakeTime.all
-  #   render json: prescription_take_times, status: 200
-  # end
+  before_action :set_prescription_take_time, only: [:update, :destroy] 
 
   def create
     @patient = Patient.find(current_user_id)
@@ -39,10 +34,6 @@ class Api::V1::PrescriptionTakeTimesController < ApplicationController
       render json: { unauthorized: true }, status: :unauthorized
     end
   end
-
-  # def show
-  #   render json: @prescription_take_time, status: 200
-  # end
 
   private
   def prescription_take_time_params

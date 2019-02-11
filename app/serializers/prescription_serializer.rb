@@ -1,7 +1,5 @@
 class PrescriptionSerializer < ActiveModel::Serializer
   attributes :med, :times
-  # has_many :prescription_take_times
-  # has_many :take_times, through: :prescription_take_times
 
   def med
     ActiveModelSerializers::SerializableResource.new(object, serializer: MedSerializer)
